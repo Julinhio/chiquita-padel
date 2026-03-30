@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiquita Padel Da Nang — Modèle Financier</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0e0e0e;
+            --surface: #161616;
+            --surface2: #1e1e1e;
+            --border: rgba(255, 255, 255, 0.08);
+            --border2: rgba(255, 255, 255, 0.14);
+            --text: #f0ede8;
+            --muted: #888;
+            --accent: #c8f55a;
+            --accent2: #ff6b35;
+            --red: #ff4444;
+            --green: #4dff91;
+            --blue: #5ab4ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Syne', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .noise {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+
+        .header {
+            padding: 3rem 2rem 2rem;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        h1 {
+            font-size: clamp(28px, 5vw, 44px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-top: 2rem;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .subtitle {
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 6px;
+            font-family: 'DM Mono', monospace;
+        }
+
+        .main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .controls-bar {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .control-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+        }
+
+        .slider-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        input[type=range] {
+            flex: 1;
+            -webkit-appearance: none;
+            height: 4px;
+            background: var(--border2);
+            border-radius: 2px;
+            outline: none;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            box-shadow: 0 0 0 4px rgba(200, 245, 90, 0.15);
+        }
+
+        .slider-val {
+            font-family: 'DM Mono', monospace;
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--accent);
+            min-width: 50px;
+        }
+
+        .toggle-group {
+            display: flex;
+            gap: 6px;
+        }
+
+        .toggle-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border2);
+            background: transparent;
+            color: var(--muted);
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .toggle-btn.active {
+            background: var(--accent);
+            color: #0e0e0e;
+            border-color: var(--accent);
+            font-weight: 500;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.1rem 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .metric-card.highlight {
+            border-color: var(--accent);
+        }
+
+        .metric-card.danger {
+            border-color: var(--red);
+        }
+
+        .m-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .m-value {
+            font-size: 22px;
+            font-weight: 600;
+            font-family: 'DM Mono', monospace;
+        }
+
+        .m-value.pos {
+            color: var(--green);
+        }
+
+        .m-value.neg {
+            color: var(--red);
+        }
+
+        .m-value.acc {
+            color: var(--accent);
+        }
+
+        .m-sub {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 3px;
+            font-family: 'DM Mono', monospace;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+        }
+
+        .panel-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .row-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .row-item:last-child {
+            border-bottom: none;
+        }
+
+        .row-item .lbl {
+            color: var(--muted);
+        }
+
+        .row-item .val {
+            font-family: 'DM Mono', monospace;
+            font-weight: 500;
+        }
+
+        .val.pos {
+            color: var(--green);
+        }
+
+        .val.neg {
+            color: var(--red);
+        }
+
+        .val.neu {
+            color: var(--text);
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0 0;
+            margin-top: 8px;
+            border-top: 1px solid var(--border2);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .total-row .val {
+            font-family: 'DM Mono', monospace;
+            font-size: 18px;
+        }
+
+        .scenarios-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .scenario-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .scenario-row:last-child {
+            border-bottom: none;
+        }
+
+        .scenario-row.current {
+            background: rgba(200, 245, 90, 0.04);
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin: 0 -12px;
+        }
+
+        .s-pct {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            color: var(--muted);
+            width: 40px;
+            flex-shrink: 0;
+        }
+
+        .s-bar-track {
+            flex: 1;
+            background: var(--border);
+            border-radius: 3px;
+            height: 6px;
+            overflow: hidden;
+        }
+
+        .s-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.4s;
+        }
+
+        .s-result {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            font-weight: 500;
+            width: 110px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .s-label {
+            font-size: 11px;
+            color: var(--muted);
+            width: 80px;
+            flex-shrink: 0;
+        }
+
+        .invest-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .invest-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 0;
+        }
+
+        .invest-label {
+            font-size: 13px;
+            color: var(--muted);
+            width: 180px;
+            flex-shrink: 0;
+        }
+
+        .invest-track {
+            flex: 1;
+            background: var(--border);
+            border-radius: 3px;
+            height: 20px;
+            overflow: hidden;
+        }
+
+        .invest-fill {
+            height: 100%;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            font-size: 12px;
+            font-family: 'DM Mono', monospace;
+            font-weight: 500;
+            color: #0e0e0e;
+        }
+
+        .verdict {
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .verdict.good {
+            background: rgba(77, 255, 145, 0.08);
+            border: 1px solid rgba(77, 255, 145, 0.25);
+            color: var(--green);
+        }
+
+        .verdict.warn {
+            background: rgba(255, 200, 50, 0.08);
+            border: 1px solid rgba(255, 200, 50, 0.25);
+            color: #ffc832;
+        }
+
+        .verdict.bad {
+            background: rgba(255, 68, 68, 0.08);
+            border: 1px solid rgba(255, 68, 68, 0.25);
+            color: var(--red);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--muted);
+            font-size: 12px;
+            font-family: 'DM Mono', monospace;
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            background: rgba(200, 245, 90, 0.12);
+            color: var(--accent);
+            margin-left: 6px;
+        }
+
+        .badge.cur {
+            background: rgba(200, 245, 90, 0.2);
+        }
+
+        @media (max-width: 640px) {
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="noise"></div>
+
+    <div class="header">
+        <div class="header-inner">
+            <div>
+                <div class="logo">
+                    <div class="logo-icon">🏸</div>
+                    <span class="logo-label"
+                        style="font-size:13px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">Chiquita
+                        Club</span>
+                </div>
+            </div>
+            <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);">Da Nang, Vietnam · v1.0 ·
+                2025</div>
+        </div>
+        <div class="header-inner" style="margin-top:1.5rem;">
+            <div>
+                <h1>Modèle <span>Financier</span></h1>
+                <p class="subtitle">4 courts · 1 500 m² · Scénario de faisabilité</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+
+        <div class="controls-bar">
+            <div class="control-group">
+                <span class="control-label">Taux d'occupation</span>
+                <div class="slider-row">
+                    <input type="range" id="occ" min="10" max="90" value="40" step="5" oninput="update()">
+                    <span class="slider-val" id="occ-val">40%</span>
+                </div>
+            </div>
+            <div class="control-group" style="flex:0;min-width:auto;">
+                <span class="control-label">Loyer mensuel</span>
+                <div class="toggle-group">
+                    <button class="toggle-btn active" id="btn-2k" onclick="setRent(2000)">2 000 $</button>
+                    <button class="toggle-btn" id="btn-4k" onclick="setRent(4000)">4 000 $</button>
+                </div>
+            </div>
+            <div class="control-group" style="flex:0;min-width:auto;">
+                <span class="control-label">Prix/heure</span>
+                <div class="toggle-group">
+                    <button class="toggle-btn" id="btn-p25" onclick="setPrice(25)">25 $</button>
+                    <button class="toggle-btn active" id="btn-p30" onclick="setPrice(30)">30 $</button>
+                    <button class="toggle-btn" id="btn-p35" onclick="setPrice(35)">35 $</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="verdict-box"></div>
+
+        <div class="metrics-grid">
+            <div class="metric-card highlight">
+                <div class="m-label">CA annuel total</div>
+                <div class="m-value acc" id="m-ca">—</div>
+                <div class="m-sub" id="m-ca-mo">—/mois</div>
+            </div>
+            <div class="metric-card">
+                <div class="m-label">Charges annuelles</div>
+                <div class="m-value neg" id="m-costs">—</div>
+                <div class="m-sub" id="m-costs-mo">—/mois</div>
+            </div>
+            <div class="metric-card" id="mc-result">
+                <div class="m-label">Résultat brut</div>
+                <div class="m-value" id="m-result">—</div>
+                <div class="m-sub" id="m-margin">—</div>
+            </div>
+            <div class="metric-card">
+                <div class="m-label">Retour invest.</div>
+                <div class="m-value acc" id="m-roi">—</div>
+                <div class="m-sub">sur 319 000 $</div>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div class="panel">
+                <div class="panel-title">Revenus détaillés</div>
+                <div class="row-item"><span class="lbl">Courts (4 × 14h × 365j)</span><span class="val pos"
+                        id="r-courts">—</span></div>
+                <div class="row-item"><span class="lbl">Restauration (15$/joueur)</span><span class="val pos"
+                        id="r-food">—</span></div>
+                <div class="row-item"><span class="lbl">Wellness & boutique</span><span class="val pos"
+                        id="r-wellness">—</span></div>
+                <div class="total-row"><span>Total CA</span><span class="val pos" id="r-total">—</span></div>
+            </div>
+            <div class="panel">
+                <div class="panel-title">Charges mensuelles</div>
+                <div class="row-item"><span class="lbl">Loyer / warehouse</span><span class="val neg"
+                        id="c-rent">—</span></div>
+                <div class="row-item"><span class="lbl">Staff (5-7 pers.)</span><span class="val neg">-3 200 $</span>
+                </div>
+                <div class="row-item"><span class="lbl">Électricité + clim</span><span class="val neg">-2 400 $</span>
+                </div>
+                <div class="row-item"><span class="lbl">Maintenance courts</span><span class="val neg">-800 $</span>
+                </div>
+                <div class="row-item"><span class="lbl">Marketing</span><span class="val neg">-600 $</span></div>
+                <div class="row-item"><span class="lbl">Admin + compta</span><span class="val neg">-500 $</span></div>
+                <div class="row-item"><span class="lbl">Assurance</span><span class="val neg">-300 $</span></div>
+                <div class="total-row"><span>Total charges</span><span class="val neg" id="c-total">—</span></div>
+            </div>
+        </div>
+
+        <div class="scenarios-panel">
+            <div class="panel-title">Tous les scénarios <span id="rent-label-sc"
+                    style="color:var(--accent);font-weight:500;"></span></div>
+            <div id="scenarios-list"></div>
+        </div>
+
+        <div class="invest-panel">
+            <div class="panel-title">Investissement initial — 319 000 $ estimés</div>
+            <div id="invest-bars"></div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Chiquita Club · Da Nang, Vietnam · Modèle de faisabilité v1.0<br>
+        Julien · Pascal · Louis — Tous droits réservés 2025
+    </div>
+
+    <script>
+        let rent = 2000;
+        let price = 30;
+        let occ = 40;
+
+        function setRent(r) {
+            rent = r;
+            ['btn-2k', 'btn-4k'].forEach(id => document.getElementById(id).classList.remove('active'));
+            document.getElementById(r === 2000 ? 'btn-2k' : 'btn-4k').classList.add('active');
+            update();
+        }
+        function setPrice(p) {
+            price = p;
+            ['btn-p25', 'btn-p30', 'btn-p35'].forEach(id => document.getElementById(id).classList.remove('active'));
+            document.getElementById('btn-p' + p).classList.add('active');
+            update();
+        }
+
+        function fmt(v, decimals) {
+            const abs = Math.abs(v);
+            const sign = v < 0 ? '-' : '';
+            if (decimals !== undefined) return sign + '$' + abs.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            if (abs >= 1000) return sign + '$' + Math.round(abs).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            return sign + '$' + Math.round(abs);
+        }
+
+        function calc(occPct, r, p) {
+            const slots = 4 * 14 * 365;
+            const used = Math.round(slots * occPct / 100);
+            const revCourts = used * p;
+            const revFood = used * 4 * 15;
+            const revWellness = 2000 * 12;
+            const revTotal = revCourts + revFood + revWellness;
+            const costsMonthly = r + 3200 + 2400 + 800 + 600 + 500 + 300;
+            const costsAnnual = costsMonthly * 12;
+            const result = revTotal - costsAnnual;
+            return { slots, used, revCourts, revFood, revWellness, revTotal, costsMonthly, costsAnnual, result };
+        }
+
+        function update() {
+            occ = parseInt(document.getElementById('occ').value);
+            document.getElementById('occ-val').textContent = occ + '%';
+
+            const d = calc(occ, rent, price);
+            const margin = d.revTotal > 0 ? Math.round(d.result / d.revTotal * 100) : 0;
+
+            document.getElementById('m-ca').textContent = fmt(d.revTotal);
+            document.getElementById('m-ca-mo').textContent = fmt(d.revTotal / 12) + '/mois';
+            document.getElementById('m-costs').textContent = fmt(-d.costsAnnual);
+            document.getElementById('m-costs-mo').textContent = fmt(-d.costsMonthly) + '/mois';
+
+            const rEl = document.getElementById('m-result');
+            rEl.textContent = fmt(d.result);
+            rEl.className = 'm-value ' + (d.result >= 0 ? 'pos' : 'neg');
+            document.getElementById('m-margin').textContent = 'Marge ' + margin + '%';
+            document.getElementById('mc-result').className = 'metric-card ' + (d.result >= 0 ? '' : 'danger');
+
+            const roi = d.result > 0 ? Math.round(319000 / d.result) + ' ans' : 'Non rentable';
+            document.getElementById('m-roi').textContent = roi;
+            document.getElementById('m-roi').className = 'm-value ' + (d.result > 0 ? 'acc' : 'neg');
+
+            document.getElementById('r-courts').textContent = fmt(d.revCourts);
+            document.getElementById('r-food').textContent = fmt(d.revFood);
+            document.getElementById('r-wellness').textContent = fmt(d.revWellness);
+            document.getElementById('r-total').textContent = fmt(d.revTotal);
+            document.getElementById('c-rent').textContent = fmt(-rent);
+            document.getElementById('c-total').textContent = fmt(-d.costsAnnual);
+
+            const verdict = document.getElementById('verdict-box');
+            if (d.result > 40000) {
+                verdict.innerHTML = `<div class="verdict good">✓ Rentable et confortable. À ${occ}% d'occupation, le club génère ${fmt(d.result)} de bénéfice brut annuel.</div>`;
+            } else if (d.result > 0) {
+                verdict.innerHTML = `<div class="verdict warn">⚡ Rentable mais serré. ${fmt(d.result)}/an — peu de marge pour les imprévus.</div>`;
+            } else {
+                verdict.innerHTML = `<div class="verdict bad">✗ Déficitaire à ${occ}% avec un loyer de ${fmt(rent)}/mois. Monter le taux d'occupation ou baisser les charges.</div>`;
+            }
+
+            document.getElementById('rent-label-sc').textContent = '— loyer ' + fmt(rent) + '/mois';
+
+            const scenarios = [20, 30, 40, 50, 60, 70];
+            const maxResult = Math.max(...scenarios.map(p2 => calc(p2, rent, price).result));
+            const minResult = Math.min(...scenarios.map(p2 => calc(p2, rent, price).result));
+            const range = Math.max(Math.abs(maxResult), Math.abs(minResult), 1);
+
+            document.getElementById('scenarios-list').innerHTML = scenarios.map(p2 => {
+                const r2 = calc(p2, rent, price);
+                const isCurrent = p2 === occ;
+                const barPct = Math.max(0, Math.round((r2.result / range) * 50 + 50));
+                const color = r2.result >= 0 ? '#4dff91' : '#ff4444';
+                const labels = { 20: 'Worst case', 30: 'Conservateur', 40: 'Base', 50: 'Optimiste', 60: 'Bon', 70: 'Excellent' };
+                return `<div class="scenario-row ${isCurrent ? 'current' : ''}">
+      <span class="s-pct">${p2}%</span>
+      <span class="s-label" style="font-size:11px;color:var(--muted);">${labels[p2]}${isCurrent ? '<span class="badge cur">actuel</span>' : ''}</span>
+      <div class="s-bar-track">
+        <div class="s-bar-fill" style="width:${barPct}%;background:${color};"></div>
+      </div>
+      <span class="s-result" style="color:${color};">${fmt(r2.result)}</span>
+    </div>`;
+            }).join('');
+
+            const investData = [
+                { label: '4 courts + shipping', val: 50000, color: '#5ab4ff' },
+                { label: 'Construction', val: 120000, color: '#c8f55a' },
+                { label: 'Accueil + boutique', val: 20000, color: '#ff6b35' },
+                { label: 'Restauration', val: 25000, color: '#a78bfa' },
+                { label: 'Ice bath + sauna', val: 20000, color: '#4dff91' },
+                { label: 'Mobilier + déco', val: 25000, color: '#fbbf24' },
+                { label: 'Fonds de roulement', val: 30000, color: '#f472b6' },
+                { label: 'Imprévus 10%', val: 29000, color: '#888' },
+            ];
+            const maxInvest = Math.max(...investData.map(i => i.val));
+            document.getElementById('invest-bars').innerHTML = investData.map(item => {
+                const pct = Math.round(item.val / maxInvest * 100);
+                return `<div class="invest-bar-row">
+      <span class="invest-label">${item.label}</span>
+      <div class="invest-track">
+        <div class="invest-fill" style="width:${pct}%;background:${item.color};">${fmt(item.val)}</div>
+      </div>
+    </div>`;
+            }).join('') + `<div style="display:flex;justify-content:space-between;padding:12px 0 0;margin-top:8px;border-top:1px solid var(--border2);font-size:15px;font-weight:600;">
+    <span>Total estimé</span>
+    <span style="font-family:'DM Mono',monospace;color:var(--accent);">~ 319 000 $</span>
+  </div>`;
+        }
+
+        update();
+    </script>
+</body>
+
+</html>
