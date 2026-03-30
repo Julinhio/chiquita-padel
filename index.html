@@ -553,16 +553,16 @@
             <div class="control-group" style="flex:0;min-width:auto;">
                 <span class="control-label">Loyer mensuel</span>
                 <div class="toggle-group">
-                    <button class="toggle-btn active" id="btn-2k" onclick="setRent(2000)">2 000 $</button>
-                    <button class="toggle-btn" id="btn-4k" onclick="setRent(4000)">4 000 $</button>
+                    <button class="toggle-btn active" id="btn-2k" onclick="setRent(2000)"
+                        style="min-width:90px;white-space:nowrap;">2 000 $</button>
+                    <button class="toggle-btn" id="btn-4k" onclick="setRent(4000)"
+                        style="min-width:90px;white-space:nowrap;">4 000 $</button>
                 </div>
             </div>
             <div class="control-group" style="flex:0;min-width:auto;">
-                <span class="control-label">Prix/heure</span>
-                <div class="toggle-group">
-                    <button class="toggle-btn" id="btn-p25" onclick="setPrice(25)">25 $</button>
-                    <button class="toggle-btn active" id="btn-p30" onclick="setPrice(30)">30 $</button>
-                    <button class="toggle-btn" id="btn-p35" onclick="setPrice(35)">35 $</button>
+                <span class="control-label">Prix effectif/heure</span>
+                <div style="font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);padding-top:8px;">
+                    ~20 $ <span style="font-size:11px;">(90min=24$/h · 120min=19$/h)</span>
                 </div>
             </div>
         </div>
@@ -595,10 +595,10 @@
         <div class="grid-2">
             <div class="panel">
                 <div class="panel-title">Revenus détaillés</div>
-                <div class="row-item"><span class="lbl">Courts (4 × 14h × 365j)</span><span class="val pos"
-                        id="r-courts">—</span></div>
-                <div class="row-item"><span class="lbl">Restauration (15$/joueur)</span><span class="val pos"
-                        id="r-food">—</span></div>
+                <div class="row-item"><span class="lbl">Courts (4 × 9 créneaux × 365j × 37$/créneau)</span><span
+                        class="val pos" id="r-courts">—</span></div>
+                <div class="row-item"><span class="lbl">Restauration (3$/joueur, 40% consomment)</span><span
+                        class="val pos" id="r-food">—</span></div>
                 <div class="row-item"><span class="lbl">Wellness & boutique</span><span class="val pos"
                         id="r-wellness">—</span></div>
                 <div class="total-row"><span>Total CA</span><span class="val pos" id="r-total">—</span></div>
@@ -635,24 +635,17 @@
 
     <div class="footer">
         Chiquita Club · Da Nang, Vietnam · Modèle de faisabilité v1.0<br>
-        Julien · Pascal · Louis — Tous droits réservés 2025
+        Chiquita Padel — Tous droits réservés 2026
     </div>
 
     <script>
         let rent = 2000;
-        let price = 30;
         let occ = 40;
 
         function setRent(r) {
             rent = r;
             ['btn-2k', 'btn-4k'].forEach(id => document.getElementById(id).classList.remove('active'));
             document.getElementById(r === 2000 ? 'btn-2k' : 'btn-4k').classList.add('active');
-            update();
-        }
-        function setPrice(p) {
-            price = p;
-            ['btn-p25', 'btn-p30', 'btn-p35'].forEach(id => document.getElementById(id).classList.remove('active'));
-            document.getElementById('btn-p' + p).classList.add('active');
             update();
         }
 
@@ -664,24 +657,31 @@
             return sign + '$' + Math.round(abs);
         }
 
-        function calc(occPct, r, p) {
-            const slots = 4 * 14 * 365;
-            const used = Math.round(slots * occPct / 100);
-            const revCourts = used * p;
-            const revFood = used * 4 * 15;
-            const revWellness = 2000 * 12;
+        function calc(occPct, r) {
+            // 4 courts, 14h/jour, créneaux de 1h30 → ~9 créneaux/court/jour
+            const slotsPerCourtPerDay = Math.floor(14 / 1.5);
+            const totalSlotsPerYear = 4 * slotsPerCourtPerDay * 365;
+            const usedSlots = Math.round(totalSlotsPerYear * occPct / 100);
+            // Prix moyen par créneau 90min = 36$, 120min = 38$ → moyenne ~37$
+            const pricePerSlot = 37;
+            const revCourts = usedSlots * pricePerSlot;
+            // Restauration : 4 joueurs/créneau, 40% consomment, 3$ en moyenne
+            const playersPerYear = usedSlots * 4;
+            const revFood = Math.round(playersPerYear * 0.4 * 3);
+            // Wellness proportionnel à l'occupation (base 2000$/mois à 40%)
+            const revWellness = Math.round(2000 * 12 * (occPct / 40));
             const revTotal = revCourts + revFood + revWellness;
             const costsMonthly = r + 3200 + 2400 + 800 + 600 + 500 + 300;
             const costsAnnual = costsMonthly * 12;
             const result = revTotal - costsAnnual;
-            return { slots, used, revCourts, revFood, revWellness, revTotal, costsMonthly, costsAnnual, result };
+            return { totalSlotsPerYear, usedSlots, revCourts, revFood, revWellness, revTotal, costsMonthly, costsAnnual, result };
         }
 
         function update() {
             occ = parseInt(document.getElementById('occ').value);
             document.getElementById('occ-val').textContent = occ + '%';
 
-            const d = calc(occ, rent, price);
+            const d = calc(occ, rent);
             const margin = d.revTotal > 0 ? Math.round(d.result / d.revTotal * 100) : 0;
 
             document.getElementById('m-ca').textContent = fmt(d.revTotal);
@@ -718,12 +718,12 @@
             document.getElementById('rent-label-sc').textContent = '— loyer ' + fmt(rent) + '/mois';
 
             const scenarios = [20, 30, 40, 50, 60, 70];
-            const maxResult = Math.max(...scenarios.map(p2 => calc(p2, rent, price).result));
-            const minResult = Math.min(...scenarios.map(p2 => calc(p2, rent, price).result));
+            const maxResult = Math.max(...scenarios.map(p2 => calc(p2, rent).result));
+            const minResult = Math.min(...scenarios.map(p2 => calc(p2, rent).result));
             const range = Math.max(Math.abs(maxResult), Math.abs(minResult), 1);
 
             document.getElementById('scenarios-list').innerHTML = scenarios.map(p2 => {
-                const r2 = calc(p2, rent, price);
+                const r2 = calc(p2, rent);
                 const isCurrent = p2 === occ;
                 const barPct = Math.max(0, Math.round((r2.result / range) * 50 + 50));
                 const color = r2.result >= 0 ? '#4dff91' : '#ff4444';
