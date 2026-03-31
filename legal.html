@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiquita Academy — Feuille de Route Légale</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0e0e0e;
+            --surface: #161616;
+            --surface2: #1e1e1e;
+            --border: rgba(255, 255, 255, 0.08);
+            --border2: rgba(255, 255, 255, 0.14);
+            --text: #f0ede8;
+            --muted: #888;
+            --accent: #c8f55a;
+            --accent2: #ff6b35;
+            --red: #ff4444;
+            --green: #4dff91;
+            --blue: #5ab4ff;
+            --purple: #a78bfa;
+            --yellow: #fbbf24;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Syne', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .noise {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+
+        .header {
+            padding: 3rem 2rem 2rem;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'DM Mono', monospace;
+            font-size: 12px;
+            color: var(--muted);
+            text-decoration: none;
+            padding: 8px 14px;
+            border: 1px solid var(--border2);
+            border-radius: 8px;
+            transition: all 0.2s;
+            letter-spacing: 0.04em;
+        }
+        .back-link:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(200, 245, 90, 0.06);
+        }
+
+        h1 {
+            font-size: clamp(28px, 5vw, 44px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-top: 2rem;
+        }
+        h1 span { color: var(--accent); }
+
+        .subtitle {
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 6px;
+            font-family: 'DM Mono', monospace;
+        }
+
+        .main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section header */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 2.5rem 0 1rem;
+        }
+
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+        }
+
+        /* Panel */
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .panel-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        /* Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 1rem;
+        }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-family: 'DM Mono', monospace;
+        }
+        .tag.acc   { background: rgba(200,245,90,0.12);  color: var(--accent); }
+        .tag.red   { background: rgba(255,68,68,0.12);   color: var(--red); }
+        .tag.orange{ background: rgba(255,107,53,0.12);  color: var(--accent2); }
+        .tag.blue  { background: rgba(90,180,255,0.12);  color: var(--blue); }
+        .tag.green { background: rgba(77,255,145,0.12);  color: var(--green); }
+        .tag.yellow{ background: rgba(251,191,36,0.12);  color: var(--yellow); }
+
+        /* Callout boxes */
+        .callout {
+            border-radius: 12px;
+            padding: 1.1rem 1.4rem;
+            margin-bottom: 1rem;
+            font-size: 14px;
+            line-height: 1.6;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+        .callout-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+        .callout.accent {
+            background: rgba(200,245,90,0.05);
+            border: 1px solid rgba(200,245,90,0.2);
+        }
+        .callout.accent strong { color: var(--accent); }
+        .callout.blue {
+            background: rgba(90,180,255,0.05);
+            border: 1px solid rgba(90,180,255,0.2);
+        }
+        .callout.blue strong { color: var(--blue); }
+        .callout.orange {
+            background: rgba(255,107,53,0.05);
+            border: 1px solid rgba(255,107,53,0.2);
+        }
+        .callout.orange strong { color: var(--accent2); }
+        .callout.warn {
+            background: rgba(251,191,36,0.05);
+            border: 1px solid rgba(251,191,36,0.2);
+        }
+        .callout.warn strong { color: var(--yellow); }
+
+        /* Row items */
+        .row-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+            gap: 12px;
+        }
+        .row-item:last-child { border-bottom: none; }
+        .row-item .lbl { color: var(--muted); flex: 1; }
+        .row-item .val { font-family: 'DM Mono', monospace; font-weight: 500; text-align: right; }
+        .val.pos    { color: var(--green); }
+        .val.neg    { color: var(--red); }
+        .val.acc    { color: var(--accent); }
+        .val.blue   { color: var(--blue); }
+        .val.orange { color: var(--accent2); }
+        .val.yellow { color: var(--yellow); }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0 0;
+            margin-top: 8px;
+            border-top: 1px solid var(--border2);
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .total-row .val { font-family: 'DM Mono', monospace; font-size: 17px; }
+
+        /* Steps */
+        .step-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .step-card.active { border-color: rgba(200,245,90,0.3); }
+
+        .step-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--surface2);
+            border: 1px solid var(--border2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            font-weight: 600;
+            flex-shrink: 0;
+            color: var(--muted);
+        }
+
+        .step-num.acc {
+            background: rgba(200,245,90,0.1);
+            border-color: rgba(200,245,90,0.4);
+            color: var(--accent);
+        }
+
+        .step-body { flex: 1; }
+
+        .step-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .step-duration {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            color: var(--blue);
+            background: rgba(90,180,255,0.1);
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+
+        .step-desc {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .step-docs {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .step-doc {
+            display: flex;
+            gap: 8px;
+            font-size: 13px;
+            align-items: flex-start;
+        }
+
+        .step-doc-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--border2);
+            flex-shrink: 0;
+            margin-top: 7px;
+        }
+
+        /* Connector between steps */
+        .step-connector {
+            width: 36px;
+            display: flex;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .step-connector-line {
+            width: 1px;
+            height: 20px;
+            background: var(--border2);
+            margin: -4px 0;
+        }
+
+        /* Timeline bar */
+        .timeline-wrap {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            overflow-x: auto;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr 1fr 1fr 1fr;
+            gap: 0;
+            min-width: 500px;
+        }
+
+        .tl-header {
+            font-size: 11px;
+            font-family: 'DM Mono', monospace;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 0 0 12px;
+            text-align: center;
+        }
+
+        .tl-header:first-child { text-align: left; }
+
+        .tl-label {
+            font-size: 12px;
+            color: var(--muted);
+            padding: 6px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .tl-bar-cell {
+            padding: 4px 4px;
+        }
+
+        .tl-bar {
+            height: 22px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            font-size: 11px;
+            font-family: 'DM Mono', monospace;
+            font-weight: 500;
+            color: #0e0e0e;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        /* Risk items */
+        .risk-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .risk-item:last-child { border-bottom: none; }
+        .risk-num {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            color: var(--yellow);
+            width: 20px;
+            flex-shrink: 0;
+            padding-top: 1px;
+        }
+        .risk-body { flex: 1; }
+        .risk-title { font-weight: 600; font-size: 14px; margin-bottom: 3px; }
+        .risk-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+        /* Tax table */
+        .tax-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .tax-table th {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            font-weight: 600;
+            padding: 6px 12px 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border2);
+        }
+        .tax-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+            font-family: 'DM Mono', monospace;
+        }
+        .tax-table tr:last-child td { border-bottom: none; }
+        .tax-table td:first-child { font-family: 'Syne', sans-serif; color: var(--muted); }
+
+        /* Checklist */
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .check-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 10px 14px;
+            background: var(--surface2);
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .check-box {
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid var(--border2);
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* Budget bars */
+        .budget-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px 0;
+        }
+        .budget-label {
+            font-size: 13px;
+            color: var(--muted);
+            width: 220px;
+            flex-shrink: 0;
+        }
+        .budget-range {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            color: var(--text);
+            width: 130px;
+            flex-shrink: 0;
+            text-align: right;
+        }
+        .budget-track {
+            flex: 1;
+            background: var(--border);
+            border-radius: 3px;
+            height: 6px;
+            overflow: hidden;
+        }
+        .budget-fill {
+            height: 100%;
+            border-radius: 3px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--muted);
+            font-size: 12px;
+            font-family: 'DM Mono', monospace;
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 700px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .header-inner { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="noise"></div>
+
+    <div class="header">
+        <div class="header-inner">
+            <div>
+                <div class="logo">
+                    <div class="logo-icon">🏸</div>
+                    <span style="font-size:13px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">Chiquita Academy</span>
+                </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);">Da Nang · Mars 2025 · v1.0</span>
+                <a href="index.html" class="back-link">← Modèle Financier</a>
+            </div>
+        </div>
+        <div class="header-inner" style="margin-top:1.5rem;">
+            <div>
+                <h1>Feuille de Route <span>Légale</span></h1>
+                <p class="subtitle">Structure · Licences · Fiscalité · Timeline</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+
+        <!-- CADRE LÉGAL -->
+        <div class="section-header">
+            <div class="section-icon" style="background:rgba(90,180,255,0.1);">⚖️</div>
+            <span class="section-title">Cadre légal général</span>
+        </div>
+
+        <div class="callout blue">
+            <div class="callout-icon">📋</div>
+            <div>
+                L'activité de club sportif au Vietnam est classée comme <strong>secteur conditionnel</strong> (conditional business line) selon la Loi sur l'Investissement 2020. Il faut obtenir des autorisations spécifiques avant de démarrer.<br><br>
+                Deux textes principaux encadrent le projet : <strong>Loi sur la Culture Physique et le Sport</strong> (2006, amendée 2018) et <strong>Décret 36/2019/ND-CP</strong> sur les activités sportives commerciales.
+            </div>
+        </div>
+
+        <!-- 100% ÉTRANGER -->
+        <div class="section-header">
+            <div class="section-icon" style="background:rgba(200,245,90,0.1);">🌍</div>
+            <span class="section-title">Question clé : peut-on être 100% étranger ?</span>
+        </div>
+
+        <div class="callout accent">
+            <div class="callout-icon">✓</div>
+            <div>
+                <strong>Réponse courte : probablement oui, mais à confirmer.</strong><br><br>
+                Perplexity indique que le 100% étranger est possible pour les services sportifs récréatifs. GPT nuance : les engagements WTO du Vietnam peuvent plafonner à 49% dans certains cas pour les "clubs sportifs" au sens strict.
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div class="panel">
+                <div class="panel-title">Solution pratique (clubs étrangers au Vietnam)</div>
+                <div class="callout accent" style="margin-bottom:0;">
+                    <div class="callout-icon">💡</div>
+                    <div style="font-size:13px;">Enregistrer sous le code <strong>"fitness, loisirs et activités récréatives"</strong> plutôt que "club sportif". Ce code ouvre la voie au 100% étranger sans ambiguïté.</div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-title">Action prioritaire</div>
+                <div class="callout orange" style="margin-bottom:0;">
+                    <div class="callout-icon">🎯</div>
+                    <div style="font-size:13px;"><strong>1 à 2h de consultation</strong> avec un cabinet local (Phong Partners ou équivalent à Da Nang) pour confirmer le bon code d'activité. C'est la décision qui conditionne toute la structure.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STRUCTURE -->
+        <div class="section-header">
+            <div class="section-icon" style="background:rgba(167,139,250,0.1);">🏢</div>
+            <span class="section-title">Structure légale recommandée</span>
+        </div>
+
+        <div class="grid-2">
+            <div class="panel" style="border-color:rgba(200,245,90,0.25);">
+                <div class="panel-title" style="color:var(--accent);">✓ Recommandé — LLC 100% étrangère</div>
+                <div class="row-item"><span class="lbl">Type</span><span class="val acc">Société à Responsabilité Limitée</span></div>
+                <div class="row-item"><span class="lbl">Base légale</span><span class="val blue">Loi sur les Entreprises 2020</span></div>
+                <div class="row-item"><span class="lbl">Responsabilité</span><span class="val acc">Limitée au capital apporté</span></div>
+                <div class="row-item"><span class="lbl">Gestion</span><span class="val acc">Directe par les associés étrangers</span></div>
+                <div class="row-item"><span class="lbl">Rapatriement bénéfices</span><span class="val green">Autorisé</span></div>
+            </div>
+            <div class="panel">
+                <div class="panel-title" style="color:var(--red);">✗ À éviter</div>
+                <div class="row-item">
+                    <span class="lbl">Bureau de représentation</span>
+                    <span class="val neg" style="font-size:12px;text-align:right;">Pas de revenus possibles</span>
+                </div>
+                <div class="row-item">
+                    <span class="lbl">Joint-venture obligatoire</span>
+                    <span class="val neg" style="font-size:12px;text-align:right;">Perte de contrôle</span>
+                </div>
+                <div style="margin-top:12px;font-size:12px;color:var(--muted);line-height:1.5;">
+                    La joint-venture ne s'impose que si le code d'activité l'exige — c'est pourquoi le choix du bon code est critique.
+                </div>
+            </div>
+        </div>
+
+        <!-- ÉTAPES -->
+        <div class="section-header">
+            <div class="section-icon" style="background:rgba(77,255,145,0.1);">📋</div>
+            <span class="section-title">Les 6 étapes dans l'ordre</span>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="step-card">
+            <div class="step-num acc">01</div>
+            <div class="step-body">
+                <div class="step-title">
+                    Consultation juridique initiale
+                    <span class="step-duration">1 – 2 semaines</span>
+                    <span class="tag orange">Priorité absolue</span>
+                </div>
+                <div class="step-desc">Choisir un cabinet local spécialisé en droit des investissements étrangers (Phong Partners, ASL Law, ou équivalent Da Nang). Budget : 500 $ – 1 500 $.</div>
+                <div class="step-docs">
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Confirmer le bon code d'activité (fitness/loisirs vs club sportif)</span></div>
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Valider la structure LLC 100% étrangère</span></div>
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Identifier le représentant légal résident</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display:flex;padding-left:17px;margin:-4px 0;"><div style="width:1px;height:16px;background:var(--border2);"></div></div>
+
+        <!-- Step 2 -->
+        <div class="step-card">
+            <div class="step-num">02</div>
+            <div class="step-body">
+                <div class="step-title">
+                    Certificat d'Enregistrement d'Investissement <span style="color:var(--muted);font-weight:400;font-size:13px;">(IRC)</span>
+                    <span class="step-duration">15 – 30 jours</span>
+                </div>
+                <div class="step-desc">Délivré par le Comité Populaire de Da Nang (Department of Planning and Investment). Premier document officiel autorisant l'investissement étranger.</div>
+                <div class="step-docs">
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Demande officielle d'enregistrement</span></div>
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Passeports et documents d'identité des investisseurs</span></div>
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Présentation du projet (surface, activité, capital prévu)</span></div>
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Preuve de capacité financière</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display:flex;padding-left:17px;margin:-4px 0;"><div style="width:1px;height:16px;background:var(--border2);"></div></div>
+
+        <!-- Step 3 -->
+        <div class="step-card">
+            <div class="step-num">03</div>
+            <div class="step-body">
+                <div class="step-title">
+                    Certificat d'Enregistrement d'Entreprise <span style="color:var(--muted);font-weight:400;font-size:13px;">(ERC)</span>
+                    <span class="step-duration">5 – 10 jours</span>
+                </div>
+                <div class="step-desc">Enregistrement de la société auprès du Department of Planning and Investment de Da Nang. La société existe officiellement à partir de ce moment.</div>
+                <div class="step-docs">
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>IRC obtenu à l'étape précédente</span></div>
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Statuts de la société</span></div>
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Adresse du siège social enregistré</span></div>
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Nomination du représentant légal</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display:flex;padding-left:17px;margin:-4px 0;"><div style="width:1px;height:16px;background:var(--border2);"></div></div>
+
+        <!-- Step 4 -->
+        <div class="step-card">
+            <div class="step-num">04</div>
+            <div class="step-body">
+                <div class="step-title">
+                    Formalités post-enregistrement
+                    <span class="step-duration">2 – 4 semaines</span>
+                </div>
+                <div class="step-docs">
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Ouverture d'un compte bancaire professionnel au Vietnam</span></div>
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Enregistrement fiscal (numéro TVA)</span></div>
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Fabrication du sceau officiel de la société</span></div>
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Enregistrement auprès des autorités du travail</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display:flex;padding-left:17px;margin:-4px 0;"><div style="width:1px;height:16px;background:var(--border2);"></div></div>
+
+        <!-- Step 5 -->
+        <div class="step-card">
+            <div class="step-num">05</div>
+            <div class="step-body">
+                <div class="step-title">
+                    Préparation du dossier sportif
+                    <span class="step-duration">En parallèle des étapes 2 – 4</span>
+                </div>
+                <div class="step-desc">Prérequis à rassembler avant de demander le certificat sportif.</div>
+                <div class="step-docs">
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Local signé (bail ou promesse de bail)</span></div>
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Courts installés ou en cours d'installation</span></div>
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Coachs recrutés avec leurs certifications</span></div>
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Règlement intérieur du club rédigé</span></div>
+                    <div class="step-doc"><div class="step-doc-dot"></div><span>Validation incendie / sécurité du local</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display:flex;padding-left:17px;margin:-4px 0;"><div style="width:1px;height:16px;background:var(--border2);"></div></div>
+
+        <!-- Step 6 -->
+        <div class="step-card" style="border-color:rgba(77,255,145,0.25);">
+            <div class="step-num" style="background:rgba(77,255,145,0.1);border-color:rgba(77,255,145,0.4);color:var(--green);">06</div>
+            <div class="step-body">
+                <div class="step-title">
+                    Certificat d'Éligibilité pour les Activités Sportives
+                    <span class="step-duration" style="color:var(--green);background:rgba(77,255,145,0.1);">7 jours ouvrables</span>
+                    <span class="tag green">Sésame final</span>
+                </div>
+                <div class="step-desc">Délivré par le <strong>Département de la Culture et des Sports de Da Nang</strong>. Sans ce certificat, l'opération légale est impossible.</div>
+                <div class="step-docs">
+                    <div class="step-doc"><div class="step-doc-dot" style="background:var(--green);"></div><span>ERC de la société</span></div>
+                    <div class="step-doc"><div class="step-doc-dot" style="background:var(--green);"></div><span>Contrat de bail du local</span></div>
+                    <div class="step-doc"><div class="step-doc-dot" style="background:var(--green);"></div><span>Description des installations et équipements</span></div>
+                    <div class="step-doc"><div class="step-doc-dot" style="background:var(--green);"></div><span>Preuves de qualification des coachs</span></div>
+                    <div class="step-doc"><div class="step-doc-dot" style="background:var(--green);"></div><span>Règlement intérieur du club</span></div>
+                    <div class="step-doc"><div class="step-doc-dot" style="background:var(--green);"></div><span>Certificat de conformité incendie / sécurité</span></div>
+                    <div class="step-doc"><div class="step-doc-dot" style="background:var(--green);"></div><span>Plan opérationnel</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TIMELINE -->
+        <div class="section-header">
+            <div class="section-icon" style="background:rgba(90,180,255,0.1);">📅</div>
+            <span class="section-title">Timeline globale</span>
+        </div>
+
+        <div class="timeline-wrap">
+            <div class="panel-title" style="margin-bottom:1.2rem;">Réaliste : <span style="color:var(--accent);">2 à 4 mois</span> entre la décision d'avancer et l'ouverture légale</div>
+            <div style="overflow-x:auto;">
+                <table style="width:100%;border-collapse:collapse;min-width:520px;">
+                    <thead>
+                        <tr>
+                            <th style="font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;padding:0 12px 12px 0;text-align:left;font-weight:600;">Étape</th>
+                            <th style="font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;padding:0 0 12px;text-align:center;font-weight:600;">Mois 1</th>
+                            <th style="font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;padding:0 0 12px;text-align:center;font-weight:600;">Mois 2</th>
+                            <th style="font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;padding:0 0 12px;text-align:center;font-weight:600;">Mois 3</th>
+                            <th style="font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;padding:0 0 12px;text-align:center;font-weight:600;">Mois 4+</th>
+                        </tr>
+                    </thead>
+                    <tbody id="timeline-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- COACHS -->
+        <div class="section-header">
+            <div class="section-icon" style="background:rgba(167,139,250,0.1);">🎾</div>
+            <span class="section-title">La question des coachs</span>
+        </div>
+
+        <div class="callout warn">
+            <div class="callout-icon">⚠️</div>
+            <div style="font-size:14px;">
+                La loi vietnamienne exige que les entraîneurs sportifs disposent d'une <strong>qualification reconnue</strong>. Le padel n'a pas encore de cadre réglementaire dédié au Vietnam — les autorités l'assimilent généralement aux sports de raquette.
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div class="panel">
+                <div class="panel-title">3 profils de qualification acceptés</div>
+                <div class="row-item">
+                    <span class="lbl">Option 1</span>
+                    <span class="val blue" style="font-size:12px;text-align:right;">Diplôme vietnamien éducation physique et sport</span>
+                </div>
+                <div class="row-item">
+                    <span class="lbl">Option 2</span>
+                    <span class="val acc" style="font-size:12px;text-align:right;">Certification internationale (fédération continentale/mondiale)</span>
+                </div>
+                <div class="row-item">
+                    <span class="lbl">Option 3</span>
+                    <span class="val" style="color:var(--purple);font-size:12px;text-align:right;">Licence d'athlète avec classement reconnu</span>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-title">Solution pratique (autres clubs)</div>
+                <div class="callout accent" style="margin-bottom:0;padding:1rem;">
+                    <div class="callout-icon" style="font-size:16px;">💡</div>
+                    <div style="font-size:13px;">
+                        <strong>Coach vietnamien</strong> certifié sport de raquette → couvre le volet légal<br><br>
+                        <strong>Coach expat</strong> avec certification internationale → apporte le niveau technique<br><br>
+                        Certification RPP ou fédération nationale padel devrait être acceptée, mais validation locale requise.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FISCALITÉ -->
+        <div class="section-header">
+            <div class="section-icon" style="background:rgba(251,191,36,0.1);">💸</div>
+            <span class="section-title">Fiscalité</span>
+        </div>
+
+        <div class="grid-2">
+            <div class="panel">
+                <div class="panel-title">Régime standard applicable</div>
+                <table class="tax-table">
+                    <thead>
+                        <tr>
+                            <th>Impôt</th>
+                            <th>Taux</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Impôt sur les sociétés (CIT)</td>
+                            <td style="color:var(--accent);">20%</td>
+                        </tr>
+                        <tr>
+                            <td>TVA sur les services sportifs</td>
+                            <td style="color:var(--accent);">10%</td>
+                        </tr>
+                        <tr>
+                            <td>Taxe annuelle de licence</td>
+                            <td style="color:var(--green);">~100 $ / an</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="margin-top:12px;font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;">
+                    Zones franches Da Nang → avantages tech/industrie uniquement. <span style="color:var(--red);">Non applicable.</span>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-title">Rapatriement des bénéfices</div>
+                <div class="callout green" style="margin-bottom:0;background:rgba(77,255,145,0.05);border:1px solid rgba(77,255,145,0.2);">
+                    <div class="callout-icon">✓</div>
+                    <div style="font-size:13px;">
+                        <span style="color:var(--green);font-weight:600;">Autorisé sans plafond</span>, sous conditions :<br><br>
+                        <span style="color:var(--muted);">— Bilans comptables annuels déposés</span><br>
+                        <span style="color:var(--muted);">— Tous les impôts dus réglés</span><br>
+                        <span style="color:var(--muted);">— Confirmation fiscale obtenue de la banque</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BUDGET LÉGAL -->
+        <div class="section-header">
+            <div class="section-icon" style="background:rgba(200,245,90,0.1);">💰</div>
+            <span class="section-title">Budget légal et administratif estimé</span>
+        </div>
+
+        <div class="panel" style="margin-bottom:1rem;">
+            <div id="budget-bars"></div>
+        </div>
+
+        <!-- POINTS DE VIGILANCE -->
+        <div class="section-header">
+            <div class="section-icon" style="background:rgba(255,68,68,0.1);">⚠️</div>
+            <span class="section-title">Points de vigilance</span>
+        </div>
+
+        <div class="panel" style="margin-bottom:1rem;">
+            <div class="risk-item">
+                <span class="risk-num">01</span>
+                <div class="risk-body">
+                    <div class="risk-title">Code d'activité</div>
+                    <div class="risk-desc">Le choix du code à l'enregistrement conditionne la possibilité d'être 100% étranger. À valider en priorité absolue avec un avocat local.</div>
+                </div>
+                <span class="tag red" style="flex-shrink:0;">Critique</span>
+            </div>
+            <div class="risk-item">
+                <span class="risk-num">02</span>
+                <div class="risk-body">
+                    <div class="risk-title">Représentant légal résident</div>
+                    <div class="risk-desc">La LLC doit avoir un représentant légal résident au Vietnam ou capable d'y être présent régulièrement. À anticiper dans l'organisation de l'équipe.</div>
+                </div>
+                <span class="tag orange" style="flex-shrink:0;">Important</span>
+            </div>
+            <div class="risk-item">
+                <span class="risk-num">03</span>
+                <div class="risk-body">
+                    <div class="risk-title">Bail avant certificat sportif</div>
+                    <div class="risk-desc">Le bail du local est requis pour obtenir le certificat sportif. Il faut signer (ou avoir une promesse ferme) avant de finaliser la licence. Risque : signer un bail sans être sûr d'obtenir la licence.</div>
+                </div>
+                <span class="tag orange" style="flex-shrink:0;">Important</span>
+            </div>
+            <div class="risk-item">
+                <span class="risk-num">04</span>
+                <div class="risk-body">
+                    <div class="risk-title">Conformité incendie et sécurité</div>
+                    <div class="risk-desc">Peut prendre du temps et nécessiter des travaux. À anticiper dès la phase de sélection du local.</div>
+                </div>
+                <span class="tag yellow" style="flex-shrink:0;">À surveiller</span>
+            </div>
+            <div class="risk-item">
+                <span class="risk-num">05</span>
+                <div class="risk-body">
+                    <div class="risk-title">Ouverture compte bancaire</div>
+                    <div class="risk-desc">Les banques vietnamiennes peuvent être lentes pour les sociétés étrangères. Prévoir 2 à 4 semaines supplémentaires.</div>
+                </div>
+                <span class="tag yellow" style="flex-shrink:0;">À surveiller</span>
+            </div>
+        </div>
+
+        <!-- CHECKLIST -->
+        <div class="section-header">
+            <div class="section-icon" style="background:rgba(77,255,145,0.1);">✅</div>
+            <span class="section-title">Prochaines actions recommandées</span>
+        </div>
+
+        <div class="panel" style="margin-bottom:2rem;">
+            <div class="checklist">
+                <div class="check-item">
+                    <div class="check-box"></div>
+                    <span>Identifier et contacter 2 à 3 cabinets juridiques à Da Nang <span style="color:var(--accent);font-family:'DM Mono',monospace;font-size:12px;">(Phong Partners en priorité)</span></span>
+                </div>
+                <div class="check-item">
+                    <div class="check-box"></div>
+                    <span>Valider le code d'activité optimal pour le 100% étranger</span>
+                </div>
+                <div class="check-item">
+                    <div class="check-box"></div>
+                    <span>Préparer les documents d'identité et financiers des associés</span>
+                </div>
+                <div class="check-item">
+                    <div class="check-box"></div>
+                    <span>Anticiper la question du représentant légal résident</span>
+                </div>
+                <div class="check-item">
+                    <div class="check-box"></div>
+                    <span>Intégrer la conformité incendie dans les critères de sélection du local <span style="color:var(--muted);font-family:'DM Mono',monospace;font-size:12px;">(Pascal)</span></span>
+                </div>
+                <div class="check-item">
+                    <div class="check-box"></div>
+                    <span>Clarifier le statut des certifications padel auprès des autorités locales</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Chiquita Academy · Da Nang, Vietnam · Feuille de Route Légale v1.0 · Mars 2025<br>
+        Sources : Phong Partners · Perplexity · ChatGPT · Loi sur l'Investissement 2020 · Décret 36/2019/ND-CP
+    </div>
+
+    <script>
+        // Budget bars
+        const budgetData = [
+            { label: 'Consultation juridique initiale', min: 500, max: 1500, color: '#5ab4ff' },
+            { label: 'Honoraires cabinet IRC + ERC',    min: 1500, max: 4000, color: '#c8f55a' },
+            { label: 'Frais gouvernementaux',           min: 200,  max: 500,  color: '#ff6b35' },
+            { label: 'Notaire, traductions, apostilles',min: 300,  max: 1000, color: '#a78bfa' },
+            { label: 'Mise en place comptabilité',      min: 200,  max: 500,  color: '#4dff91' },
+        ];
+
+        const totalMin = budgetData.reduce((s, d) => s + d.min, 0);
+        const totalMax = budgetData.reduce((s, d) => s + d.max, 0);
+        const maxVal = Math.max(...budgetData.map(d => d.max));
+
+        function fmtB(v) {
+            return '$' + v.toLocaleString('fr-FR').replace(/\s/g, ' ');
+        }
+
+        document.getElementById('budget-bars').innerHTML =
+            budgetData.map(item => {
+                const pctMax = Math.round(item.max / maxVal * 100);
+                const pctMin = Math.round(item.min / maxVal * 100);
+                return `<div class="budget-row">
+          <span class="budget-label">${item.label}</span>
+          <div class="budget-track">
+            <div style="position:relative;height:6px;">
+              <div style="position:absolute;left:0;width:${pctMax}%;height:100%;background:${item.color};opacity:0.25;border-radius:3px;"></div>
+              <div style="position:absolute;left:0;width:${pctMin}%;height:100%;background:${item.color};border-radius:3px;"></div>
+            </div>
+          </div>
+          <span class="budget-range">${fmtB(item.min)} – ${fmtB(item.max)}</span>
+        </div>`;
+            }).join('') +
+            `<div style="display:flex;justify-content:space-between;padding:12px 0 0;margin-top:8px;border-top:1px solid rgba(255,255,255,0.14);font-size:15px;font-weight:600;">
+          <span>Total estimé</span>
+          <span style="font-family:'DM Mono',monospace;color:var(--accent);">~${fmtB(totalMin)} – ${fmtB(totalMax)}</span>
+        </div>`;
+
+        // Timeline
+        const tlRows = [
+            { label: 'Consultation',       cols: [1, 0, 0, 0], color: '#ff6b35' },
+            { label: 'IRC',                cols: [0.5, 0.5, 0, 0], color: '#5ab4ff' },
+            { label: 'ERC',                cols: [0, 0.8, 0, 0], color: '#c8f55a' },
+            { label: 'Post-enregistrement',cols: [0, 1, 0.5, 0], color: '#a78bfa' },
+            { label: 'Recherche local',    cols: [1, 1, 0, 0], color: '#fbbf24' },
+            { label: 'Dossier sportif',    cols: [0, 1, 1, 0], color: '#4dff91' },
+            { label: 'Construction',       cols: [0, 1, 1, 0.5], color: '#f472b6' },
+            { label: 'Cert. sportif',      cols: [0, 0, 1, 0], color: '#4dff91' },
+            { label: '🏸 Ouverture',       cols: [0, 0, 0, 1], color: '#c8f55a' },
+        ];
+
+        document.getElementById('timeline-body').innerHTML = tlRows.map(row => {
+            const cells = row.cols.map(w => {
+                if (w === 0) return `<td style="padding:3px 4px;"></td>`;
+                return `<td style="padding:3px 4px;"><div style="height:22px;border-radius:5px;background:${row.color};opacity:${w};display:flex;align-items:center;padding:0 8px;font-size:11px;font-family:'DM Mono',monospace;font-weight:500;color:#0e0e0e;white-space:nowrap;overflow:hidden;">${w >= 0.8 ? row.label : ''}</div></td>`;
+            }).join('');
+            return `<tr><td style="font-size:12px;color:var(--muted);padding:3px 12px 3px 0;white-space:nowrap;">${row.label}</td>${cells}</tr>`;
+        }).join('');
+    </script>
+</body>
+
+</html>
