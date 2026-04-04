@@ -4,514 +4,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chiquita Academy Da Nang — Modèle Financier</title>
+    <title>Chiquita Academy — Executive Summary</title>
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Prevent flash of wrong language -->
+    <script>
+        (function () {
+            var l = localStorage.getItem('chiquita-lang') || 'fr';
+            document.documentElement.lang = l;
+            document.documentElement.className = 'lang-' + l;
+        })();
+    </script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <style>
-        :root {
-            --bg: #0e0e0e;
-            --surface: #161616;
-            --surface2: #1e1e1e;
-            --border: rgba(255, 255, 255, 0.08);
-            --border2: rgba(255, 255, 255, 0.14);
-            --text: #f0ede8;
-            --muted: #888;
-            --accent: #c8f55a;
-            --accent2: #ff6b35;
-            --red: #ff4444;
-            --green: #4dff91;
-            --blue: #5ab4ff;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Syne', sans-serif;
-            font-size: 15px;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        .noise {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-            opacity: 0.4;
-        }
-
-        .header {
-            padding: 3rem 2rem 2rem;
-            border-bottom: 1px solid var(--border);
-            position: relative;
-            z-index: 1;
-        }
-
-        .header-inner {
-            max-width: 900px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--accent);
-            border-radius: 8px;
-            display: flex;
+        /* ── Hamburger — mobile only ── */
+        .hamburger {
+            display: none;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            width: 36px;
+            height: 36px;
+            background: transparent;
+            border: 1px solid var(--border2);
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--text);
+            flex-shrink: 0;
+            transition: background 0.15s, border-color 0.15s;
         }
 
-        .logo-text {
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--muted);
+        .hamburger:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.25);
         }
 
-        h1 {
-            font-size: clamp(28px, 5vw, 44px);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-            margin-top: 2rem;
-        }
-
-        h1 span {
-            color: var(--accent);
-        }
-
-        .subtitle {
-            color: var(--muted);
-            font-size: 14px;
-            margin-top: 6px;
-            font-family: 'DM Mono', monospace;
-        }
-
-        .main {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .controls-bar {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .control-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .control-label {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--muted);
-        }
-
-        .slider-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        input[type=range] {
-            flex: 1;
-            -webkit-appearance: none;
-            height: 4px;
-            background: var(--border2);
-            border-radius: 2px;
-            outline: none;
-        }
-
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
+        .hamburger svg {
             width: 18px;
             height: 18px;
-            border-radius: 50%;
-            background: var(--accent);
-            cursor: pointer;
-            box-shadow: 0 0 0 4px rgba(200, 245, 90, 0.15);
+            stroke: currentColor;
+            stroke-width: 2;
+            display: block;
         }
 
-        .slider-val {
-            font-family: 'DM Mono', monospace;
-            font-size: 18px;
-            font-weight: 500;
-            color: var(--accent);
-            min-width: 50px;
-        }
-
-        .toggle-group {
-            display: flex;
-            gap: 6px;
-        }
-
-        .toggle-btn {
-            padding: 8px 16px;
-            border-radius: 8px;
-            border: 1px solid var(--border2);
-            background: transparent;
-            color: var(--muted);
-            font-family: 'DM Mono', monospace;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .toggle-btn.active {
-            background: var(--accent);
-            color: #0e0e0e;
-            border-color: var(--accent);
-            font-weight: 500;
-        }
-
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 10px;
-            margin-bottom: 2rem;
-        }
-
-        .metric-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.1rem 1rem;
-            transition: border-color 0.2s;
-        }
-
-        .metric-card.highlight {
-            border-color: var(--accent);
-        }
-
-        .metric-card.danger {
-            border-color: var(--red);
-        }
-
-        .m-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--muted);
-            margin-bottom: 6px;
-        }
-
-        .m-value {
-            font-size: 22px;
-            font-weight: 600;
-            font-family: 'DM Mono', monospace;
-        }
-
-        .m-value.pos {
-            color: var(--green);
-        }
-
-        .m-value.neg {
-            color: var(--red);
-        }
-
-        .m-value.acc {
-            color: var(--accent);
-        }
-
-        .m-sub {
-            font-size: 11px;
-            color: var(--muted);
-            margin-top: 3px;
-            font-family: 'DM Mono', monospace;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 2rem;
-        }
-
-        .panel {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.5rem;
-        }
-
-        .panel-title {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--muted);
-            margin-bottom: 1rem;
-        }
-
-        .row-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 0;
+        /* Mobile drawer */
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            top: 56px;
+            left: 0;
+            right: 0;
+            background: rgba(14, 14, 14, 0.98);
+            backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
-            font-size: 14px;
+            z-index: 99;
+            padding: 0.5rem 0;
         }
 
-        .row-item:last-child {
+        .mobile-nav.open {
+            display: block;
+        }
+
+        .mobile-nav a {
+            display: block;
+            padding: 13px 1.5rem;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--muted);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            transition: color 0.15s, background 0.15s;
+        }
+
+        .mobile-nav a:last-child {
             border-bottom: none;
         }
 
-        .row-item .lbl {
-            color: var(--muted);
-        }
-
-        .row-item .val {
-            font-family: 'DM Mono', monospace;
-            font-weight: 500;
-        }
-
-        .val.pos {
-            color: var(--green);
-        }
-
-        .val.neg {
-            color: var(--red);
-        }
-
-        .val.neu {
+        .mobile-nav a:hover {
             color: var(--text);
+            background: rgba(255, 255, 255, 0.04);
         }
 
-        .total-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0 0;
-            margin-top: 8px;
-            border-top: 1px solid var(--border2);
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .total-row .val {
-            font-family: 'DM Mono', monospace;
-            font-size: 18px;
-        }
-
-        .scenarios-panel {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .scenario-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .scenario-row:last-child {
-            border-bottom: none;
-        }
-
-        .scenario-row.current {
-            background: rgba(200, 245, 90, 0.04);
-            border-radius: 8px;
-            padding: 10px 12px;
-            margin: 0 -12px;
-        }
-
-        .s-pct {
-            font-family: 'DM Mono', monospace;
-            font-size: 13px;
-            color: var(--muted);
-            width: 40px;
-            flex-shrink: 0;
-        }
-
-        .s-bar-track {
-            flex: 1;
-            background: var(--border);
-            border-radius: 3px;
-            height: 6px;
-            overflow: hidden;
-        }
-
-        .s-bar-fill {
-            height: 100%;
-            border-radius: 3px;
-            transition: width 0.4s;
-        }
-
-        .s-result {
-            font-family: 'DM Mono', monospace;
-            font-size: 13px;
-            font-weight: 500;
-            width: 110px;
-            text-align: right;
-            flex-shrink: 0;
-        }
-
-        .s-label {
-            font-size: 11px;
-            color: var(--muted);
-            width: 80px;
-            flex-shrink: 0;
-        }
-
-        .invest-panel {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .invest-bar-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 6px 0;
-        }
-
-        .invest-label {
-            font-size: 13px;
-            color: var(--muted);
-            width: 180px;
-            flex-shrink: 0;
-        }
-
-        .invest-track {
-            flex: 1;
-            background: var(--border);
-            border-radius: 3px;
-            height: 20px;
-            overflow: hidden;
-        }
-
-        .invest-fill {
-            height: 100%;
-            border-radius: 3px;
-            display: flex;
-            align-items: center;
-            padding-left: 10px;
-            font-size: 12px;
-            font-family: 'DM Mono', monospace;
-            font-weight: 500;
-            color: #0e0e0e;
-        }
-
-        .verdict {
-            border-radius: 12px;
-            padding: 1rem 1.25rem;
-            margin-bottom: 2rem;
-            font-size: 14px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .verdict.good {
-            background: rgba(77, 255, 145, 0.08);
-            border: 1px solid rgba(77, 255, 145, 0.25);
-            color: var(--green);
-        }
-
-        .verdict.warn {
-            background: rgba(255, 200, 50, 0.08);
-            border: 1px solid rgba(255, 200, 50, 0.25);
-            color: #ffc832;
-        }
-
-        .verdict.bad {
-            background: rgba(255, 68, 68, 0.08);
-            border: 1px solid rgba(255, 68, 68, 0.25);
-            color: var(--red);
-        }
-
-        .footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            color: var(--muted);
-            font-size: 12px;
-            font-family: 'DM Mono', monospace;
-            border-top: 1px solid var(--border);
-            position: relative;
-            z-index: 1;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 5px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            background: rgba(200, 245, 90, 0.12);
+        .mobile-nav a.active {
             color: var(--accent);
-            margin-left: 6px;
+            background: rgba(200, 245, 90, 0.06);
         }
 
-        .badge.cur {
-            background: rgba(200, 245, 90, 0.2);
+        @media (max-width: 700px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none !important;
+            }
         }
 
-        @media (max-width: 640px) {
-            .metrics-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .nav-logo-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: #0e0e0e;
+            stroke-width: 2.5;
+            display: block;
+        }
 
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
+        .section-icon svg {
+            width: 15px;
+            height: 15px;
+            stroke: currentColor;
+            stroke-width: 2;
+            display: block;
+        }
 
-            .header-inner {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+        .signal-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2;
+            display: block;
+        }
+
+        .callout-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
+            display: block;
         }
     </style>
 </head>
@@ -519,249 +138,324 @@
 <body>
     <div class="noise"></div>
 
-    <div class="header">
-        <div class="header-inner">
-            <div>
-                <div class="logo">
-                    <div class="logo-icon">🏸</div>
-                    <span class="logo-label"
-                        style="font-size:13px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">Chiquita
-                        Academy</span>
-                </div>
+    <!-- ── NAVBAR ─────────────────────────────────────────────── -->
+    <nav class="navbar" style="position:sticky;top:0;z-index:100;">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <span class="nav-logo-icon"><i data-lucide="zap"></i></span>
+                <span class="nav-logo-text">Chiquita</span>
+            </a>
+            <button class="hamburger" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu"
+                aria-expanded="false">
+                <i data-lucide="menu" id="hamburger-icon"></i>
+            </button>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Project</a>
+                <a href="market.html" class="nav-link">Market</a>
+                <a href="facilities.html" class="nav-link">Facilities</a>
+                <a href="financial.html" class="nav-link">Financial</a>
+                <a href="legal.html" class="nav-link">Legal</a>
+                <a href="land.html" class="nav-link">Land</a>
+                <a href="investment.html" class="nav-link">Investment</a>
             </div>
-            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-                <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);">Da Nang, Vietnam · v1.0 · 2025</span>
-                <a href="discovery.html" style="display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);text-decoration:none;padding:8px 14px;border:1px solid rgba(255,255,255,0.14);border-radius:8px;transition:all 0.2s;letter-spacing:0.04em;" onmouseover="this.style.color='var(--accent)';this.style.borderColor='var(--accent)';this.style.background='rgba(200,245,90,0.06)';" onmouseout="this.style.color='var(--muted)';this.style.borderColor='rgba(255,255,255,0.14)';this.style.background='transparent';">Notes de Discovery →</a>
-                <a href="legal.html" style="display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);text-decoration:none;padding:8px 14px;border:1px solid rgba(255,255,255,0.14);border-radius:8px;transition:all 0.2s;letter-spacing:0.04em;" onmouseover="this.style.color='var(--accent)';this.style.borderColor='var(--accent)';this.style.background='rgba(200,245,90,0.06)';" onmouseout="this.style.color='var(--muted)';this.style.borderColor='rgba(255,255,255,0.14)';this.style.background='transparent';">Feuille de Route Légale →</a>
+            <div class="lang-toggle" style="margin-left:auto;">
+                <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
             </div>
         </div>
-        <div class="header-inner" style="margin-top:1.5rem;">
-            <div>
-                <h1>Modèle <span>Financier</span></h1>
-                <p class="subtitle">4 courts · 1 500 m² · Scénario de faisabilité</p>
+
+        <!-- ── MOBILE NAV DRAWER ──────────────────────────────── -->
+        <div class="mobile-nav" id="mobile-nav">
+            <a href="index.html" class="nav-link">Project</a>
+            <a href="market.html" class="nav-link">Market</a>
+            <a href="facilities.html" class="nav-link">Facilities</a>
+            <a href="financial.html" class="nav-link">Financial</a>
+            <a href="legal.html" class="nav-link">Legal</a>
+            <a href="land.html" class="nav-link">Land</a>
+            <a href="investment.html" class="nav-link">Investment</a>
+        </div>
+    </nav>
+
+    <!-- ── PAGE HEADER ────────────────────────────────────────── -->
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div
+                style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);margin-bottom:1rem;letter-spacing:0.06em;">
+                Da Nang, Vietnam · 2025
             </div>
+            <h1>Chiquita <span>- Padel Academy</span></h1>
+            <p class="page-tagline fr">Le premier club de padel premium de Da Nang</p>
+            <p class="page-tagline en">Da Nang's first premium padel club</p>
+            <p class="page-subtitle" style="margin-top:0.75rem;">
+                <span class="fr">Résumé exécutif · Business Plan</span>
+                <span class="en">Executive Summary · Business Plan</span>
+            </p>
         </div>
     </div>
 
+    <!-- ── MAIN ───────────────────────────────────────────────── -->
     <div class="main">
 
-        <div class="controls-bar">
-            <div class="control-group">
-                <span class="control-label">Taux d'occupation</span>
-                <div class="slider-row">
-                    <input type="range" id="occ" min="10" max="90" value="40" step="5" oninput="update()">
-                    <span class="slider-val" id="occ-val">40%</span>
-                </div>
-            </div>
-            <div class="control-group" style="flex:0;min-width:auto;">
-                <span class="control-label">Loyer mensuel</span>
-                <div class="toggle-group">
-                    <button class="toggle-btn active" id="btn-4k" onclick="setRent(4000)"
-                        style="min-width:90px;white-space:nowrap;">4 000 $</button>
-                    <button class="toggle-btn" id="btn-6k" onclick="setRent(6000)"
-                        style="min-width:90px;white-space:nowrap;">6 000 $</button>
-                </div>
-            </div>
+        <!-- KEY METRICS -->
+        <div class="section-header" style="margin-top:0;">
+            <div class="section-icon" style="background:rgba(200,245,90,0.1);color:var(--accent);"><i
+                    data-lucide="bar-chart-2"></i></div>
+            <span class="section-title fr">Chiffres clés</span>
+            <span class="section-title en">Key Metrics</span>
         </div>
-
-        <div id="verdict-box"></div>
 
         <div class="metrics-grid">
             <div class="metric-card highlight">
-                <div class="m-label">CA annuel total</div>
-                <div class="m-value acc" id="m-ca">—</div>
-                <div class="m-sub" id="m-ca-mo">—/mois</div>
+                <div class="m-label fr">Courts & Surface</div>
+                <div class="m-label en">Courts & Size</div>
+                <div class="m-value acc">4</div>
+                <div class="m-sub">courts · 1 500 m²</div>
+            </div>
+            <div class="metric-card blue-hl">
+                <div class="m-label fr">Investissement total</div>
+                <div class="m-label en">Total Investment</div>
+                <div class="m-value blue">~310-350 K$</div>
+                <div class="m-sub fr">Estimation initiale</div>
+                <div class="m-sub en">Initial estimate</div>
+            </div>
+            <div class="metric-card green-hl">
+                <div class="m-label fr">CA à 40% d'occupation</div>
+                <div class="m-label en">Revenue at 40% occ.</div>
+                <div class="m-value pos">~243 K$</div>
+                <div class="m-sub fr">Scénario de base</div>
+                <div class="m-sub en">Base scenario</div>
             </div>
             <div class="metric-card">
-                <div class="m-label">Charges annuelles</div>
-                <div class="m-value neg" id="m-costs">—</div>
-                <div class="m-sub" id="m-costs-mo">—/mois</div>
+                <div class="m-label fr">Retour sur investissement</div>
+                <div class="m-label en">ROI</div>
+                <div class="m-value acc">
+                    <span class="fr">4–6 ans</span>
+                    <span class="en">4–6 yrs</span>
+                </div>
+                <div class="m-sub fr">Selon loyer / scénario</div>
+                <div class="m-sub en">Depending on rent / scenario</div>
             </div>
-            <div class="metric-card" id="mc-result">
-                <div class="m-label">Résultat brut</div>
-                <div class="m-value" id="m-result">—</div>
-                <div class="m-sub" id="m-margin">—</div>
+        </div>
+
+        <!-- PROJECT SUMMARY -->
+        <div class="section-header">
+            <div class="section-icon" style="background:rgba(90,180,255,0.1);color:var(--blue);"><i
+                    data-lucide="building-2"></i></div>
+            <span class="section-title fr">Le projet</span>
+            <span class="section-title en">The Project</span>
+        </div>
+
+        <div class="panel">
+            <p class="fr" style="font-size:15px;line-height:1.75;">
+                Chiquita - Padel Academy est un club de padel premium à Da Nang, Vietnam.
+                4 courts couverts, restauration rapide, espace wellness (ice bath, sauna),
+                boutique et académie padel. Positionnement lifestyle, clientèle expat et digital nomad.
+            </p>
+            <p class="en" style="font-size:15px;line-height:1.75;">
+                Chiquita Academy is a premium padel club in Da Nang, Vietnam.
+                4 indoor courts, quick-service restaurant, wellness area (ice bath, sauna),
+                pro shop and padel academy. Lifestyle positioning, targeting expats and digital nomads.
+            </p>
+            <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:8px;">
+                <span class="tag acc">
+                    <span class="fr">4 courts couverts</span>
+                    <span class="en">4 indoor courts</span>
+                </span>
+                <span class="tag blue">
+                    <span class="fr">Restauration rapide</span>
+                    <span class="en">Quick-service food</span>
+                </span>
+                <span class="tag green">Ice bath · Sauna</span>
+                <span class="tag orange">
+                    <span class="fr">Boutique</span>
+                    <span class="en">Pro shop</span>
+                </span>
+                <span class="tag purple">
+                    <span class="fr">Académie padel</span>
+                    <span class="en">Padel academy</span>
+                </span>
             </div>
-            <div class="metric-card">
-                <div class="m-label">Retour invest.</div>
-                <div class="m-value acc" id="m-roi">—</div>
-                <div class="m-sub">sur 319 000 $</div>
-            </div>
+        </div>
+
+        <!-- MARKET SIGNALS -->
+        <div class="section-header">
+            <div class="section-icon" style="background:rgba(77,255,145,0.1);color:var(--green);"><i
+                    data-lucide="map-pin"></i></div>
+            <span class="section-title fr">Signaux marché</span>
+            <span class="section-title en">Market Signals</span>
         </div>
 
         <div class="grid-2">
-            <div class="panel">
-                <div class="panel-title">Revenus détaillés</div>
-                <div class="row-item"><span class="lbl" id="lbl-courts">Courts</span><span class="val pos"
-                        id="r-courts">—</span></div>
-                <div class="row-item"><span class="lbl">Restauration (3$/joueur, 40% consomment)</span><span
-                        class="val pos" id="r-food">—</span></div>
-                <div class="row-item"><span class="lbl">Wellness & boutique</span><span class="val pos"
-                        id="r-wellness">—</span></div>
-                <div class="total-row"><span>Total CA</span><span class="val pos" id="r-total">—</span></div>
+            <div class="signal-box">
+                <div class="signal-icon" style="color:var(--accent);"><i data-lucide="target"></i></div>
+                <div class="signal-text">
+                    <strong>Padel Xtra Da Nang</strong>
+                    <span class="fr"> — seul concurrent, 2 courts : <strong>+80% d'occupation</strong>. Créneaux
+                        complets des jours à l'avance.</span>
+                    <span class="en"> — only competitor, 2 courts: <strong>+80% occupancy</strong>. Slots fully booked
+                        days in advance.</span>
+                </div>
             </div>
-            <div class="panel">
-                <div class="panel-title">Charges mensuelles</div>
-                <div class="row-item"><span class="lbl">Loyer / warehouse</span><span class="val neg"
-                        id="c-rent">—</span></div>
-                <div class="row-item"><span class="lbl">Staff (5-7 pers.)</span><span class="val neg">-3 200 $</span>
+            <div class="signal-box">
+                <div class="signal-icon" style="color:var(--accent);"><i data-lucide="globe"></i></div>
+                <div class="signal-text">
+                    <span class="fr"><strong>Hub expat à la croissance la plus rapide d'Asie du Sud-Est</strong><sup><a
+                                href="https://www.foreignersofasia.com/post/da-nang-southeast-asia-s-fastest-growing-expat-hub"
+                                target="_blank" rel="noopener"
+                                style="color:var(--muted);text-decoration:none;font-family:'DM Mono',monospace;">↗</a></sup>
+                        <span style="color:var(--muted);font-size:12px;">Foreigners of Asia, nov. 2025</span></span>
+                    <span class="en"><strong>Fastest-growing expat hub in Southeast Asia</strong><sup><a
+                                href="https://www.foreignersofasia.com/post/da-nang-southeast-asia-s-fastest-growing-expat-hub"
+                                target="_blank" rel="noopener"
+                                style="color:var(--muted);text-decoration:none;font-family:'DM Mono',monospace;">↗</a></sup>
+                        <span style="color:var(--muted);font-size:12px;">Foreigners of Asia, Nov 2025</span></span>
                 </div>
-                <div class="row-item"><span class="lbl">Électricité + clim</span><span class="val neg">-2 400 $</span>
+            </div>
+            <div class="signal-box">
+                <div class="signal-icon" style="color:var(--accent);"><i data-lucide="laptop"></i></div>
+                <div class="signal-text">
+                    <span class="fr"><strong>~7 000 digital nomads en 2025, +60% par an</strong><sup><a
+                                href="https://www.topologica.co/articles/bali-vietnam-digital-nomad-shift-2025"
+                                target="_blank" rel="noopener"
+                                style="color:var(--muted);text-decoration:none;font-family:'DM Mono',monospace;">↗</a></sup>
+                        <span style="color:var(--muted);font-size:12px;">Topologica.co, jan. 2025</span></span>
+                    <span class="en"><strong>~7,000 digital nomads by 2025, +60% YoY</strong><sup><a
+                                href="https://www.topologica.co/articles/bali-vietnam-digital-nomad-shift-2025"
+                                target="_blank" rel="noopener"
+                                style="color:var(--muted);text-decoration:none;font-family:'DM Mono',monospace;">↗</a></sup>
+                        <span style="color:var(--muted);font-size:12px;">Topologica.co, Jan 2025</span></span>
                 </div>
-                <div class="row-item"><span class="lbl">Maintenance courts</span><span class="val neg">-800 $</span>
+            </div>
+            <div class="signal-box">
+                <div class="signal-icon" style="color:var(--accent);"><i data-lucide="trending-up"></i></div>
+                <div class="signal-text">
+                    <strong>Da Nang</strong>
+                    <span class="fr"> : hub nomad à la <strong>croissance la plus rapide d'Asie du Sud-Est</strong> en
+                        2025. Tourisme étranger +35% en 2024.</span>
+                    <span class="en"> : <strong>fastest-growing nomad hub in SEA</strong> in 2025. Foreign tourism up
+                        +35% in 2024.</span>
                 </div>
-                <div class="row-item"><span class="lbl">Marketing</span><span class="val neg">-600 $</span></div>
-                <div class="row-item"><span class="lbl">Admin + compta</span><span class="val neg">-500 $</span></div>
-                <div class="row-item"><span class="lbl">Assurance</span><span class="val neg">-300 $</span></div>
-                <div class="total-row"><span>Total charges</span><span class="val neg" id="c-total">—</span></div>
             </div>
         </div>
 
-        <div class="scenarios-panel">
-            <div class="panel-title">Tous les scénarios <span id="rent-label-sc"
-                    style="color:var(--accent);font-weight:500;"></span></div>
-            <div id="scenarios-list"></div>
+        <!-- TEAM -->
+        <div class="section-header">
+            <div class="section-icon" style="background:rgba(200,245,90,0.1);color:var(--accent);"><i
+                    data-lucide="users"></i></div>
+            <span class="section-title fr">L'équipe</span>
+            <span class="section-title en">The Team</span>
         </div>
 
-        <div class="invest-panel">
-            <div class="panel-title">Investissement initial — 319 000 $ estimés</div>
-            <div id="invest-bars"></div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-name">Julien</div>
+                <div class="team-role">Tech · Marketing · AI</div>
+            </div>
+            <div class="team-card">
+                <div class="team-name">Pascal</div>
+                <div class="team-role">
+                    <span class="fr">Construction · Opérations<br>Asie du Sud-Est<br></span>
+                    <span class="en">Construction · Operations<br>South-East Asia<br></span>
+                    <span style="color:var(--accent);">
+                        <span class="fr">Projet 600 K$ à Jakarta</span>
+                        <span class="en">$600K project in Jakarta</span>
+                    </span>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-name">Louis</div>
+                <div class="team-role">
+                    <span class="fr">Business · Opérations · Investisseur</span>
+                    <span class="en">Business · Operations &amp; Investor</span>
+                </div>
+            </div>
         </div>
 
-    </div>
+        <!-- OPEN TO INVESTORS -->
+        <div class="section-header">
+            <div class="section-icon" style="background:rgba(255,107,53,0.1);color:var(--accent2);"><i
+                    data-lucide="briefcase"></i></div>
+            <span class="section-title fr">Ouvert aux investisseurs</span>
+            <span class="section-title en">Open to Investors</span>
+        </div>
 
+        <div class="callout accent">
+            <div class="callout-icon" style="color:var(--accent);"><i data-lucide="sparkles"></i></div>
+            <div>
+                <strong class="fr">Chiquita Academy est ouvert à accueillir des investisseurs supplémentaires.</strong>
+                <strong class="en">Chiquita Academy is open to welcoming additional investors.</strong>
+                <br>
+                <span class="fr" style="color:var(--muted);">
+                    Le projet cherche des partenaires engagés qui partagent la vision premium et lifestyle du club.
+                    Contactez l'équipe pour en savoir plus sur les modalités de participation.
+                </span>
+                <span class="en" style="color:var(--muted);">
+                    The project is looking for committed partners who share the club's premium and lifestyle vision.
+                    Reach out to the team to learn more about participation terms.
+                </span>
+            </div>
+        </div>
+
+    </div><!-- /.main -->
+
+    <!-- ── FOOTER ──────────────────────────────────────────────── -->
     <div class="footer">
-        Chiquita Academy · Da Nang, Vietnam · Modèle de faisabilité v1.0<br>
-        Tous droits réservés 2025
+        Chiquita Academy · Da Nang, Vietnam · Business Plan 2026<br>
+        <span class="fr">Tous droits réservés</span>
+        <span class="en">All rights reserved</span>
     </div>
 
     <script>
-        let rent = 4000;
-        let occ = 40;
+        // ── Active nav link ──────────────────────────────────────
+        (function () {
+            var file = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link').forEach(function (link) {
+                if (link.getAttribute('href') === file) link.classList.add('active');
+            });
+        })();
 
-        function setRent(r) {
-            rent = r;
-            ['btn-4k', 'btn-6k'].forEach(id => document.getElementById(id).classList.remove('active'));
-            document.getElementById(r === 4000 ? 'btn-4k' : 'btn-6k').classList.add('active');
-            update();
+        // ── Mobile hamburger menu ────────────────────────────────
+        function toggleMobileNav() {
+            var nav = document.getElementById('mobile-nav');
+            var btn = document.getElementById('hamburger-btn');
+            var isOpen = nav.classList.contains('open');
+            nav.classList.toggle('open', !isOpen);
+            btn.setAttribute('aria-expanded', String(!isOpen));
+            // swap icon
+            btn.querySelector('i').setAttribute('data-lucide', isOpen ? 'menu' : 'x');
+            lucide.createIcons();
         }
 
-        function fmt(v, decimals) {
-            const abs = Math.abs(v);
-            const sign = v < 0 ? '-' : '';
-            if (decimals !== undefined) return sign + '$' + abs.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-            if (abs >= 1000) return sign + '$' + Math.round(abs).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-            return sign + '$' + Math.round(abs);
-        }
-
-        function calc(occPct, r) {
-            // 4 courts, 14h/jour, créneaux de 1h30 → ~9 créneaux/court/jour
-            const slotsPerCourtPerDay = Math.floor(14 / 1.5);
-            const totalSlotsPerYear = 4 * slotsPerCourtPerDay * 365;
-            const usedSlots = Math.round(totalSlotsPerYear * occPct / 100);
-            // Prix moyen par créneau 90min = 36$, 120min = 38$ → moyenne ~37$
-            const pricePerSlot = 36;
-            const revCourts = usedSlots * pricePerSlot;
-            // Restauration : 4 joueurs/créneau, 40% consomment, 3$ en moyenne
-            const playersPerYear = usedSlots * 4;
-            const revFood = Math.round(playersPerYear * 0.4 * 3);
-            // Wellness proportionnel à l'occupation (base 2000$/mois à 40%)
-            const revWellness = Math.round(2000 * 12 * (occPct / 40));
-            const revTotal = revCourts + revFood + revWellness;
-            const costsMonthly = r + 3200 + 2400 + 800 + 600 + 500 + 300;
-            const costsAnnual = costsMonthly * 12;
-            const result = revTotal - costsAnnual;
-            return { totalSlotsPerYear, usedSlots, revCourts, revFood, revWellness, revTotal, costsMonthly, costsAnnual, result };
-        }
-
-        function update() {
-            occ = parseInt(document.getElementById('occ').value);
-            document.getElementById('occ-val').textContent = occ + '%';
-
-            const d = calc(occ, rent);
-            const margin = d.revTotal > 0 ? Math.round(d.result / d.revTotal * 100) : 0;
-
-            document.getElementById('m-ca').textContent = fmt(d.revTotal);
-            document.getElementById('m-ca-mo').textContent = fmt(d.revTotal / 12) + '/mois';
-            document.getElementById('m-costs').textContent = fmt(-d.costsAnnual);
-            document.getElementById('m-costs-mo').textContent = fmt(-d.costsMonthly) + '/mois';
-
-            const rEl = document.getElementById('m-result');
-            rEl.textContent = fmt(d.result);
-            rEl.className = 'm-value ' + (d.result >= 0 ? 'pos' : 'neg');
-            document.getElementById('m-margin').textContent = 'Marge ' + margin + '%';
-            document.getElementById('mc-result').className = 'metric-card ' + (d.result >= 0 ? '' : 'danger');
-
-            const roi = d.result > 0 ? Math.round(319000 / d.result) + ' ans' : 'Non rentable';
-            document.getElementById('m-roi').textContent = roi;
-            document.getElementById('m-roi').className = 'm-value ' + (d.result > 0 ? 'acc' : 'neg');
-
-            document.getElementById('lbl-courts').textContent = `Courts (${d.usedSlots.toLocaleString()} créneaux de 90min occupés × 36$)`;
-            document.getElementById('r-courts').textContent = fmt(d.revCourts);
-            document.getElementById('r-food').textContent = fmt(d.revFood);
-            document.getElementById('r-wellness').textContent = fmt(d.revWellness);
-            document.getElementById('r-total').textContent = fmt(d.revTotal);
-            document.getElementById('c-rent').textContent = fmt(-rent);
-            document.getElementById('c-total').textContent = fmt(-d.costsAnnual);
-
-            const verdict = document.getElementById('verdict-box');
-            if (d.result > 40000) {
-                verdict.innerHTML = `<div class="verdict good">✓ Rentable et confortable. À ${occ}% d'occupation, le club génère ${fmt(d.result)} de bénéfice brut annuel.</div>`;
-            } else if (d.result > 0) {
-                verdict.innerHTML = `<div class="verdict warn">⚡ Rentable mais serré. ${fmt(d.result)}/an — peu de marge pour les imprévus.</div>`;
-            } else {
-                verdict.innerHTML = `<div class="verdict bad">✗ Déficitaire à ${occ}% avec un loyer de ${fmt(rent)}/mois. Monter le taux d'occupation ou baisser les charges.</div>`;
+        // Close drawer on outside click
+        document.addEventListener('click', function (e) {
+            var nav = document.getElementById('mobile-nav');
+            var btn = document.getElementById('hamburger-btn');
+            if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
+                nav.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+                btn.querySelector('i').setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
             }
+        });
 
-            document.getElementById('rent-label-sc').textContent = '— loyer ' + fmt(rent) + '/mois';
-
-            const scenarios = [20, 30, 40, 50, 60, 70];
-            const maxResult = Math.max(...scenarios.map(p2 => calc(p2, rent).result));
-            const minResult = Math.min(...scenarios.map(p2 => calc(p2, rent).result));
-            const range = Math.max(Math.abs(maxResult), Math.abs(minResult), 1);
-
-            document.getElementById('scenarios-list').innerHTML = scenarios.map(p2 => {
-                const r2 = calc(p2, rent);
-                const isCurrent = p2 === occ;
-                const barPct = Math.max(0, Math.round((r2.result / range) * 50 + 50));
-                const color = r2.result >= 0 ? '#4dff91' : '#ff4444';
-                const labels = { 20: 'Worst case', 30: 'Conservateur', 40: 'Base', 50: 'Optimiste', 60: 'Bon', 70: 'Excellent' };
-                return `<div class="scenario-row ${isCurrent ? 'current' : ''}">
-      <span class="s-pct">${p2}%</span>
-      <span class="s-label" style="font-size:11px;color:var(--muted);">${labels[p2]}${isCurrent ? '<span class="badge cur">actuel</span>' : ''}</span>
-      <div class="s-bar-track">
-        <div class="s-bar-fill" style="width:${barPct}%;background:${color};"></div>
-      </div>
-      <span class="s-result" style="color:${color};">${fmt(r2.result)}</span>
-    </div>`;
-            }).join('');
-
-            const investData = [
-                { label: '4 courts + shipping', val: 50000, color: '#5ab4ff' },
-                { label: 'Construction', val: 120000, color: '#c8f55a' },
-                { label: 'Accueil + boutique', val: 20000, color: '#ff6b35' },
-                { label: 'Restauration', val: 25000, color: '#a78bfa' },
-                { label: 'Ice bath + sauna', val: 20000, color: '#4dff91' },
-                { label: 'Mobilier + déco', val: 25000, color: '#fbbf24' },
-                { label: 'Fonds de roulement', val: 30000, color: '#f472b6' },
-                { label: 'Imprévus 10%', val: 29000, color: '#888' },
-            ];
-            const maxInvest = Math.max(...investData.map(i => i.val));
-            document.getElementById('invest-bars').innerHTML = investData.map(item => {
-                const pct = Math.round(item.val / maxInvest * 100);
-                return `<div class="invest-bar-row">
-      <span class="invest-label">${item.label}</span>
-      <div class="invest-track">
-        <div class="invest-fill" style="width:${pct}%;background:${item.color};">${fmt(item.val)}</div>
-      </div>
-    </div>`;
-            }).join('') + `<div style="display:flex;justify-content:space-between;padding:12px 0 0;margin-top:8px;border-top:1px solid var(--border2);font-size:15px;font-weight:600;">
-    <span>Total estimé</span>
-    <span style="font-family:'DM Mono',monospace;color:var(--accent);">~ 319 000 $</span>
-  </div>`;
+        // ── Language toggle ──────────────────────────────────────
+        function setLang(lang) {
+            localStorage.setItem('chiquita-lang', lang);
+            document.documentElement.lang = lang;
+            document.documentElement.className = 'lang-' + lang;
+            document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
         }
 
-        update();
+        // Init button states on load
+        (function () {
+            var lang = localStorage.getItem('chiquita-lang') || 'fr';
+            document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        })();
+
+        // Render Lucide icons
+        lucide.createIcons();
     </script>
 </body>
 

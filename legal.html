@@ -4,517 +4,542 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chiquita Academy — Feuille de Route Légale</title>
+    <title>Chiquita Academy — Legal / Structure Légale</title>
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        (function () {
+            var l = localStorage.getItem('chiquita-lang') || 'fr';
+            document.documentElement.lang = l;
+            document.documentElement.className = 'lang-' + l;
+        })();
+    </script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <style>
-        :root {
-            --bg: #0e0e0e;
-            --surface: #161616;
-            --surface2: #1e1e1e;
-            --border: rgba(255, 255, 255, 0.08);
-            --border2: rgba(255, 255, 255, 0.14);
-            --text: #f0ede8;
-            --muted: #888;
-            --accent: #c8f55a;
-            --accent2: #ff6b35;
-            --red: #ff4444;
-            --green: #4dff91;
-            --blue: #5ab4ff;
-            --purple: #a78bfa;
-            --yellow: #fbbf24;
+        /* ── Lucide icon sizing ── */
+        .nav-logo-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: #0e0e0e;
+            stroke-width: 2.5;
+            display: block;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        .section-icon svg {
+            width: 15px;
+            height: 15px;
+            stroke: currentColor;
+            stroke-width: 2;
+            display: block;
         }
 
-        html {
-            scroll-behavior: smooth;
+        .callout-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
+            display: block;
         }
 
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Syne', sans-serif;
-            font-size: 15px;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        .noise {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-            opacity: 0.4;
-        }
-
-        .header {
-            padding: 3rem 2rem 2rem;
-            border-bottom: 1px solid var(--border);
-            position: relative;
-            z-index: 1;
-        }
-
-        .header-inner {
-            max-width: 960px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--accent);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-family: 'DM Mono', monospace;
-            font-size: 12px;
-            color: var(--muted);
-            text-decoration: none;
-            padding: 8px 14px;
-            border: 1px solid var(--border2);
-            border-radius: 8px;
-            transition: all 0.2s;
-            letter-spacing: 0.04em;
-        }
-
-        .back-link:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-            background: rgba(200, 245, 90, 0.06);
-        }
-
-        h1 {
-            font-size: clamp(28px, 5vw, 44px);
+        /* ── Section h2 ── */
+        .section-h2 {
+            font-size: clamp(17px, 2.8vw, 22px);
             font-weight: 700;
             letter-spacing: -0.02em;
-            line-height: 1.1;
-            margin-top: 2rem;
+            line-height: 1.2;
+            margin: -0.25rem 0 1.25rem;
         }
 
-        h1 span {
+        .section-sep {
+            margin-top: 2.5rem;
+        }
+
+        /* ── Corporate structure diagram ── */
+        .corp-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            padding: 1.5rem 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .corp-box {
+            background: var(--surface2);
+            border: 1px solid var(--border2);
+            border-radius: 10px;
+            padding: 0.7rem 1.5rem;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            min-width: 220px;
+            color: var(--muted);
+        }
+
+        .corp-box.investors {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.1);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--muted);
+        }
+
+        .corp-box.singapore {
+            background: rgba(200, 245, 90, 0.08);
+            border-color: rgba(200, 245, 90, 0.35);
             color: var(--accent);
-        }
-
-        .subtitle {
-            color: var(--muted);
             font-size: 14px;
-            margin-top: 6px;
+        }
+
+        .corp-box.singapore .corp-sub {
+            color: rgba(200, 245, 90, 0.6);
+            font-size: 11px;
+            font-weight: 400;
             font-family: 'DM Mono', monospace;
+            margin-top: 2px;
         }
 
-        .main {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 2rem;
-            position: relative;
-            z-index: 1;
+        .corp-box.vietnam {
+            background: rgba(90, 180, 255, 0.06);
+            border-color: rgba(90, 180, 255, 0.25);
+            color: var(--blue);
         }
 
-        /* Section header */
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 2.5rem 0 1rem;
-        }
-
-        .section-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            flex-shrink: 0;
-        }
-
-        .section-title {
+        .corp-box.vietnam .corp-sub {
+            color: rgba(90, 180, 255, 0.6);
             font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
+            font-weight: 400;
+            font-family: 'DM Mono', monospace;
+            margin-top: 2px;
+        }
+
+        .corp-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             color: var(--muted);
+            font-size: 18px;
+            line-height: 1;
+            padding: 2px 0;
+            gap: 0;
         }
 
-        /* Panel */
-        .panel {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
+        .corp-arrow span {
+            display: block;
+            width: 1px;
+            height: 16px;
+            background: var(--border2);
         }
 
-        .panel-title {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--muted);
-            margin-bottom: 1rem;
-        }
-
-        /* Grid */
-        .grid-2 {
+        /* ── Two-column entity cards ── */
+        .entity-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
         }
 
-        /* Tags */
-        .tag {
-            display: inline-block;
-            padding: 3px 10px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            font-family: 'DM Mono', monospace;
+        @media (max-width: 600px) {
+            .entity-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        .tag.acc {
-            background: rgba(200, 245, 90, 0.12);
-            color: var(--accent);
-        }
-
-        .tag.red {
-            background: rgba(255, 68, 68, 0.12);
-            color: var(--red);
-        }
-
-        .tag.orange {
-            background: rgba(255, 107, 53, 0.12);
-            color: var(--accent2);
-        }
-
-        .tag.blue {
-            background: rgba(90, 180, 255, 0.12);
-            color: var(--blue);
-        }
-
-        .tag.green {
-            background: rgba(77, 255, 145, 0.12);
-            color: var(--green);
-        }
-
-        .tag.yellow {
-            background: rgba(251, 191, 36, 0.12);
-            color: var(--yellow);
-        }
-
-        /* Callout boxes */
-        .callout {
-            border-radius: 12px;
-            padding: 1.1rem 1.4rem;
-            margin-bottom: 1rem;
-            font-size: 14px;
-            line-height: 1.6;
-            display: flex;
-            gap: 14px;
-            align-items: flex-start;
-        }
-
-        .callout-icon {
-            font-size: 20px;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-
-        .callout.accent {
-            background: rgba(200, 245, 90, 0.05);
-            border: 1px solid rgba(200, 245, 90, 0.2);
-        }
-
-        .callout.accent strong {
-            color: var(--accent);
-        }
-
-        .callout.blue {
-            background: rgba(90, 180, 255, 0.05);
-            border: 1px solid rgba(90, 180, 255, 0.2);
-        }
-
-        .callout.blue strong {
-            color: var(--blue);
-        }
-
-        .callout.orange {
-            background: rgba(255, 107, 53, 0.05);
-            border: 1px solid rgba(255, 107, 53, 0.2);
-        }
-
-        .callout.orange strong {
-            color: var(--accent2);
-        }
-
-        .callout.warn {
-            background: rgba(251, 191, 36, 0.05);
-            border: 1px solid rgba(251, 191, 36, 0.2);
-        }
-
-        .callout.warn strong {
-            color: var(--yellow);
-        }
-
-        /* Row items */
-        .row-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 9px 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 14px;
-            gap: 12px;
-        }
-
-        .row-item:last-child {
-            border-bottom: none;
-        }
-
-        .row-item .lbl {
-            color: var(--muted);
-            flex: 1;
-        }
-
-        .row-item .val {
-            font-family: 'DM Mono', monospace;
-            font-weight: 500;
-            text-align: right;
-        }
-
-        .val.pos {
-            color: var(--green);
-        }
-
-        .val.neg {
-            color: var(--red);
-        }
-
-        .val.acc {
-            color: var(--accent);
-        }
-
-        .val.blue {
-            color: var(--blue);
-        }
-
-        .val.orange {
-            color: var(--accent2);
-        }
-
-        .val.yellow {
-            color: var(--yellow);
-        }
-
-        .total-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0 0;
-            margin-top: 8px;
-            border-top: 1px solid var(--border2);
-            font-size: 15px;
-            font-weight: 600;
-        }
-
-        .total-row .val {
-            font-family: 'DM Mono', monospace;
-            font-size: 17px;
-        }
-
-        /* Steps */
-        .step-card {
+        .entity-card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 14px;
-            padding: 1.25rem 1.5rem;
-            margin-bottom: 10px;
+            padding: 1.25rem;
+        }
+
+        .entity-card.sg {
+            border-color: rgba(200, 245, 90, 0.25);
+        }
+
+        .entity-card.vn {
+            border-color: rgba(90, 180, 255, 0.2);
+        }
+
+        .entity-title {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
             display: flex;
-            gap: 16px;
-            align-items: flex-start;
+            align-items: center;
+            gap: 8px;
         }
 
-        .step-card.active {
-            border-color: rgba(200, 245, 90, 0.3);
+        .entity-title.sg {
+            color: var(--accent);
         }
 
-        .step-num {
+        .entity-title.vn {
+            color: var(--blue);
+        }
+
+        .entity-rows .row-item {
+            font-size: 12px;
+            padding: 7px 0;
+        }
+
+        .entity-rows .row-item .lbl {
+            font-size: 12px;
+        }
+
+        .entity-rows .row-item .val {
+            font-size: 12px;
+            font-family: 'DM Mono', monospace;
+        }
+
+        /* ── VSIC check list ── */
+        .check-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.75rem 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .check-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text);
+        }
+
+        .check-list li::before {
+            content: '✓';
+            color: var(--green);
+            font-weight: 700;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        /* ── Step cards (vertical timeline) ── */
+        .steps-wrap {
+            position: relative;
+            padding-left: 52px;
+            margin-bottom: 2rem;
+        }
+
+        .steps-wrap::before {
+            content: '';
+            position: absolute;
+            left: 19px;
+            top: 20px;
+            bottom: 20px;
+            width: 2px;
+            background: var(--border2);
+            border-radius: 1px;
+        }
+
+        .step-item {
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-num-circle {
+            position: absolute;
+            left: -52px;
+            top: 14px;
             width: 36px;
             height: 36px;
             border-radius: 50%;
             background: var(--surface2);
-            border: 1px solid var(--border2);
+            border: 2px solid var(--border2);
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'DM Mono', monospace;
             font-size: 13px;
-            font-weight: 600;
-            flex-shrink: 0;
+            font-weight: 700;
             color: var(--muted);
+            z-index: 1;
         }
 
-        .step-num.acc {
+        .step-num-circle.active {
             background: rgba(200, 245, 90, 0.1);
-            border-color: rgba(200, 245, 90, 0.4);
+            border-color: rgba(200, 245, 90, 0.5);
             color: var(--accent);
         }
 
-        .step-body {
-            flex: 1;
+        .step-num-circle.final {
+            background: rgba(77, 255, 145, 0.1);
+            border-color: rgba(77, 255, 145, 0.5);
+            color: var(--green);
         }
 
-        .step-title {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 4px;
+        .step-body {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.1rem 1.25rem;
+        }
+
+        .step-head {
             display: flex;
             align-items: center;
-            gap: 8px;
             flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 0.5rem;
         }
 
-        .step-duration {
+        .step-title-text {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .step-dur {
             font-family: 'DM Mono', monospace;
-            font-size: 11px;
+            font-size: 10px;
             color: var(--blue);
             background: rgba(90, 180, 255, 0.1);
             padding: 2px 8px;
             border-radius: 5px;
         }
 
+        .step-tag {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+
+        .step-tag.orange {
+            background: rgba(255, 107, 53, 0.12);
+            color: var(--accent2);
+        }
+
+        .step-tag.green {
+            background: rgba(77, 255, 145, 0.1);
+            color: var(--green);
+        }
+
         .step-desc {
             font-size: 13px;
             color: var(--muted);
             line-height: 1.6;
-            margin-bottom: 10px;
+            margin-bottom: 0.75rem;
         }
 
         .step-docs {
+            list-style: none;
+            padding: 0;
+            margin: 0;
             display: flex;
             flex-direction: column;
             gap: 4px;
         }
 
-        .step-doc {
-            display: flex;
-            gap: 8px;
+        .step-docs li {
+            font-size: 12px;
+            color: var(--muted);
+            padding-left: 14px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .step-docs li::before {
+            content: '·';
+            position: absolute;
+            left: 4px;
+            color: var(--border2);
+        }
+
+        /* ── Coach profiles ── */
+        .coach-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 600px) {
+            .coach-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .coach-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
             font-size: 13px;
-            align-items: flex-start;
+            color: var(--muted);
+            line-height: 1.55;
         }
 
-        .step-doc-dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--border2);
-            flex-shrink: 0;
-            margin-top: 7px;
+        .coach-num {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
         }
 
-        /* Connector between steps */
-        .step-connector {
-            width: 36px;
-            display: flex;
-            justify-content: center;
-            flex-shrink: 0;
+        /* ── Budget table ── */
+        .budget-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 2rem;
         }
 
-        .step-connector-line {
-            width: 1px;
-            height: 20px;
-            background: var(--border2);
-            margin: -4px 0;
+        @media (max-width: 580px) {
+            .budget-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        /* Timeline bar */
-        .timeline-wrap {
+        .budget-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .budget-table td {
+            padding: 8px 12px;
+            font-size: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .budget-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .budget-table .b-lbl {
+            color: var(--muted);
+        }
+
+        .budget-table .b-amt {
+            text-align: right;
+            font-family: 'DM Mono', monospace;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .budget-table tr.b-total td {
+            border-top: 1px solid var(--border2);
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .budget-panel-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 10px 12px 6px;
+            color: var(--muted);
+        }
+
+        /* ── Gantt timeline ── */
+        .gantt-wrap {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 14px;
-            padding: 1.5rem;
+            overflow: auto;
             margin-bottom: 1rem;
-            overflow-x: auto;
         }
 
-        .timeline-grid {
-            display: grid;
-            grid-template-columns: 120px 1fr 1fr 1fr 1fr;
-            gap: 0;
-            min-width: 500px;
+        .gantt-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 460px;
         }
 
-        .tl-header {
-            font-size: 11px;
+        .gantt-table th,
+        .gantt-table td {
+            padding: 7px 10px;
+            font-size: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .gantt-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .gantt-table thead th {
+            background: var(--surface2);
             font-family: 'DM Mono', monospace;
-            color: var(--muted);
-            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 700;
             letter-spacing: 0.06em;
-            padding: 0 0 12px;
             text-align: center;
+            color: var(--muted);
         }
 
-        .tl-header:first-child {
+        .gantt-table thead th:first-child {
             text-align: left;
         }
 
-        .tl-label {
+        .gantt-lbl {
+            color: var(--muted);
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .gantt-cell {
+            text-align: center;
+        }
+
+        .gantt-bar {
+            display: inline-block;
+            height: 12px;
+            border-radius: 3px;
+            width: 80%;
+        }
+
+        .gantt-bar.accent {
+            background: var(--accent);
+        }
+
+        .gantt-bar.blue {
+            background: rgba(90, 180, 255, 0.7);
+        }
+
+        .gantt-bar.green {
+            background: rgba(77, 255, 145, 0.7);
+        }
+
+        .gantt-bar.orange {
+            background: rgba(255, 107, 53, 0.7);
+        }
+
+        .gantt-bar.purple {
+            background: rgba(167, 139, 250, 0.7);
+        }
+
+        .gantt-bar.muted {
+            background: var(--border2);
+        }
+
+        .gantt-caption {
             font-size: 12px;
             color: var(--muted);
-            padding: 6px 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .tl-bar-cell {
-            padding: 4px 4px;
-        }
-
-        .tl-bar {
-            height: 22px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            padding: 0 8px;
-            font-size: 11px;
             font-family: 'DM Mono', monospace;
-            font-weight: 500;
-            color: #0e0e0e;
-            white-space: nowrap;
-            overflow: hidden;
+            padding: 0.6rem 0 1rem;
+            text-align: center;
         }
 
-        /* Risk items */
-        .risk-item {
+        /* ── Risk items ── */
+        .risk-list {
+            margin-bottom: 2rem;
+        }
+
+        .risk-item-card {
             display: flex;
             gap: 14px;
             align-items: flex-start;
@@ -522,151 +547,176 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .risk-item:last-child {
+        .risk-item-card:last-child {
             border-bottom: none;
         }
 
-        .risk-num {
+        .risk-n {
             font-family: 'DM Mono', monospace;
             font-size: 13px;
-            color: var(--yellow);
-            width: 20px;
+            font-weight: 700;
+            width: 22px;
             flex-shrink: 0;
             padding-top: 1px;
+            color: var(--muted);
         }
 
-        .risk-body {
+        .risk-body-card {
             flex: 1;
         }
 
-        .risk-title {
-            font-weight: 600;
+        .risk-title-card {
             font-size: 14px;
+            font-weight: 600;
             margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
-        .risk-desc {
+        .risk-desc-card {
             font-size: 13px;
             color: var(--muted);
-            line-height: 1.5;
+            line-height: 1.55;
         }
 
-        /* Tax table */
-        .tax-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
-        .tax-table th {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--muted);
-            font-weight: 600;
-            padding: 6px 12px 10px;
-            text-align: left;
-            border-bottom: 1px solid var(--border2);
-        }
-
-        .tax-table td {
-            padding: 10px 12px;
-            border-bottom: 1px solid var(--border);
+        .risk-tag {
             font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            padding: 2px 8px;
+            border-radius: 5px;
         }
 
-        .tax-table tr:last-child td {
-            border-bottom: none;
+        .risk-tag.orange {
+            background: rgba(255, 107, 53, 0.12);
+            color: var(--accent2);
         }
 
-        .tax-table td:first-child {
-            font-family: 'Syne', sans-serif;
-            color: var(--muted);
+        .risk-tag.yellow {
+            background: rgba(251, 191, 36, 0.1);
+            color: var(--yellow);
         }
 
-        /* Checklist */
+        /* ── Checklist ── */
         .checklist {
             display: flex;
             flex-direction: column;
             gap: 8px;
+            margin-bottom: 2rem;
         }
 
         .check-item {
             display: flex;
-            gap: 12px;
             align-items: flex-start;
+            gap: 12px;
             padding: 10px 14px;
-            background: var(--surface2);
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-radius: 10px;
-            font-size: 14px;
+            cursor: pointer;
+            transition: border-color 0.15s, background 0.15s;
+            user-select: none;
+        }
+
+        .check-item:hover {
+            border-color: var(--border2);
+        }
+
+        .check-item.checked {
+            background: rgba(200, 245, 90, 0.04);
+            border-color: rgba(200, 245, 90, 0.2);
         }
 
         .check-box {
             width: 18px;
             height: 18px;
-            border: 1.5px solid var(--border2);
-            border-radius: 4px;
+            border-radius: 5px;
+            border: 2px solid var(--border2);
             flex-shrink: 0;
             margin-top: 1px;
-        }
-
-        /* Budget bars */
-        .budget-row {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 5px 0;
+            justify-content: center;
+            transition: background 0.15s, border-color 0.15s;
         }
 
-        .budget-label {
-            font-size: 13px;
-            color: var(--muted);
-            width: 220px;
-            flex-shrink: 0;
+        .check-item.checked .check-box {
+            background: var(--accent);
+            border-color: var(--accent);
         }
 
-        .budget-range {
-            font-family: 'DM Mono', monospace;
+        .check-box-tick {
+            color: #0e0e0e;
+            font-size: 11px;
+            font-weight: 700;
+            display: none;
+        }
+
+        .check-item.checked .check-box-tick {
+            display: block;
+        }
+
+        .check-text {
             font-size: 13px;
+            line-height: 1.5;
             color: var(--text);
-            width: 130px;
-            flex-shrink: 0;
-            text-align: right;
         }
 
-        .budget-track {
-            flex: 1;
-            background: var(--border);
-            border-radius: 3px;
-            height: 6px;
-            overflow: hidden;
-        }
-
-        .budget-fill {
-            height: 100%;
-            border-radius: 3px;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 3rem 2rem;
+        .check-item.checked .check-text {
             color: var(--muted);
-            font-size: 12px;
-            font-family: 'DM Mono', monospace;
-            border-top: 1px solid var(--border);
-            position: relative;
-            z-index: 1;
+            text-decoration: line-through;
+            text-decoration-color: rgba(200, 245, 90, 0.4);
         }
 
+        /* ── Hamburger — mobile only ── */
+        .hamburger {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: transparent;
+            border: 1px solid var(--border2);
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--text);
+            flex-shrink: 0;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .hamburger:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25); }
+        .hamburger svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; display: block; }
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            top: 56px;
+            left: 0;
+            right: 0;
+            background: rgba(14,14,14,0.98);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 99;
+            padding: 0.5rem 0;
+        }
+        .mobile-nav.open { display: block; }
+        .mobile-nav a {
+            display: block;
+            padding: 13px 1.5rem;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--muted);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            transition: color 0.15s, background 0.15s;
+        }
+        .mobile-nav a:last-child { border-bottom: none; }
+        .mobile-nav a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+        .mobile-nav a.active { color: var(--accent); background: rgba(200,245,90,0.06); }
         @media (max-width: 700px) {
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-
-            .header-inner {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+            .hamburger { display: flex; }
+            .nav-links  { display: none !important; }
         }
     </style>
 </head>
@@ -674,564 +724,906 @@
 <body>
     <div class="noise"></div>
 
-    <div class="header">
-        <div class="header-inner">
-            <div>
-                <div class="logo">
-                    <div class="logo-icon">🏸</div>
-                    <span
-                        style="font-size:13px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">Chiquita
-                        Academy</span>
-                </div>
+    <!-- ── NAVBAR ─────────────────────────────────────────────── -->
+    <nav class="navbar" style="position:sticky;top:0;z-index:100;">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <span class="nav-logo-icon"><i data-lucide="zap"></i></span>
+                <span class="nav-logo-text">Chiquita</span>
+            </a>
+            <button class="hamburger" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false">
+                <i data-lucide="menu" id="hamburger-icon"></i>
+            </button>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Project</a>
+                <a href="market.html" class="nav-link">Market</a>
+                <a href="facilities.html" class="nav-link">Facilities</a>
+                <a href="financial.html" class="nav-link">Financial</a>
+                <a href="legal.html" class="nav-link">Legal</a>
+                <a href="land.html" class="nav-link">Land</a>
+                <a href="investment.html" class="nav-link">Investment</a>
             </div>
-            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-                <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);">Da Nang · Mars 2025 ·
-                    v1.0</span>
-                <a href="index.html" class="back-link">← Modèle Financier</a>
+            <div class="lang-toggle" style="margin-left:auto;">
+                <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
             </div>
         </div>
-        <div class="header-inner" style="margin-top:1.5rem;">
-            <div>
-                <h1>Feuille de Route <span>Légale</span></h1>
-                <p class="subtitle">Structure · Licences · Fiscalité · Timeline</p>
-            </div>
+
+        <!-- ── MOBILE NAV DRAWER ── -->
+        <div class="mobile-nav" id="mobile-nav">
+            <a href="index.html" class="nav-link">Project</a>
+            <a href="market.html" class="nav-link">Market</a>
+            <a href="facilities.html" class="nav-link">Facilities</a>
+            <a href="financial.html" class="nav-link">Financial</a>
+            <a href="legal.html" class="nav-link">Legal</a>
+            <a href="land.html" class="nav-link">Land</a>
+            <a href="investment.html" class="nav-link">Investment</a>
+        </div>
+    </nav>
+
+    <!-- ── PAGE HEADER ─────────────────────────────────────────── -->
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="page-subtitle">Chiquita Academy · Da Nang</div>
+            <h1>
+                <span class="fr">Structure <span>légale</span></span>
+                <span class="en">Legal <span>structure</span></span>
+            </h1>
+            <p class="page-tagline fr">Holding Singapour · LLC Vietnam FDI · VSIC 9311 · Roadmap en 6 étapes</p>
+            <p class="page-tagline en">Singapore Holding · Vietnam FDI LLC · VSIC 9311 · 6-step roadmap</p>
         </div>
     </div>
 
+    <!-- ── MAIN ─────────────────────────────────────────────────── -->
     <div class="main">
 
-        <!-- CADRE LÉGAL -->
-        <div class="section-header">
-            <div class="section-icon" style="background:rgba(90,180,255,0.1);">⚖️</div>
-            <span class="section-title">Cadre légal général</span>
-        </div>
-
-        <div class="callout blue">
-            <div class="callout-icon">📋</div>
+        <!-- ══ SECTION 1 — CORPORATE STRUCTURE ══ -->
+        <div class="section-header section-sep">
+            <div class="section-icon" style="background:rgba(200,245,90,0.12);color:var(--accent);">
+                <i data-lucide="git-branch"></i>
+            </div>
             <div>
-                L'activité de club sportif au Vietnam est classée comme <strong>secteur conditionnel</strong>
-                (conditional business line) selon la Loi sur l'Investissement 2020. Il faut obtenir des autorisations
-                spécifiques avant de démarrer.<br><br>
-                Deux textes principaux encadrent le projet : <strong>Loi sur la Culture Physique et le Sport</strong>
-                (2006, amendée 2018) et <strong>Décret 36/2019/ND-CP</strong> sur les activités sportives commerciales.
+                <div class="section-title fr">Structure légale</div>
+                <div class="section-title en">Legal structure</div>
+            </div>
+        </div>
+        <h2 class="section-h2 fr">Structure légale recommandée</h2>
+        <h2 class="section-h2 en">Recommended Legal Structure</h2>
+
+        <div class="panel" style="margin-bottom:1rem;">
+            <div class="corp-diagram">
+                <div class="corp-box investors">
+                    <span class="fr">Investisseurs</span>
+                    <span class="en">Investors</span>
+                </div>
+                <div class="corp-arrow"><span></span>↓<span></span></div>
+                <div class="corp-box singapore">
+                    <div>Singapore Pte Ltd</div>
+                    <div class="corp-sub fr">Société holding</div>
+                    <div class="corp-sub en">Holding company</div>
+                </div>
+                <div class="corp-arrow"><span></span>↓<span></span></div>
+                <div class="corp-box vietnam">
+                    <div>
+                        <span class="fr">Société à Responsabilité Limitée (SARL) — LLC Vietnam</span>
+                        <span class="en">Vietnamese LLC (FDI)</span>
+                    </div>
+                    <div class="corp-sub">Chiquita - Padel Academy</div>
+                </div>
             </div>
         </div>
 
-        <!-- 100% ÉTRANGER -->
-        <div class="section-header">
-            <div class="section-icon" style="background:rgba(200,245,90,0.1);">🌍</div>
-            <span class="section-title">Question clé : peut-on être 100% étranger ?</span>
+        <div class="entity-grid">
+            <!-- Singapore card -->
+            <div class="entity-card sg">
+                <div class="entity-title sg">
+                    <i data-lucide="building-2" style="width:16px;height:16px;stroke:currentColor;stroke-width:2;"></i>
+                    Singapore Pte Ltd
+                </div>
+                <div class="entity-rows">
+                    <div class="row-item">
+                        <span class="lbl fr">Création</span>
+                        <span class="lbl en">Setup</span>
+                        <span class="val">1–3 jours · ~1 500$–2 500$</span>
+                    </div>
+                    <div class="row-item">
+                        <span class="lbl fr">Maintenance annuelle</span>
+                        <span class="lbl en">Annual maintenance</span>
+                        <span class="val">~1 000$–3 500$/an</span>
+                    </div>
+                    <div class="row-item">
+                        <span class="lbl fr">Retenue à la source</span>
+                        <span class="lbl en">Withholding tax</span>
+                        <span class="val acc">0% sur dividendes SG</span>
+                    </div>
+                    <div class="row-item">
+                        <span class="lbl">DTAA</span>
+                        <span class="val">SG–VN · 1994 · maj. sept. 2023</span>
+                    </div>
+                    <div class="row-item" style="border-bottom:none;">
+                        <span class="lbl fr">Réputation</span>
+                        <span class="lbl en">Reputation</span>
+                        <span class="val fr">Hub bancaire solide</span>
+                        <span class="val en">Strong banking hub</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vietnam card -->
+            <div class="entity-card vn">
+                <div class="entity-title vn">
+                    <i data-lucide="map-pin" style="width:16px;height:16px;stroke:currentColor;stroke-width:2;"></i>
+                    <span class="fr">LLC Vietnam (FDI)</span>
+                    <span class="en">Vietnamese LLC (FDI)</span>
+                </div>
+                <div class="entity-rows">
+                    <div class="row-item">
+                        <span class="lbl fr">Capital étranger</span>
+                        <span class="lbl en">Foreign capital</span>
+                        <span class="val acc">100% autorisé (VSIC 9311)</span>
+                    </div>
+                    <div class="row-item">
+                        <span class="lbl fr">Cadre légal</span>
+                        <span class="lbl en">Legal framework</span>
+                        <span class="val fr">Loi entreprises 2020</span>
+                        <span class="val en">Law on Enterprises 2020</span>
+                    </div>
+                    <div class="row-item">
+                        <span class="lbl fr">Responsabilité</span>
+                        <span class="lbl en">Liability</span>
+                        <span class="val fr">Limitée</span>
+                        <span class="val en">Limited</span>
+                    </div>
+                    <div class="row-item">
+                        <span class="lbl fr">Rapatriement bénéfices</span>
+                        <span class="lbl en">Profit repatriation</span>
+                        <span class="val acc fr">Autorisé, sans plafond</span>
+                        <span class="val acc en">Allowed, no cap</span>
+                    </div>
+                    <div class="row-item" style="border-bottom:none;">
+                        <span class="lbl">CIT</span>
+                        <span class="val">20% sur bénéfices / on profits</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="callout accent">
-            <div class="callout-icon">✓</div>
+        <!-- ══ SECTION 2 — VSIC 9311 ══ -->
+        <div class="section-header section-sep">
+            <div class="section-icon" style="background:rgba(77,255,145,0.1);color:var(--green);">
+                <i data-lucide="badge-check"></i>
+            </div>
             <div>
-                <strong>Réponse : oui, confirmé.</strong><br><br>
-                Le code d'activité à enregistrer est le <strong>VSIC 9311</strong> — <span
-                    style="font-family:'DM Mono',monospace;font-size:13px;color:var(--muted);">Hoạt động của các cơ sở
-                    thể thao</span> (Exploitation d'installations sportives). Sous ce code, la Loi sur l'Investissement
-                2020 autorise <strong>100% de capital étranger</strong> sans obligation de joint-venture. C'est le
-                montage utilisé par les chaînes de fitness internationales au Vietnam depuis 2020.
+                <div class="section-title fr">Code d'activité</div>
+                <div class="section-title en">Activity code</div>
+            </div>
+        </div>
+        <h2 class="section-h2 fr">Code d'activité : VSIC 9311</h2>
+        <h2 class="section-h2 en">Business Activity Code: VSIC 9311</h2>
+
+        <div class="callout accent" style="margin-bottom:1rem;">
+            <div class="callout-icon"><i data-lucide="check-circle"></i></div>
+            <div>
+                <p class="fr" style="font-size:13px;line-height:1.65;"><strong>VSIC 9311</strong> — <em>Hoạt động của
+                        các cơ sở thể thao</em> (Exploitation d'installations sportives) — autorise <strong>100% de
+                        capital étranger</strong> sans joint-venture obligatoire.</p>
+                <p class="en" style="font-size:13px;line-height:1.65;"><strong>VSIC 9311</strong> — <em>Hoạt động của
+                        các cơ sở thể thao</em> (Operation of sports facilities) — allows <strong>100% foreign
+                        ownership</strong> with no mandatory joint venture.</p>
+                <ul class="check-list" style="margin-top:0.75rem;">
+                    <li>
+                        <span class="fr">Salles de sport et fitness</span>
+                        <span class="en">Gyms and fitness centers</span>
+                    </li>
+                    <li>
+                        <span class="fr">Courts de tennis, badminton, squash</span>
+                        <span class="en">Tennis, badminton, squash courts</span>
+                    </li>
+                    <li>
+                        <span class="fr">Infrastructures de sports de raquette (padel inclus)</span>
+                        <span class="en">Racket sports facilities including padel</span>
+                    </li>
+                    <li>
+                        <span class="fr">Complexes sportifs multi-activités</span>
+                        <span class="en">Multi-activity sports facilities</span>
+                    </li>
+                </ul>
             </div>
         </div>
 
-        <div class="grid-2">
-            <div class="panel">
-                <div class="panel-title">Le code VSIC 9311 couvre explicitement</div>
-                <div class="row-item"><span class="lbl">Gymnases et centres de fitness</span><span
-                        class="val green">✓</span></div>
-                <div class="row-item"><span class="lbl">Courts tennis, badminton, squash</span><span
-                        class="val green">✓</span></div>
-                <div class="row-item"><span class="lbl">Sports de raquette (dont padel)</span><span
-                        class="val green">✓</span></div>
-                <div class="row-item"><span class="lbl">Installations multi-activités</span><span
-                        class="val green">✓</span></div>
-                <div
-                    style="margin-top:12px;font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;padding:8px 10px;background:rgba(251,191,36,0.06);border-radius:8px;border:1px solid rgba(251,191,36,0.2);">
-                    ⚠ Mise à jour VSIC prévue <strong style="color:var(--yellow);">nov. 2025</strong> (Decision
-                    36/2025/QD-TTg). Le 9311 est maintenu avec ajustements mineurs — à reconfirmer si ouverture après
-                    nov. 2025.
-                </div>
+        <div class="callout warn" style="margin-bottom:2rem;">
+            <div class="callout-icon"><i data-lucide="alert-triangle"></i></div>
+            <div>
+                <p class="fr" style="font-size:13px;line-height:1.65;"><strong>Mise à jour VSIC prévue novembre
+                        2025</strong> (Decision 36/2025/QD-TTg). Le code 9311 est maintenu avec ajustements mineurs. À
+                    reconfirmer si ouverture après novembre 2025.</p>
+                <p class="en" style="font-size:13px;line-height:1.65;"><strong>VSIC update planned November
+                        2025</strong> (Decision 36/2025/QD-TTg). Code 9311 maintained with minor adjustments. To confirm
+                    if opening after November 2025.</p>
             </div>
-            <div class="panel">
-                <div class="panel-title">Ce qu'il reste à valider</div>
-                <div class="callout orange" style="margin-bottom:0;padding:1rem;">
-                    <div class="callout-icon" style="font-size:16px;">🎯</div>
-                    <div style="font-size:13px;">Consultation avec <strong>Phong Partners</strong> (Da Nang) pour
-                        confirmer que le 9311 s'applique à notre configuration exacte : <strong>4 courts + restauration
-                            + wellness</strong>.
+        </div>
+
+        <!-- ══ SECTION 3 — THE 6 STEPS ══ -->
+        <div class="section-header section-sep">
+            <div class="section-icon" style="background:rgba(90,180,255,0.12);color:var(--blue);">
+                <i data-lucide="list-ordered"></i>
+            </div>
+            <div>
+                <div class="section-title fr">Roadmap légale</div>
+                <div class="section-title en">Legal roadmap</div>
+            </div>
+        </div>
+        <h2 class="section-h2 fr">Les 6 étapes dans l'ordre</h2>
+        <h2 class="section-h2 en">The 6 Steps</h2>
+
+        <div class="steps-wrap">
+
+            <!-- Step 1 -->
+            <div class="step-item">
+                <div class="step-num-circle active">1</div>
+                <div class="step-body">
+                    <div class="step-head">
+                        <span class="step-title-text fr">Consultation juridique initiale</span>
+                        <span class="step-title-text en">Initial Legal Consultation</span>
+                        <span class="step-dur fr">1–2 semaines</span>
+                        <span class="step-dur en">1–2 weeks</span>
+                        <span class="step-tag orange">PRIORITY</span>
                     </div>
+                    <p class="step-desc fr">Contacter Phong Partners ou cabinet équivalent à Da Nang. Arriver avec le
+                        code VSIC 9311 pour confirmation. Budget : 500$ – 1 500$.</p>
+                    <p class="step-desc en">Contact Phong Partners or equivalent firm in Da Nang. Arrive with VSIC code
+                        9311 for confirmation. Budget: $500 – $1,500.</p>
+                    <ul class="step-docs">
+                        <li><span class="fr">Confirmer que VSIC 9311 s'applique à notre configuration</span><span
+                                class="en">Confirm VSIC 9311 applies to our configuration</span></li>
+                        <li><span class="fr">Valider la structure LLC 100% étrangère</span><span class="en">Validate
+                                100% foreign LLC structure</span></li>
+                        <li><span class="fr">Identifier le représentant légal résident</span><span class="en">Identify
+                                legal resident representative</span></li>
+                    </ul>
                 </div>
             </div>
-        </div>
 
-        <!-- STRUCTURE -->
-        <div class="section-header">
-            <div class="section-icon" style="background:rgba(167,139,250,0.1);">🏢</div>
-            <span class="section-title">Structure légale recommandée</span>
-        </div>
-
-        <div class="grid-2">
-            <div class="panel" style="border-color:rgba(200,245,90,0.25);">
-                <div class="panel-title" style="color:var(--accent);">✓ Recommandé — LLC 100% étrangère</div>
-                <div class="row-item"><span class="lbl">Type</span><span class="val acc">Société à Responsabilité
-                        Limitée</span></div>
-                <div class="row-item"><span class="lbl">Base légale</span><span class="val blue">Loi sur les Entreprises
-                        2020</span></div>
-                <div class="row-item"><span class="lbl">Responsabilité</span><span class="val acc">Limitée au capital
-                        apporté</span></div>
-                <div class="row-item"><span class="lbl">Gestion</span><span class="val acc">Directe par les associés
-                        étrangers</span></div>
-                <div class="row-item"><span class="lbl">Rapatriement bénéfices</span><span
-                        class="val green">Autorisé</span></div>
-            </div>
-            <div class="panel">
-                <div class="panel-title" style="color:var(--red);">✗ À éviter</div>
-                <div class="row-item">
-                    <span class="lbl">Bureau de représentation</span>
-                    <span class="val neg" style="font-size:12px;text-align:right;">Pas de revenus possibles</span>
-                </div>
-                <div class="row-item">
-                    <span class="lbl">Joint-venture obligatoire</span>
-                    <span class="val neg" style="font-size:12px;text-align:right;">Perte de contrôle</span>
-                </div>
-                <div style="margin-top:12px;font-size:12px;color:var(--muted);line-height:1.5;">
-                    La joint-venture n'est pas nécessaire sous le code VSIC 9311 — à éviter pour garder le contrôle.
-                </div>
-            </div>
-        </div>
-
-        <!-- CORPORATE STRUCTURE -->
-        <div class="section-header">
-            <div class="section-icon" style="background:rgba(251,191,36,0.1);">🏗</div>
-            <span class="section-title">Structure corporate — Holding Singapore</span>
-        </div>
-
-        <!-- Diagram -->
-        <div class="panel" style="margin-bottom:1rem;">
-            <div class="panel-title">Schéma de structure recommandée</div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:0;padding:1rem 0 0.5rem;">
-
-                <!-- Founders row -->
-                <div style="display:flex;gap:12px;justify-content:center;">
-                    <div
-                        style="background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:10px 20px;text-align:center;min-width:120px;">
-                        <div
-                            style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">
-                            Julien</div>
-                        <div style="font-size:12px;font-family:'DM Mono',monospace;color:var(--blue);">EU Résident</div>
+            <!-- Step 2 -->
+            <div class="step-item">
+                <div class="step-num-circle">2</div>
+                <div class="step-body">
+                    <div class="step-head">
+                        <span class="step-title-text fr">Certificat d'Enregistrement d'Investissement (IRC)</span>
+                        <span class="step-title-text en">Investment Registration Certificate (IRC)</span>
+                        <span class="step-dur fr">15–30 jours</span>
+                        <span class="step-dur en">15–30 days</span>
                     </div>
-                    <div
-                        style="background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:10px 20px;text-align:center;min-width:120px;">
-                        <div
-                            style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">
-                            Pascal</div>
-                        <div style="font-size:12px;font-family:'DM Mono',monospace;color:var(--blue);">EU Résident</div>
+                    <p class="step-desc fr">Délivré par le Comité Populaire de Da Nang (Department of Planning and
+                        Investment). Premier document officiel autorisant l'investissement étranger.</p>
+                    <p class="step-desc en">Issued by Da Nang People's Committee (Department of Planning and
+                        Investment). First official document authorizing foreign investment.</p>
+                    <ul class="step-docs">
+                        <li><span class="fr">Demande officielle d'enregistrement</span><span class="en">Official
+                                registration request</span></li>
+                        <li><span class="fr">Passeports et pièces d'identité de tous les investisseurs</span><span
+                                class="en">Passports and ID of all investors</span></li>
+                        <li><span class="fr">Présentation du projet (superficie, activité, capital prévu)</span><span
+                                class="en">Project presentation (size, activity, planned capital)</span></li>
+                        <li><span class="fr">Justificatif de capacité financière</span><span class="en">Proof of
+                                financial capacity</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-item">
+                <div class="step-num-circle">3</div>
+                <div class="step-body">
+                    <div class="step-head">
+                        <span class="step-title-text fr">Certificat d'Enregistrement d'Entreprise (ERC)</span>
+                        <span class="step-title-text en">Enterprise Registration Certificate (ERC)</span>
+                        <span class="step-dur fr">5–10 jours</span>
+                        <span class="step-dur en">5–10 days</span>
                     </div>
+                    <p class="step-desc fr">Enregistrement de la société. Elle existe officiellement à partir de ce
+                        moment.</p>
+                    <p class="step-desc en">Company registration. The company officially exists from this point.</p>
+                    <ul class="step-docs">
+                        <li><span class="fr">IRC de l'étape précédente</span><span class="en">IRC from previous
+                                step</span></li>
+                        <li><span class="fr">Statuts de la société</span><span class="en">Company statutes</span></li>
+                        <li><span class="fr">Adresse du siège social enregistré</span><span class="en">Registered office
+                                address</span></li>
+                        <li><span class="fr">Nomination du représentant légal</span><span class="en">Appointment of
+                                legal representative</span></li>
+                    </ul>
                 </div>
+            </div>
 
-                <!-- Arrow down -->
-                <div style="display:flex;flex-direction:column;align-items:center;margin:4px 0;">
-                    <div style="width:1px;height:18px;background:var(--border2);"></div>
-                    <div style="font-size:8px;color:var(--muted);margin-top:-2px;">▼</div>
-                    <div style="font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);margin-top:2px;">
-                        Actionnaires</div>
-                </div>
-
-                <!-- Singapore holding -->
-                <div
-                    style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.35);border-radius:12px;padding:14px 32px;text-align:center;min-width:220px;">
-                    <div
-                        style="font-size:11px;color:var(--yellow);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;font-weight:600;">
-                        Holding</div>
-                    <div style="font-size:16px;font-weight:700;font-family:'DM Mono',monospace;color:var(--yellow);">
-                        Singapore Pte Ltd</div>
-                    <div style="font-size:11px;color:var(--muted);margin-top:4px;">Création : 2-3 jours · ~2 000–3 000
-                        SGD</div>
-                </div>
-
-                <!-- Arrow down -->
-                <div style="display:flex;flex-direction:column;align-items:center;margin:4px 0;">
-                    <div style="width:1px;height:18px;background:var(--border2);"></div>
-                    <div style="font-size:8px;color:var(--muted);margin-top:-2px;">▼</div>
-                    <div style="font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);margin-top:2px;">100%
-                        capital</div>
-                </div>
-
-                <!-- Vietnamese LLC -->
-                <div
-                    style="background:rgba(200,245,90,0.06);border:1px solid rgba(200,245,90,0.3);border-radius:12px;padding:14px 32px;text-align:center;min-width:220px;">
-                    <div
-                        style="font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;font-weight:600;">
-                        Exploitation</div>
-                    <div style="font-size:16px;font-weight:700;font-family:'DM Mono',monospace;color:var(--accent);">
-                        Vietnamese LLC</div>
-                    <div style="font-size:11px;color:var(--muted);margin-top:4px;">Chiquita Academy Da Nang · VSIC 9311
+            <!-- Step 4 -->
+            <div class="step-item">
+                <div class="step-num-circle">4</div>
+                <div class="step-body">
+                    <div class="step-head">
+                        <span class="step-title-text fr">Formalités post-enregistrement</span>
+                        <span class="step-title-text en">Post-registration Formalities</span>
+                        <span class="step-dur fr">2–4 semaines</span>
+                        <span class="step-dur en">2–4 weeks</span>
                     </div>
+                    <ul class="step-docs">
+                        <li><span class="fr">Compte bancaire professionnel au Vietnam (prévoir 2–4 semaines — les
+                                banques sont lentes pour les sociétés étrangères)</span><span class="en">Professional
+                                bank account in Vietnam (allow 2–4 weeks — banks are slow for foreign companies)</span>
+                        </li>
+                        <li><span class="fr">Enregistrement fiscal (numéro TVA)</span><span class="en">Tax registration
+                                (VAT number)</span></li>
+                        <li><span class="fr">Sceau officiel de la société</span><span class="en">Official company
+                                seal</span></li>
+                        <li><span class="fr">Enregistrement auprès des autorités du travail</span><span class="en">Labor
+                                authority registration</span></li>
+                    </ul>
                 </div>
+            </div>
 
-                <!-- Dividend flow label -->
-                <div
-                    style="margin-top:14px;display:flex;align-items:center;gap:8px;font-size:12px;font-family:'DM Mono',monospace;color:var(--green);">
-                    <span style="font-size:16px;">↑</span>
-                    <span>Dividendes : <strong>0% retenue à la source</strong> Vietnam → Singapour</span>
+            <!-- Step 5 -->
+            <div class="step-item">
+                <div class="step-num-circle">5</div>
+                <div class="step-body">
+                    <div class="step-head">
+                        <span class="step-title-text fr">Préparation du dossier sportif</span>
+                        <span class="step-title-text en">Sports Dossier Preparation</span>
+                        <span class="step-dur fr">En parallèle des étapes 2–4</span>
+                        <span class="step-dur en">In parallel with steps 2–4</span>
+                    </div>
+                    <p class="step-desc fr">À mener en parallèle. Prérequis avant de demander le certificat sportif.</p>
+                    <p class="step-desc en">Run in parallel. Prerequisites before applying for the sports certificate.
+                    </p>
+                    <ul class="step-docs">
+                        <li><span class="fr">Bail signé ou lettre d'intention</span><span class="en">Signed lease or
+                                letter of intent</span></li>
+                        <li><span class="fr">Courts installés ou en cours d'installation</span><span class="en">Courts
+                                installed or in progress</span></li>
+                        <li><span class="fr">Coachs recrutés avec certifications</span><span class="en">Coaches
+                                recruited with certifications</span></li>
+                        <li><span class="fr">Règlement intérieur du club rédigé</span><span class="en">Club internal
+                                rules drafted</span></li>
+                        <li><span class="fr">Conformité incendie vérifiée</span><span class="en">Fire safety
+                                compliance</span></li>
+                    </ul>
                 </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="step-item">
+                <div class="step-num-circle final">6</div>
+                <div class="step-body">
+                    <div class="step-head">
+                        <span class="step-title-text fr">Certificat d'Éligibilité pour les Activités Sportives</span>
+                        <span class="step-title-text en">Sports Eligibility Certificate</span>
+                        <span class="step-dur fr">7 jours ouvrés</span>
+                        <span class="step-dur en">7 working days</span>
+                        <span class="step-tag green fr">ÉTAPE FINALE</span>
+                        <span class="step-tag green en">FINAL STEP</span>
+                    </div>
+                    <p class="step-desc fr">Délivré par le Département de la Culture et des Sports de Da Nang. Sans ce
+                        certificat, opération légale impossible.</p>
+                    <p class="step-desc en">Issued by Da Nang Department of Culture and Sports. Without this
+                        certificate, legal operation is impossible.</p>
+                    <ul class="step-docs">
+                        <li>ERC</li>
+                        <li><span class="fr">Contrat de bail</span><span class="en">Lease contract</span></li>
+                        <li><span class="fr">Description des installations et équipements</span><span
+                                class="en">Facility and equipment description</span></li>
+                        <li><span class="fr">Preuves de qualification des coachs</span><span class="en">Coach
+                                qualification proofs</span></li>
+                        <li><span class="fr">Règlement intérieur du club</span><span class="en">Club internal
+                                rules</span></li>
+                        <li><span class="fr">Certificat de sécurité incendie</span><span class="en">Fire safety
+                                certificate</span></li>
+                        <li><span class="fr">Plan opérationnel</span><span class="en">Operational plan</span></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div><!-- /.steps-wrap -->
+
+        <!-- ══ SECTION 4 — COACH REQUIREMENTS ══ -->
+        <div class="section-header section-sep">
+            <div class="section-icon" style="background:rgba(255,107,53,0.12);color:var(--accent2);">
+                <i data-lucide="user-check"></i>
+            </div>
+            <div>
+                <div class="section-title fr">Coachs</div>
+                <div class="section-title en">Coaches</div>
+            </div>
+        </div>
+        <h2 class="section-h2 fr">Qualification des coachs</h2>
+        <h2 class="section-h2 en">Coach Requirements</h2>
+
+        <div class="callout warn" style="margin-bottom:1rem;">
+            <div class="callout-icon"><i data-lucide="alert-triangle"></i></div>
+            <div>
+                <p class="fr" style="font-size:13px;line-height:1.65;">La loi vietnamienne exige une qualification
+                    reconnue. Le padel n'a pas encore de cadre dédié au Vietnam — <strong>assimilé aux sports de
+                        raquette.</strong></p>
+                <p class="en" style="font-size:13px;line-height:1.65;">Vietnamese law requires recognized
+                    qualifications. Padel has no dedicated framework in Vietnam yet — <strong>treated as a racket
+                        sport.</strong></p>
             </div>
         </div>
 
-        <div class="panel" style="margin-bottom:1rem;">
-            <div class="panel-title">Pourquoi Singapour ?</div>
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
-                <div class="row-item" style="flex-direction:column;align-items:flex-start;gap:3px;border:none;padding:10px;background:var(--surface2);border-radius:10px;">
-                    <span class="lbl">Retenue sur dividendes VN → SG</span><span class="val green" style="font-size:20px;font-weight:700;">0%</span>
-                </div>
-                <div class="row-item" style="flex-direction:column;align-items:flex-start;gap:3px;border:none;padding:10px;background:var(--surface2);border-radius:10px;">
-                    <span class="lbl">Délai de création</span><span class="val blue" style="font-size:18px;font-weight:700;">2 – 3 jours</span>
-                </div>
-                <div class="row-item" style="flex-direction:column;align-items:flex-start;gap:3px;border:none;padding:10px;background:var(--surface2);border-radius:10px;">
-                    <span class="lbl">Coût de création</span><span class="val blue" style="font-size:16px;font-weight:700;">~2–3 K SGD</span>
-                </div>
-                <div class="row-item" style="flex-direction:column;align-items:flex-start;gap:3px;border:none;padding:10px;background:var(--surface2);border-radius:10px;">
-                    <span class="lbl">Maintenance annuelle</span><span class="val yellow" style="font-size:16px;font-weight:700;">~1–3.5 K USD</span>
-                </div>
-                <div class="row-item" style="flex-direction:column;align-items:flex-start;gap:3px;border:none;padding:10px;background:var(--surface2);border-radius:10px;">
-                    <span class="lbl">Hub bancaire international</span><span class="val acc">Clean &amp; fiable</span>
-                </div>
-                <div class="row-item" style="flex-direction:column;align-items:flex-start;gap:3px;border:none;padding:10px;background:var(--surface2);border-radius:10px;">
-                    <span class="lbl">Expansion multi-pays SEA</span><span class="val acc">Structure idéale</span>
-                </div>
+        <div class="coach-grid">
+            <div class="coach-card">
+                <div class="coach-num fr">Profil 1</div>
+                <div class="coach-num en">Profile 1</div>
+                <span class="fr">Diplôme vietnamien en éducation physique et sportive</span>
+                <span class="en">Vietnamese degree in physical education and sport</span>
+            </div>
+            <div class="coach-card">
+                <div class="coach-num fr">Profil 2</div>
+                <div class="coach-num en">Profile 2</div>
+                <span class="fr">Certification internationale d'une fédération continentale ou mondiale (ex. RPP)</span>
+                <span class="en">International certification from a continental or world federation (e.g. RPP)</span>
+            </div>
+            <div class="coach-card">
+                <div class="coach-num fr">Profil 3</div>
+                <div class="coach-num en">Profile 3</div>
+                <span class="fr">Licence d'athlète avec classement reconnu</span>
+                <span class="en">Athlete license with recognized ranking</span>
             </div>
         </div>
 
-        <!-- TIMELINE -->
-        <div class="section-header">
-            <div class="section-icon" style="background:rgba(90,180,255,0.1);">📅</div>
-            <span class="section-title">Timeline globale</span>
-        </div>
-
-        <div class="timeline-wrap">
-            <div class="panel-title" style="margin-bottom:1.2rem;">Réaliste : <span style="color:var(--accent);">2 à 4
-                    mois</span> entre la décision d'avancer et l'ouverture légale</div>
-            <div style="overflow-x:auto;">
-                <table style="width:100%;border-collapse:collapse;min-width:520px;">
-                    <thead>
-                        <tr>
-                            <th
-                                style="font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;padding:0 12px 12px 0;text-align:left;font-weight:600;">
-                                Étape</th>
-                            <th
-                                style="font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;padding:0 0 12px;text-align:center;font-weight:600;">
-                                Mois 1</th>
-                            <th
-                                style="font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;padding:0 0 12px;text-align:center;font-weight:600;">
-                                Mois 2</th>
-                            <th
-                                style="font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;padding:0 0 12px;text-align:center;font-weight:600;">
-                                Mois 3</th>
-                            <th
-                                style="font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;padding:0 0 12px;text-align:center;font-weight:600;">
-                                Mois 4+</th>
-                        </tr>
-                    </thead>
-                    <tbody id="timeline-body"></tbody>
-                </table>
+        <div class="callout accent" style="margin-bottom:2rem;">
+            <div class="callout-icon"><i data-lucide="lightbulb"></i></div>
+            <div>
+                <p class="fr" style="font-size:13px;line-height:1.65;"><strong>Solution pratique :</strong> un coach
+                    vietnamien certifié sport de raquette (volet légal) + un coach expat avec certification
+                    internationale (niveau technique).</p>
+                <p class="en" style="font-size:13px;line-height:1.65;"><strong>Practical solution:</strong> one
+                    Vietnamese coach certified in racket sports (legal cover) + one expat coach with international
+                    certification (technical level).</p>
             </div>
         </div>
 
-        <!-- PROCESSUS CONSOLIDÉ -->
-        <div class="section-header">
-            <div class="section-icon" style="background:rgba(200,245,90,0.1);">🗺</div>
-            <span class="section-title">Processus consolidé — De l'idée à l'ouverture</span>
+        <!-- ══ SECTION 5 — LEGAL BUDGET ══ -->
+        <div class="section-header section-sep">
+            <div class="section-icon" style="background:rgba(251,191,36,0.1);color:var(--yellow);">
+                <i data-lucide="wallet"></i>
+            </div>
+            <div>
+                <div class="section-title fr">Budget légal</div>
+                <div class="section-title en">Legal budget</div>
+            </div>
         </div>
+        <h2 class="section-h2 fr">Budget légal estimé</h2>
+        <h2 class="section-h2 en">Estimated Legal Budget</h2>
 
-        <div class="panel" style="margin-bottom:1rem;">
-            <div class="panel-title" style="margin-bottom:1.25rem;">Séquence complète · 9 étapes</div>
-            <div id="consolidated-steps"></div>
-        </div>
-
-        <!-- FISCALITÉ -->
-        <div class="section-header">
-            <div class="section-icon" style="background:rgba(251,191,36,0.1);">💸</div>
-            <span class="section-title">Fiscalité</span>
-        </div>
-
-        <div class="grid-2">
-            <div class="panel">
-                <div class="panel-title">Régime standard applicable</div>
-                <table class="tax-table">
-                    <thead>
-                        <tr>
-                            <th>Impôt</th>
-                            <th>Taux</th>
-                        </tr>
-                    </thead>
+        <div class="budget-grid">
+            <!-- Vietnam -->
+            <div class="panel" style="padding:0;overflow:hidden;">
+                <div class="budget-panel-title fr">🇻🇳 Setup Vietnam</div>
+                <div class="budget-panel-title en">🇻🇳 Vietnam Setup</div>
+                <table class="budget-table">
                     <tbody>
                         <tr>
-                            <td>Impôt sur les sociétés (CIT)</td>
-                            <td style="color:var(--accent);">20%</td>
+                            <td class="b-lbl fr">Consultation juridique initiale</td>
+                            <td class="b-lbl en">Initial legal consultation</td>
+                            <td class="b-amt">$500–$1,500</td>
                         </tr>
                         <tr>
-                            <td>TVA sur les services sportifs</td>
-                            <td style="color:var(--accent);">10%</td>
+                            <td class="b-lbl fr">Honoraires IRC + ERC</td>
+                            <td class="b-lbl en">IRC + ERC legal fees</td>
+                            <td class="b-amt">$1,500–$4,000</td>
                         </tr>
                         <tr>
-                            <td>Taxe annuelle de licence</td>
-                            <td style="color:var(--green);">~100 $ / an</td>
+                            <td class="b-lbl fr">Frais gouvernementaux</td>
+                            <td class="b-lbl en">Government fees</td>
+                            <td class="b-amt">$200–$500</td>
+                        </tr>
+                        <tr>
+                            <td class="b-lbl fr">Notaire, traductions, apostilles</td>
+                            <td class="b-lbl en">Notary, translations, apostilles</td>
+                            <td class="b-amt">$300–$1,000</td>
+                        </tr>
+                        <tr>
+                            <td class="b-lbl fr">Setup comptabilité</td>
+                            <td class="b-lbl en">Accounting setup</td>
+                            <td class="b-amt">$200–$500</td>
+                        </tr>
+                        <tr class="b-total">
+                            <td class="b-lbl fr">Total Vietnam</td>
+                            <td class="b-lbl en">Total Vietnam</td>
+                            <td class="b-amt" style="color:var(--accent);">~$3,000–$8,000</td>
                         </tr>
                     </tbody>
                 </table>
-                <div style="margin-top:12px;font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;">
-                    Zones franches Da Nang → avantages tech/industrie uniquement. <span style="color:var(--red);">Non
-                        applicable.</span>
-                </div>
             </div>
-            <div class="panel">
-                <div class="panel-title">Rapatriement des bénéfices</div>
-                <div class="callout green"
-                    style="margin-bottom:0;background:rgba(77,255,145,0.05);border:1px solid rgba(77,255,145,0.2);">
-                    <div class="callout-icon">✓</div>
-                    <div style="font-size:13px;">
-                        <span style="color:var(--green);font-weight:600;">Autorisé sans plafond</span>, sous conditions
-                        :<br><br>
-                        <span style="color:var(--muted);">— Bilans comptables annuels déposés</span><br>
-                        <span style="color:var(--muted);">— Tous les impôts dus réglés</span><br>
-                        <span style="color:var(--muted);">— Confirmation fiscale obtenue de la banque</span>
-                    </div>
-                </div>
+
+            <!-- Singapore -->
+            <div class="panel" style="padding:0;overflow:hidden;">
+                <div class="budget-panel-title fr">🇸🇬 Setup Singapour</div>
+                <div class="budget-panel-title en">🇸🇬 Singapore Setup</div>
+                <table class="budget-table">
+                    <tbody>
+                        <tr>
+                            <td class="b-lbl fr">Création Pte Ltd</td>
+                            <td class="b-lbl en">Pte Ltd creation</td>
+                            <td class="b-amt">$1,500–$2,500</td>
+                        </tr>
+                        <tr>
+                            <td class="b-lbl fr">Maintenance annuelle (secrétariat + compta)</td>
+                            <td class="b-lbl en">Annual maintenance (secretary + accounting)</td>
+                            <td class="b-amt">$1,000–$3,500/an</td>
+                        </tr>
+                        <tr class="b-total">
+                            <td class="b-lbl fr">Total Singapour année 1</td>
+                            <td class="b-lbl en">Total Singapore year 1</td>
+                            <td class="b-amt" style="color:var(--accent);">~$2,500–$6,000</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <!-- BUDGET LÉGAL -->
-        <div class="section-header">
-            <div class="section-icon" style="background:rgba(200,245,90,0.1);">💰</div>
-            <span class="section-title">Budget légal et administratif estimé</span>
-        </div>
-
-        <div class="panel" style="margin-bottom:1rem;">
-            <div id="budget-bars"></div>
-        </div>
-
-        <!-- IPA -->
-        <div class="section-header">
-            <div class="section-icon" style="background:rgba(90,180,255,0.1);">🏛</div>
-            <span class="section-title">IPA — Invest in Da Nang</span>
-        </div>
-
-        <div class="callout blue" style="margin-bottom:1rem;">
-            <div class="callout-icon">💡</div>
+        <!-- ══ SECTION 6 — GLOBAL TIMELINE ══ -->
+        <div class="section-header section-sep">
+            <div class="section-icon" style="background:rgba(167,139,250,0.12);color:var(--purple);">
+                <i data-lucide="calendar-range"></i>
+            </div>
             <div>
-                Contacter directement l'IPA de Da Nang (<em>Invest in Da Nang</em>) pour la recherche de terrain ou warehouse.<br><br>
-                Au Vietnam, <strong>toutes les terres appartiennent à l'État</strong>. Passer par des agents privés
-                ajoute une marge et une couche d'intermédiaires. L'IPA accède directement aux terrains disponibles et
-                peut aussi <strong>accélérer les procédures administratives</strong> (IRC, ERC) en tant qu'organisme
-                officiel.
+                <div class="section-title fr">Timeline</div>
+                <div class="section-title en">Timeline</div>
+            </div>
+        </div>
+        <h2 class="section-h2 fr">Timeline globale</h2>
+        <h2 class="section-h2 en">Global Timeline</h2>
+
+        <div class="gantt-wrap">
+            <table class="gantt-table">
+                <thead>
+                    <tr>
+                        <th><span class="fr">Tâche</span><span class="en">Task</span></th>
+                        <th><span class="fr">Mois 1</span><span class="en">Month 1</span></th>
+                        <th><span class="fr">Mois 2</span><span class="en">Month 2</span></th>
+                        <th><span class="fr">Mois 3</span><span class="en">Month 3</span></th>
+                        <th><span class="fr">Mois 4+</span><span class="en">Month 4+</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="gantt-lbl fr">Consultation juridique</td>
+                        <td class="gantt-lbl en" style="display:none;">Legal consultation</td>
+                        <td class="gantt-cell"><span class="gantt-bar accent"></span></td>
+                        <td class="gantt-cell"></td>
+                        <td class="gantt-cell"></td>
+                        <td class="gantt-cell"></td>
+                    </tr>
+                    <tr>
+                        <td class="gantt-lbl">IRC</td>
+                        <td class="gantt-cell"><span class="gantt-bar blue" style="width:40%;"></span></td>
+                        <td class="gantt-cell"><span class="gantt-bar blue"></span></td>
+                        <td class="gantt-cell"></td>
+                        <td class="gantt-cell"></td>
+                    </tr>
+                    <tr>
+                        <td class="gantt-lbl">ERC</td>
+                        <td class="gantt-cell"></td>
+                        <td class="gantt-cell"><span class="gantt-bar blue"></span></td>
+                        <td class="gantt-cell"></td>
+                        <td class="gantt-cell"></td>
+                    </tr>
+                    <tr>
+                        <td class="gantt-lbl fr">Formalités post-enreg.</td>
+                        <td class="gantt-lbl en" style="display:none;">Post-registration</td>
+                        <td class="gantt-cell"></td>
+                        <td class="gantt-cell"><span class="gantt-bar muted"></span></td>
+                        <td class="gantt-cell"><span class="gantt-bar muted"></span></td>
+                        <td class="gantt-cell"></td>
+                    </tr>
+                    <tr>
+                        <td class="gantt-lbl fr">Recherche de local</td>
+                        <td class="gantt-lbl en" style="display:none;">Location search</td>
+                        <td class="gantt-cell"><span class="gantt-bar orange"></span></td>
+                        <td class="gantt-cell"><span class="gantt-bar orange"></span></td>
+                        <td class="gantt-cell"></td>
+                        <td class="gantt-cell"></td>
+                    </tr>
+                    <tr>
+                        <td class="gantt-lbl fr">Dossier sportif</td>
+                        <td class="gantt-lbl en" style="display:none;">Sports dossier</td>
+                        <td class="gantt-cell"></td>
+                        <td class="gantt-cell"><span class="gantt-bar purple"></span></td>
+                        <td class="gantt-cell"><span class="gantt-bar purple"></span></td>
+                        <td class="gantt-cell"></td>
+                    </tr>
+                    <tr>
+                        <td class="gantt-lbl fr">Construction</td>
+                        <td class="gantt-lbl en" style="display:none;">Construction</td>
+                        <td class="gantt-cell"></td>
+                        <td class="gantt-cell"><span class="gantt-bar accent" style="opacity:0.5;"></span></td>
+                        <td class="gantt-cell"><span class="gantt-bar accent" style="opacity:0.5;"></span></td>
+                        <td class="gantt-cell"><span class="gantt-bar accent" style="opacity:0.5;"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="gantt-lbl fr">Certificat sportif</td>
+                        <td class="gantt-lbl en" style="display:none;">Sports certificate</td>
+                        <td class="gantt-cell"></td>
+                        <td class="gantt-cell"></td>
+                        <td class="gantt-cell"><span class="gantt-bar green"></span></td>
+                        <td class="gantt-cell"></td>
+                    </tr>
+                    <tr>
+                        <td class="gantt-lbl" style="color:var(--accent);font-weight:700;">🏸 <span
+                                class="fr">Ouverture</span><span class="en">Opening</span></td>
+                        <td class="gantt-cell"></td>
+                        <td class="gantt-cell"></td>
+                        <td class="gantt-cell"></td>
+                        <td class="gantt-cell"><span class="gantt-bar green" style="background:var(--accent);"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p class="gantt-caption">
+            <span class="fr">Réaliste : 2 à 4 mois entre la décision et l'ouverture légale.</span>
+            <span class="en">Realistic: 2 to 4 months between the decision and legal opening.</span>
+        </p>
+
+        <!-- ══ SECTION 7 — KEY RISKS ══ -->
+        <div class="section-header section-sep">
+            <div class="section-icon" style="background:rgba(255,107,53,0.12);color:var(--accent2);">
+                <i data-lucide="shield-alert"></i>
+            </div>
+            <div>
+                <div class="section-title fr">Points de vigilance</div>
+                <div class="section-title en">Key risks</div>
+            </div>
+        </div>
+        <h2 class="section-h2 fr">Points de vigilance</h2>
+        <h2 class="section-h2 en">Key Risks</h2>
+
+        <div class="panel risk-list" style="padding:0.25rem 1.5rem;">
+            <div class="risk-item-card">
+                <div class="risk-n">01</div>
+                <div class="risk-body-card">
+                    <div class="risk-title-card">
+                        <span class="fr">Configuration VSIC 9311</span>
+                        <span class="en">VSIC 9311 configuration</span>
+                        <span class="risk-tag orange fr">À CONFIRMER</span>
+                        <span class="risk-tag orange en">TO CONFIRM</span>
+                    </div>
+                    <p class="risk-desc-card fr">Confirmer avec un avocat que notre configuration exacte (courts +
+                        restaurant + wellness) est bien couverte par le code 9311.</p>
+                    <p class="risk-desc-card en">Confirm with a lawyer that our exact setup (courts + restaurant +
+                        wellness) is covered by code 9311.</p>
+                </div>
+            </div>
+            <div class="risk-item-card">
+                <div class="risk-n">02</div>
+                <div class="risk-body-card">
+                    <div class="risk-title-card">
+                        <span class="fr">Mise à jour VSIC novembre 2025</span>
+                        <span class="en">VSIC update November 2025</span>
+                        <span class="risk-tag yellow fr">À SURVEILLER</span>
+                        <span class="risk-tag yellow en">MONITOR</span>
+                    </div>
+                    <p class="risk-desc-card">Decision 36/2025/QD-TTg</p>
+                </div>
+            </div>
+            <div class="risk-item-card">
+                <div class="risk-n">03</div>
+                <div class="risk-body-card">
+                    <div class="risk-title-card">
+                        <span class="fr">Représentant légal</span>
+                        <span class="en">Legal representative</span>
+                        <span class="risk-tag orange fr">IMPORTANT</span>
+                        <span class="risk-tag orange en">IMPORTANT</span>
+                    </div>
+                    <p class="risk-desc-card fr">Doit être résident au Vietnam ou pouvoir être présent régulièrement. À
+                        décider entre Julien et Pascal.</p>
+                    <p class="risk-desc-card en">Must be resident in Vietnam or able to be present regularly. To decide
+                        between Julien and Pascal.</p>
+                </div>
+            </div>
+            <div class="risk-item-card">
+                <div class="risk-n">04</div>
+                <div class="risk-body-card">
+                    <div class="risk-title-card">
+                        <span class="fr">Bail avant certificat sportif</span>
+                        <span class="en">Lease before sports certificate</span>
+                        <span class="risk-tag orange fr">IMPORTANT</span>
+                        <span class="risk-tag orange en">IMPORTANT</span>
+                    </div>
+                    <p class="risk-desc-card fr">Le bail est requis pour obtenir le certificat sportif. Risque : signer
+                        un bail sans garantie d'obtenir la licence.</p>
+                    <p class="risk-desc-card en">Lease required to obtain sports certificate. Risk: signing lease
+                        without guarantee of license.</p>
+                </div>
+            </div>
+            <div class="risk-item-card">
+                <div class="risk-n">05</div>
+                <div class="risk-body-card">
+                    <div class="risk-title-card">
+                        <span class="fr">Conformité incendie</span>
+                        <span class="en">Fire safety compliance</span>
+                        <span class="risk-tag yellow fr">À SURVEILLER</span>
+                        <span class="risk-tag yellow en">MONITOR</span>
+                    </div>
+                    <p class="risk-desc-card fr">Peut nécessiter du temps et des travaux. À intégrer dès la phase de
+                        sélection du local.</p>
+                    <p class="risk-desc-card en">Can take time and require works. Integrate from location selection
+                        phase.</p>
+                </div>
+            </div>
+            <div class="risk-item-card">
+                <div class="risk-n">06</div>
+                <div class="risk-body-card">
+                    <div class="risk-title-card">
+                        <span class="fr">Ouverture compte bancaire</span>
+                        <span class="en">Bank account opening</span>
+                        <span class="risk-tag yellow fr">À SURVEILLER</span>
+                        <span class="risk-tag yellow en">MONITOR</span>
+                    </div>
+                    <p class="risk-desc-card fr">Les banques vietnamiennes sont lentes pour les sociétés étrangères.
+                        Prévoir 2–4 semaines supplémentaires.</p>
+                    <p class="risk-desc-card en">Vietnamese banks are slow for foreign companies. Allow 2–4 extra weeks.
+                    </p>
+                </div>
             </div>
         </div>
 
-        <div class="grid-2">
-            <div class="panel">
-                <div class="panel-title">Ce que l'IPA peut faire pour nous</div>
-                <div class="row-item">
-                    <span class="lbl">Accès direct aux terrains d'État</span>
-                    <span class="val green">Sans marge intermédiaire</span>
-                </div>
-                <div class="row-item">
-                    <span class="lbl">Warehouses et locaux disponibles</span>
-                    <span class="val acc">Inventaire officiel</span>
-                </div>
-                <div class="row-item">
-                    <span class="lbl">Accompagnement IRC / ERC</span>
-                    <span class="val blue">Procédures accélérées</span>
-                </div>
-                <div class="row-item">
-                    <span class="lbl">Interlocuteur institutionnel</span>
-                    <span class="val acc">Relation directe avec la ville</span>
-                </div>
+        <!-- ══ SECTION 8 — ACTION CHECKLIST ══ -->
+        <div class="section-header section-sep">
+            <div class="section-icon" style="background:rgba(200,245,90,0.12);color:var(--accent);">
+                <i data-lucide="check-square"></i>
             </div>
-            <div class="panel">
-                <div class="panel-title">Comment les contacter</div>
-                <div class="row-item">
-                    <span class="lbl">Organisme</span>
-                    <span class="val blue">Invest in Da Nang</span>
+            <div>
+                <div class="section-title fr">Actions</div>
+                <div class="section-title en">Actions</div>
+            </div>
+        </div>
+        <h2 class="section-h2 fr">Prochaines actions</h2>
+        <h2 class="section-h2 en">Next Actions</h2>
+
+        <div class="checklist" id="checklist">
+            <div class="check-item" data-id="0" onclick="toggleCheck(this)">
+                <div class="check-box"><span class="check-box-tick">✓</span></div>
+                <div class="check-text fr">Contacter Phong Partners avec le code VSIC 9311</div>
+                <div class="check-text en">Contact Phong Partners with VSIC code 9311</div>
+            </div>
+            <div class="check-item" data-id="1" onclick="toggleCheck(this)">
+                <div class="check-box"><span class="check-box-tick">✓</span></div>
+                <div class="check-text fr">Préparer les pièces d'identité et financières pour tous les associés</div>
+                <div class="check-text en">Prepare identity and financial documents for all partners</div>
+            </div>
+            <div class="check-item" data-id="2" onclick="toggleCheck(this)">
+                <div class="check-box"><span class="check-box-tick">✓</span></div>
+                <div class="check-text fr">Décider qui sera le représentant légal résident (Julien ou Pascal)</div>
+                <div class="check-text en">Decide who will be the legal resident representative (Julien or Pascal)</div>
+            </div>
+            <div class="check-item" data-id="3" onclick="toggleCheck(this)">
+                <div class="check-box"><span class="check-box-tick">✓</span></div>
+                <div class="check-text fr">Intégrer la conformité incendie dans les critères de sélection du local
+                    (Pascal)</div>
+                <div class="check-text en">Integrate fire safety in location selection criteria (Pascal)</div>
+            </div>
+            <div class="check-item" data-id="4" onclick="toggleCheck(this)">
+                <div class="check-box"><span class="check-box-tick">✓</span></div>
+                <div class="check-text fr">Clarifier le statut de certification coach padel avec les autorités locales
                 </div>
-                <div class="row-item">
-                    <span class="lbl">Tutelle</span>
-                    <span class="val" style="color:var(--muted);font-size:12px;text-align:right;">Comité Populaire de Da
-                        Nang</span>
-                </div>
-                <div class="row-item">
-                    <span class="lbl">À initier</span>
-                    <span class="val orange">Dès que possible</span>
-                </div>
-                <div
-                    style="margin-top:12px;font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;line-height:1.5;">
-                    Préparer une présentation succincte du projet (surface, activité, budget) pour le premier contact.
-                </div>
+                <div class="check-text en">Clarify padel coach certification status with local authorities</div>
+            </div>
+            <div class="check-item" data-id="5" onclick="toggleCheck(this)">
+                <div class="check-box"><span class="check-box-tick">✓</span></div>
+                <div class="check-text fr">Surveiller la mise à jour VSIC — novembre 2025</div>
+                <div class="check-text en">Monitor VSIC update — November 2025</div>
+            </div>
+            <div class="check-item" data-id="6" onclick="toggleCheck(this)">
+                <div class="check-box"><span class="check-box-tick">✓</span></div>
+                <div class="check-text fr">Créer la Singapore Pte Ltd (ACRA)</div>
+                <div class="check-text en">Create Singapore Pte Ltd (ACRA)</div>
+            </div>
+            <div class="check-item" data-id="7" onclick="toggleCheck(this)">
+                <div class="check-box"><span class="check-box-tick">✓</span></div>
+                <div class="check-text fr">Ouvrir un compte bancaire professionnel au Vietnam</div>
+                <div class="check-text en">Open professional bank account in Vietnam</div>
             </div>
         </div>
 
-        <!-- POINTS DE VIGILANCE -->
-        <div class="section-header">
-            <div class="section-icon" style="background:rgba(255,68,68,0.1);">⚠️</div>
-            <span class="section-title">Points de vigilance</span>
-        </div>
+    </div><!-- /.main -->
 
-        <div class="panel" style="margin-bottom:1rem;">
-            <div class="risk-item">
-                <span class="risk-num">01</span>
-                <div class="risk-body">
-                    <div class="risk-title">Code VSIC 9311 — configuration spécifique</div>
-                    <div class="risk-desc">Le 9311 couvre les installations sportives, mais à confirmer avec un avocat
-                        local pour notre configuration exacte (4 courts + restauration + wellness). C'est la seule vraie
-                        inconnue qui reste.</div>
-                </div>
-                <span class="tag orange" style="flex-shrink:0;">À confirmer</span>
-            </div>
-            <div class="risk-item">
-                <span class="risk-num">02</span>
-                <div class="risk-body">
-                    <div class="risk-title">Mise à jour VSIC novembre 2025</div>
-                    <div class="risk-desc">La Decision 36/2025/QD-TTg prévoit une révision des codes VSIC en novembre
-                        2025. Le 9311 est maintenu avec ajustements mineurs — si l'ouverture se fait après novembre
-                        2025, vérifier que rien ne change pour notre cas.</div>
-                </div>
-                <span class="tag yellow" style="flex-shrink:0;">À surveiller</span>
-            </div>
-            <div class="risk-item">
-                <span class="risk-num">03</span>
-                <div class="risk-body">
-                    <div class="risk-title">Représentant légal résident</div>
-                    <div class="risk-desc">La LLC doit avoir un représentant légal résident au Vietnam ou capable d'y
-                        être présent régulièrement. À trancher entre Julien et Pascal.</div>
-                </div>
-                <span class="tag orange" style="flex-shrink:0;">Important</span>
-            </div>
-            <div class="risk-item">
-                <span class="risk-num">04</span>
-                <div class="risk-body">
-                    <div class="risk-title">Bail avant certificat sportif</div>
-                    <div class="risk-desc">Le bail du local est requis pour obtenir le certificat sportif. Il faut
-                        signer (ou avoir une promesse ferme) avant de finaliser la licence. Risque : signer un bail sans
-                        être sûr d'obtenir la licence.</div>
-                </div>
-                <span class="tag orange" style="flex-shrink:0;">Important</span>
-            </div>
-            <div class="risk-item">
-                <span class="risk-num">05</span>
-                <div class="risk-body">
-                    <div class="risk-title">Conformité incendie et sécurité</div>
-                    <div class="risk-desc">Peut prendre du temps et nécessiter des travaux. À intégrer dès la sélection du local.</div>
-                </div>
-                <span class="tag yellow" style="flex-shrink:0;">À surveiller</span>
-            </div>
-            <div class="risk-item">
-                <span class="risk-num">06</span>
-                <div class="risk-body">
-                    <div class="risk-title">Ouverture compte bancaire</div>
-                    <div class="risk-desc">Les banques vietnamiennes sont lentes pour les sociétés étrangères. Prévoir 2
-                        à 4 semaines supplémentaires.</div>
-                </div>
-                <span class="tag yellow" style="flex-shrink:0;">À surveiller</span>
-            </div>
-        </div>
-
-
-    </div>
-
+    <!-- ── FOOTER ─────────────────────────────────────────────── -->
     <div class="footer">
-        Chiquita Academy · Da Nang, Vietnam · Feuille de Route Légale v1.0 · Mars 2025<br>
-        Sources : Phong Partners · Perplexity · ChatGPT · Loi sur l'Investissement 2020 · Décret 36/2019/ND-CP ·
-        Decision 27/2018/QD-TTg · Decision 36/2025/QD-TTg
+        Chiquita Academy · Da Nang, Vietnam · Business Plan 2026<br>
+        <span class="fr">Tous droits réservés</span>
+        <span class="en">All rights reserved</span>
     </div>
 
     <script>
-        // Budget bars
-        const budgetData = [
-            { label: 'Consultation juridique initiale', min: 500, max: 1500, color: '#5ab4ff' },
-            { label: 'Honoraires cabinet IRC + ERC', min: 1500, max: 4000, color: '#c8f55a' },
-            { label: 'Frais gouvernementaux', min: 200, max: 500, color: '#ff6b35' },
-            { label: 'Notaire, traductions, apostilles', min: 300, max: 1000, color: '#a78bfa' },
-            { label: 'Mise en place comptabilité', min: 200, max: 500, color: '#4dff91' },
-        ];
+        // ── Active nav link ──────────────────────────────────────
+        (function () {
+            var file = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link').forEach(function (link) {
+                if (link.getAttribute('href') === file) link.classList.add('active');
+            });
+        })();
 
-        const totalMin = budgetData.reduce((s, d) => s + d.min, 0);
-        const totalMax = budgetData.reduce((s, d) => s + d.max, 0);
-        const maxVal = Math.max(...budgetData.map(d => d.max));
+        function toggleMobileNav() {
+          var nav = document.getElementById('mobile-nav');
+          var btn = document.getElementById('hamburger-btn');
+          var isOpen = nav.classList.contains('open');
+          nav.classList.toggle('open', !isOpen);
+          btn.setAttribute('aria-expanded', String(!isOpen));
+          btn.querySelector('i').setAttribute('data-lucide', isOpen ? 'menu' : 'x');
+          lucide.createIcons();
+        }
+        document.addEventListener('click', function(e) {
+          var nav = document.getElementById('mobile-nav');
+          var btn = document.getElementById('hamburger-btn');
+          if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
+            nav.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+            btn.querySelector('i').setAttribute('data-lucide', 'menu');
+            lucide.createIcons();
+          }
+        });
 
-        function fmtB(v) {
-            return '$' + v.toLocaleString('fr-FR').replace(/\s/g, ' ');
+        // ── Language toggle ──────────────────────────────────────
+        function setLang(lang) {
+            localStorage.setItem('chiquita-lang', lang);
+            document.documentElement.lang = lang;
+            document.documentElement.className = 'lang-' + lang;
+            document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
         }
 
-        document.getElementById('budget-bars').innerHTML =
-            budgetData.map(item => {
-                const pctMax = Math.round(item.max / maxVal * 100);
-                const pctMin = Math.round(item.min / maxVal * 100);
-                return `<div class="budget-row">
-          <span class="budget-label">${item.label}</span>
-          <div class="budget-track">
-            <div style="position:relative;height:6px;">
-              <div style="position:absolute;left:0;width:${pctMax}%;height:100%;background:${item.color};opacity:0.25;border-radius:3px;"></div>
-              <div style="position:absolute;left:0;width:${pctMin}%;height:100%;background:${item.color};border-radius:3px;"></div>
-            </div>
-          </div>
-          <span class="budget-range">${fmtB(item.min)} – ${fmtB(item.max)}</span>
-        </div>`;
-            }).join('') +
-            `<div style="display:flex;justify-content:space-between;padding:12px 0 0;margin-top:8px;border-top:1px solid rgba(255,255,255,0.14);font-size:15px;font-weight:600;">
-          <span>Total estimé</span>
-          <span style="font-family:'DM Mono',monospace;color:var(--accent);">~${fmtB(totalMin)} – ${fmtB(totalMax)}</span>
-        </div>`;
+        (function () {
+            var lang = localStorage.getItem('chiquita-lang') || 'fr';
+            document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        })();
 
-        // Timeline
-        const tlRows = [
-            { label: 'Consultation', cols: [1, 0, 0, 0], color: '#ff6b35' },
-            { label: 'IRC', cols: [0.5, 0.5, 0, 0], color: '#5ab4ff' },
-            { label: 'ERC', cols: [0, 0.8, 0, 0], color: '#c8f55a' },
-            { label: 'Post-enregistrement', cols: [0, 1, 0.5, 0], color: '#a78bfa' },
-            { label: 'Recherche local', cols: [1, 1, 0, 0], color: '#fbbf24' },
-            { label: 'Dossier sportif', cols: [0, 1, 1, 0], color: '#4dff91' },
-            { label: 'Construction', cols: [0, 1, 1, 0.5], color: '#f472b6' },
-            { label: 'Cert. sportif', cols: [0, 0, 1, 0], color: '#4dff91' },
-            { label: '🏸 Ouverture', cols: [0, 0, 0, 1], color: '#c8f55a' },
-        ];
+        // ── Checklist with localStorage persistence ───────────────
+        var STORAGE_KEY = 'chiquita-legal-checks';
 
-        // Consolidated steps
-        const consolidatedSteps = [
-            { num: '01', label: 'Business Plan', desc: 'Finaliser le modèle financier, hypothèses loyer, structure d\'équipe et budget d\'investissement.', tag: null, color: '#5ab4ff' },
-            { num: '02', label: 'Contact IPA Da Nang', desc: 'Invest in Da Nang — accès direct aux terrains/warehouses d\'État, sans marge d\'intermédiaire. Présenter le projet et identifier les locaux disponibles.', tag: 'Priorité', color: '#ff6b35' },
-            { num: '03', label: 'Singapore Holding (optionnel)', desc: 'Créer la Singapore Pte Ltd si la structure multi-pays est retenue. 2-3 jours, ~2 000–3 000 SGD. Évaluer coût/bénéfice pour un seul club.', tag: 'Optionnel', color: '#fbbf24' },
-            { num: '04', label: 'IRC — Certificat d\'Investissement', desc: 'Department of Planning and Investment de Da Nang. Durée : 15 à 30 jours.', tag: null, color: '#a78bfa' },
-            { num: '05', label: 'ERC — Enregistrement d\'Entreprise', desc: 'La société existe officiellement. Durée : 5 à 10 jours après l\'IRC.', tag: null, color: '#a78bfa' },
-            { num: '06', label: 'Bail du local', desc: 'Signature du contrat de bail ou promesse ferme. Requis pour l\'étape suivante — timing critique.', tag: 'Critique', color: '#ff4444' },
-            { num: '07', label: 'Construction & aménagement', desc: 'Installation des 4 courts, aménagement accueil/restauration/wellness. En parallèle du recrutement des coachs.', tag: null, color: '#4dff91' },
-            { num: '08', label: 'Certificat d\'Éligibilité Sportive', desc: 'Département de la Culture et des Sports de Da Nang. 7 jours ouvrables. Nécessite : ERC + bail + courts + coachs certifiés + conformité incendie.', tag: 'Indispensable', color: '#c8f55a' },
-            { num: '09', label: '🏸 Ouverture', desc: 'Opération légale. Taux d\'occupation cible : 40% dès le premier trimestre.', tag: null, color: '#c8f55a' },
-        ];
+        function loadChecks() {
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+            } catch (e) {
+                return {};
+            }
+        }
 
-        const tagColors = { 'Priorité': '#ff6b35', 'Optionnel': '#fbbf24', 'Critique': '#ff4444', 'Indispensable': '#c8f55a' };
+        function saveChecks(state) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
 
-        document.getElementById('consolidated-steps').innerHTML = consolidatedSteps.map((s, i) => {
-            const isLast = i === consolidatedSteps.length - 1;
-            const tagHtml = s.tag ? `<span style="display:inline-block;padding:2px 8px;border-radius:5px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;font-family:'DM Mono',monospace;background:${tagColors[s.tag]}22;color:${tagColors[s.tag]};margin-left:6px;">${s.tag}</span>` : '';
-            const connector = !isLast ? `<div style="display:flex;padding-left:17px;margin:-3px 0;"><div style="width:1px;height:14px;background:var(--border2);"></div></div>` : '';
-            return `<div style="display:flex;gap:14px;align-items:flex-start;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;">
-              <div style="width:32px;height:32px;border-radius:50%;background:${s.color}22;border:1px solid ${s.color}66;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:12px;font-weight:600;color:${s.color};flex-shrink:0;">${s.num}</div>
-              <div style="flex:1;min-width:0;">
-                <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:4px;">
-                  <span style="font-size:14px;font-weight:600;">${s.label}</span>${tagHtml}
-                </div>
-                <div style="font-size:12px;color:var(--muted);line-height:1.55;">${s.desc}</div>
-              </div>
-            </div>${connector}`;
-        }).join('');
+        function toggleCheck(el) {
+            var id = el.getAttribute('data-id');
+            var state = loadChecks();
+            var isChecked = el.classList.contains('checked');
+            if (isChecked) {
+                el.classList.remove('checked');
+                delete state[id];
+            } else {
+                el.classList.add('checked');
+                state[id] = true;
+            }
+            saveChecks(state);
+        }
 
-        document.getElementById('timeline-body').innerHTML = tlRows.map(row => {
-            const cells = row.cols.map(w => {
-                if (w === 0) return `<td style="padding:3px 4px;"></td>`;
-                return `<td style="padding:3px 4px;"><div style="height:22px;border-radius:5px;background:${row.color};opacity:${w};display:flex;align-items:center;padding:0 8px;font-size:11px;font-family:'DM Mono',monospace;font-weight:500;color:#0e0e0e;white-space:nowrap;overflow:hidden;">${w >= 0.8 ? row.label : ''}</div></td>`;
-            }).join('');
-            return `<tr><td style="font-size:12px;color:var(--muted);padding:3px 12px 3px 0;white-space:nowrap;">${row.label}</td>${cells}</tr>`;
-        }).join('');
+        // Restore check state on load
+        (function () {
+            var state = loadChecks();
+            document.querySelectorAll('.check-item').forEach(function (el) {
+                if (state[el.getAttribute('data-id')]) {
+                    el.classList.add('checked');
+                }
+            });
+        })();
+
+        // ── Fix Gantt bilingual labels (cells with .en display:none) ──
+        // They're in the same TD so we use the lang class approach — already handled by CSS .lang-fr .en { display:none }
+
+        // ── Lucide icons ─────────────────────────────────────────
+        lucide.createIcons();
     </script>
 </body>
 

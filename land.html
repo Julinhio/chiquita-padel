@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chiquita Academy — Land / Foncier</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    (function () {
+      var l = localStorage.getItem('chiquita-lang') || 'fr';
+      document.documentElement.lang = l;
+      document.documentElement.className = 'lang-' + l;
+    })();
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    /* ── Lucide sizing ── */
+    .nav-logo-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: #0e0e0e;
+      stroke-width: 2.5;
+      display: block;
+    }
+
+    .section-icon svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      stroke-width: 2;
+      display: block;
+    }
+
+    .callout-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      display: block;
+    }
+
+    /* ── Shared ── */
+    .section-h2 {
+      font-size: clamp(17px, 2.8vw, 22px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin: -0.25rem 0 1.25rem;
+    }
+
+    .section-sep {
+      margin-top: 2.5rem;
+    }
+
+    /* ── Requirements box ── */
+    .req-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 560px) {
+      .req-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .req-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+    }
+
+    .req-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      color: var(--accent);
+      margin-top: 1px;
+    }
+
+    .req-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .req-value {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* ── Option cards (2-up) ── */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 620px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .option-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .option-card.blue-hl {
+      border-color: rgba(90, 180, 255, 0.25);
+    }
+
+    .option-card.green-hl {
+      border-color: rgba(77, 255, 145, 0.2);
+    }
+
+    .option-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .option-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .opt-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 3px 9px;
+      border-radius: 5px;
+      flex-shrink: 0;
+    }
+
+    .opt-tag.blue {
+      background: rgba(90, 180, 255, 0.12);
+      color: var(--blue);
+    }
+
+    .opt-tag.green {
+      background: rgba(77, 255, 145, 0.1);
+      color: var(--green);
+    }
+
+    .opt-tag.accent {
+      background: rgba(200, 245, 90, 0.12);
+      color: var(--accent);
+    }
+
+    .opt-tag.muted {
+      background: rgba(136, 136, 136, 0.1);
+      color: var(--muted);
+    }
+
+    .opt-tag.orange {
+      background: rgba(255, 107, 53, 0.12);
+      color: var(--accent2);
+    }
+
+    .opt-tag.red {
+      background: rgba(255, 68, 68, 0.1);
+      color: var(--red);
+    }
+
+    .pro-con-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .pro-con-list li {
+      font-size: 13px;
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      line-height: 1.5;
+    }
+
+    .pro-con-list li .marker {
+      flex-shrink: 0;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .pro-con-list li .marker.pos {
+      color: var(--green);
+    }
+
+    .pro-con-list li .marker.neg {
+      color: var(--red);
+    }
+
+    .option-section-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .option-contacts {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      line-height: 1.8;
+    }
+
+    .contact-done {
+      color: var(--green);
+    }
+
+    .option-pricing {
+      background: var(--surface2);
+      border-radius: 8px;
+      padding: 0.65rem 0.85rem;
+    }
+
+    .pricing-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      padding: 3px 0;
+      gap: 10px;
+    }
+
+    .pricing-row .p-lbl {
+      color: var(--muted);
+    }
+
+    .pricing-row .p-val {
+      font-family: 'DM Mono', monospace;
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    /* ── Cost comparison bars ── */
+    .cost-bar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .cost-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cost-bar-lbl {
+      font-size: 12px;
+      color: var(--muted);
+      width: 200px;
+      flex-shrink: 0;
+      line-height: 1.4;
+    }
+
+    .cost-bar-track {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 4px;
+      height: 24px;
+      overflow: hidden;
+    }
+
+    .cost-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      font-size: 11px;
+      font-family: 'DM Mono', monospace;
+      font-weight: 600;
+      color: #0e0e0e;
+      white-space: nowrap;
+      transition: width 0.4s ease;
+    }
+
+    /* ── Zone cards ── */
+    .zones-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 620px) {
+      .zones-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .zone-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+    }
+
+    .zone-card.z-accent {
+      border-color: rgba(200, 245, 90, 0.25);
+    }
+
+    .zone-card.z-blue {
+      border-color: rgba(90, 180, 255, 0.2);
+    }
+
+    .zone-card.z-muted {
+      border-color: rgba(255, 68, 68, 0.15);
+    }
+
+    .zone-map {
+      height: 60px;
+      border-radius: 8px;
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.05em;
+    }
+
+    .zone-map.acc-bg {
+      background: rgba(200, 245, 90, 0.08);
+    }
+
+    .zone-map.blue-bg {
+      background: rgba(90, 180, 255, 0.08);
+    }
+
+    .zone-map.muted-bg {
+      background: rgba(136, 136, 136, 0.06);
+    }
+
+    .zone-name {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .zone-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── Construction option cards ── */
+    .constr-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 560px) {
+      .constr-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .constr-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+    }
+
+    .constr-card.acc-hl {
+      border-color: rgba(200, 245, 90, 0.25);
+    }
+
+    .constr-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .constr-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: 8px;
+    }
+
+    /* ── Status tracker ── */
+    .status-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .status-row:last-child {
+      border-bottom: none;
+    }
+
+    .status-row:first-child {
+      border-radius: 12px 12px 0 0;
+    }
+
+    .status-action {
+      color: var(--text);
+      flex: 1;
+      line-height: 1.5;
+    }
+
+    .status-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .status-badge.done {
+      background: rgba(77, 255, 145, 0.1);
+      color: var(--green);
+    }
+
+    .status-badge.inprog {
+      background: rgba(251, 191, 36, 0.1);
+      color: var(--yellow);
+    }
+
+    .status-badge.pending {
+      background: rgba(251, 191, 36, 0.08);
+      color: var(--yellow);
+    }
+
+    .status-badge.waiting {
+      background: rgba(136, 136, 136, 0.08);
+      color: var(--muted);
+    }
+
+    /* ── Hamburger — mobile only ── */
+    .hamburger {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--text);
+      flex-shrink: 0;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .hamburger:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25); }
+    .hamburger svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; display: block; }
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 56px;
+      left: 0;
+      right: 0;
+      background: rgba(14,14,14,0.98);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 99;
+      padding: 0.5rem 0;
+    }
+    .mobile-nav.open { display: block; }
+    .mobile-nav a {
+      display: block;
+      padding: 13px 1.5rem;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.15s, background 0.15s;
+    }
+    .mobile-nav a:last-child { border-bottom: none; }
+    .mobile-nav a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .mobile-nav a.active { color: var(--accent); background: rgba(200,245,90,0.06); }
+    @media (max-width: 700px) {
+      .hamburger { display: flex; }
+      .nav-links  { display: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise"></div>
+
+  <!-- ── NAVBAR ─────────────────────────────────────────────── -->
+  <nav class="navbar" style="position:sticky;top:0;z-index:100;">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-icon"><i data-lucide="zap"></i></span>
+        <span class="nav-logo-text">Chiquita</span>
+      </a>
+      <button class="hamburger" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false">
+        <i data-lucide="menu" id="hamburger-icon"></i>
+      </button>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Project</a>
+        <a href="market.html" class="nav-link">Market</a>
+        <a href="facilities.html" class="nav-link">Facilities</a>
+        <a href="financial.html" class="nav-link">Financial</a>
+        <a href="legal.html" class="nav-link">Legal</a>
+        <a href="land.html" class="nav-link">Land</a>
+        <a href="investment.html" class="nav-link">Investment</a>
+      </div>
+      <div class="lang-toggle" style="margin-left:auto;">
+        <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+
+    <!-- ── MOBILE NAV DRAWER ── -->
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="index.html" class="nav-link">Project</a>
+      <a href="market.html" class="nav-link">Market</a>
+      <a href="facilities.html" class="nav-link">Facilities</a>
+      <a href="financial.html" class="nav-link">Financial</a>
+      <a href="legal.html" class="nav-link">Legal</a>
+      <a href="land.html" class="nav-link">Land</a>
+      <a href="investment.html" class="nav-link">Investment</a>
+    </div>
+  </nav>
+
+  <!-- ── PAGE HEADER ─────────────────────────────────────────── -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-subtitle">Chiquita Academy · Da Nang</div>
+      <h1>
+        <span class="fr"><span>Foncier</span> &amp; Localisation</span>
+        <span class="en">Land &amp; <span>Location</span></span>
+      </h1>
+      <p class="page-tagline fr">~1 500 m² · entrepôt ou commercial · Ngũ Hành Sơn · location privée ou IPA</p>
+      <p class="page-tagline en">~1,500 m² · warehouse or commercial · Ngũ Hành Sơn · private or IPA lease</p>
+    </div>
+  </div>
+
+  <!-- ── MAIN ─────────────────────────────────────────────────── -->
+  <div class="main">
+
+    <!-- ══ SECTION 1 — OVERVIEW ══ -->
+    <div class="section-header section-sep">
+      <div class="section-icon" style="background:rgba(200,245,90,0.12);color:var(--accent);">
+        <i data-lucide="search"></i>
+      </div>
+      <div>
+        <div class="section-title fr">Critères</div>
+        <div class="section-title en">Requirements</div>
+      </div>
+    </div>
+    <h2 class="section-h2 fr">Trouver le bon espace</h2>
+    <h2 class="section-h2 en">Finding the Right Space</h2>
+
+    <div class="req-grid">
+      <div class="req-item">
+        <div class="req-icon">⬛</div>
+        <div>
+          <div class="req-label fr">Surface</div>
+          <div class="req-label en">Area</div>
+          <div class="req-value">~1 500 m²</div>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon">↕</div>
+        <div>
+          <div class="req-label fr">Hauteur sous plafond</div>
+          <div class="req-label en">Ceiling height</div>
+          <div class="req-value">
+            <span class="fr">8–10 m minimum <strong style="color:var(--accent);">(essentiel pour le
+                padel)</strong></span>
+            <span class="en">8–10 m minimum <strong style="color:var(--accent);">(essential for padel)</strong></span>
+          </div>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon">🏗</div>
+        <div>
+          <div class="req-label fr">Type de bien</div>
+          <div class="req-label en">Property type</div>
+          <div class="req-value">
+            <span class="fr">Entrepôt, grande cellule commerciale ou espace industriel à rénover</span>
+            <span class="en">Warehouse, large commercial unit, or industrial space to renovate</span>
+          </div>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon">📍</div>
+        <div>
+          <div class="req-label fr">Localisation cible</div>
+          <div class="req-label en">Target location</div>
+          <div class="req-value">
+            <span class="fr">Ngũ Hành Sơn en priorité · My An · An Thuong</span>
+            <span class="en">Ngũ Hành Sơn preferred · My An · An Thuong</span>
+          </div>
+        </div>
+      </div>
+      <div class="req-item" style="grid-column: 1 / -1;">
+        <div class="req-icon">💰</div>
+        <div>
+          <div class="req-label fr">Budget loyer</div>
+          <div class="req-label en">Rent budget</div>
+          <div class="req-value">
+            <span class="fr">Jusqu'à 6 000$/mois (location privée) · ou paiement anticipé 50 ans (IPA)</span>
+            <span class="en">Up to $6,000/month (private lease) · or 50-year upfront (IPA)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SECTION 2 — TWO OPTIONS ══ -->
+    <div class="section-header section-sep">
+      <div class="section-icon" style="background:rgba(90,180,255,0.12);color:var(--blue);">
+        <i data-lucide="git-compare"></i>
+      </div>
+      <div>
+        <div class="section-title fr">Options de location</div>
+        <div class="section-title en">Leasing options</div>
+      </div>
+    </div>
+    <h2 class="section-h2 fr">Deux options de location</h2>
+    <h2 class="section-h2 en">Two Leasing Options</h2>
+
+    <div class="options-grid">
+
+      <!-- Option A: Private Lease -->
+      <div class="option-card blue-hl">
+        <div class="option-head">
+          <div>
+            <div class="option-title fr">Location privée</div>
+            <div class="option-title en">Private Lease</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:3px;font-family:'DM Mono',monospace;">
+              <span class="fr">via agents immobiliers</span>
+              <span class="en">via real estate agents</span>
+            </div>
+          </div>
+          <span class="opt-tag blue fr">RAPIDE</span>
+          <span class="opt-tag blue en">FAST</span>
+        </div>
+
+        <div>
+          <div class="option-section-label fr">Avantages</div>
+          <div class="option-section-label en">Pros</div>
+          <ul class="pro-con-list">
+            <li><span class="marker pos">+</span><span class="fr">Rapide (1–2 mois)</span><span class="en">Fast (1–2
+                months)</span></li>
+            <li><span class="marker pos">+</span><span class="fr">Bâtiment existant, prêt à rénover</span><span
+                class="en">Existing building, ready to renovate</span></li>
+            <li><span class="marker pos">+</span><span class="fr">Localisation stratégique en zone expat</span><span
+                class="en">Strategic location in expat areas</span></li>
+            <li><span class="marker pos">+</span><span class="fr">Conditions de bail flexibles</span><span
+                class="en">Flexible lease terms</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="option-section-label fr">Inconvénients</div>
+          <div class="option-section-label en">Cons</div>
+          <ul class="pro-con-list">
+            <li><span class="marker neg">−</span><span>4 000$ – 6 000$/mois</span></li>
+            <li><span class="marker neg">−</span><span class="fr">Sous-location de droits fonciers existants</span><span
+                class="en">Sub-lease of existing land-use rights</span></li>
+            <li><span class="marker neg">−</span><span class="fr">Baux courts (5–20 ans typique)</span><span
+                class="en">Shorter leases (5–20 years typical)</span></li>
+            <li><span class="marker neg">−</span><span class="fr">Risque de renouvellement</span><span
+                class="en">Renewal risk</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="option-section-label fr">Contacts</div>
+          <div class="option-section-label en">Key contacts</div>
+          <div class="option-contacts">
+            <div>CVR Central Vietnam Realty <span class="contact-done">✓</span></div>
+            <div>MizuLand <span class="contact-done">✓</span></div>
+            <div style="margin-top:4px;color:var(--yellow);">
+              <span class="fr">⏳ En attente de réponses</span>
+              <span class="en">⏳ Awaiting responses</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Option B: IPA -->
+      <div class="option-card green-hl">
+        <div class="option-head">
+          <div>
+            <div class="option-title fr">Bail FDI via l'IPA</div>
+            <div class="option-title en">FDI Lease via IPA</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:3px;font-family:'DM Mono',monospace;">IPA Da Nang
+            </div>
+          </div>
+          <span class="opt-tag green fr">LONG TERME</span>
+          <span class="opt-tag green en">LONG-TERM</span>
+        </div>
+
+        <div>
+          <div class="option-section-label fr">Avantages</div>
+          <div class="option-section-label en">Pros</div>
+          <ul class="pro-con-list">
+            <li><span class="marker pos">+</span><span class="fr">Stabilité bail 50 ans</span><span class="en">50-year
+                lease stability</span></li>
+            <li><span class="marker pos">+</span><span class="fr">Coût annuel bien inférieur</span><span class="en">Much
+                lower annual cost</span></li>
+            <li><span class="marker pos">+</span><span class="fr">Contrat direct avec l'État</span><span
+                class="en">Direct with the State</span></li>
+            <li><span class="marker pos">+</span><span class="fr">Protection légale, certificat droits
+                fonciers</span><span class="en">Legal protection, land-use rights certificate</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="option-section-label fr">Inconvénients</div>
+          <div class="option-section-label en">Cons</div>
+          <ul class="pro-con-list">
+            <li><span class="marker neg">−</span><span class="fr">Terrain nu — construction requise</span><span
+                class="en">Raw land — construction required</span></li>
+            <li><span class="marker neg">−</span><span class="fr">Souvent en périphérie</span><span class="en">Often
+                peripheral locations</span></li>
+            <li><span class="marker neg">−</span><span class="fr">Processus 3–9 mois</span><span class="en">3–9 months
+                process</span></li>
+            <li><span class="marker neg">−</span><span class="fr">Moins adapté au positionnement
+                lifestyle/expat</span><span class="en">Not ideal for lifestyle/expat positioning</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="option-section-label fr">Tarification</div>
+          <div class="option-section-label en">Pricing</div>
+          <div class="option-pricing">
+            <div class="pricing-row">
+              <span class="p-lbl fr">Annuel (estimation)</span>
+              <span class="p-lbl en">Annual (estimate)</span>
+              <span class="p-val">8 000$–25 000$/an</span>
+            </div>
+            <div class="pricing-row">
+              <span class="p-lbl fr">50 ans anticipé</span>
+              <span class="p-lbl en">50-year upfront</span>
+              <span class="p-val">80 000$–150 000$</span>
+            </div>
+            <div class="pricing-row" style="border-top:1px solid var(--border);padding-top:5px;margin-top:3px;">
+              <span class="p-lbl fr">Équivalent mensuel</span>
+              <span class="p-lbl en">Monthly equivalent</span>
+              <span class="p-val" style="color:var(--green);">~125$–375$/mois</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="option-section-label">Contact</div>
+          <div class="option-contacts">
+            <div>ipa@danang.gov.vn <span class="contact-done">✓</span></div>
+            <div style="color:var(--muted);font-size:11px;margin-top:2px;">
+              <span class="fr">Contacté par Pascal</span>
+              <span class="en">Contacted by Pascal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.options-grid -->
+
+    <!-- ══ SECTION 3 — COST COMPARISON ══ -->
+    <div class="section-header section-sep">
+      <div class="section-icon" style="background:rgba(251,191,36,0.1);color:var(--yellow);">
+        <i data-lucide="bar-chart-horizontal"></i>
+      </div>
+      <div>
+        <div class="section-title fr">Comparaison coûts</div>
+        <div class="section-title en">Cost comparison</div>
+      </div>
+    </div>
+    <h2 class="section-h2 fr">Comparaison des coûts sur 10 ans</h2>
+    <h2 class="section-h2 en">10-year Cost Comparison</h2>
+
+    <div class="panel" style="padding:1.25rem 1.5rem;margin-bottom:1rem;">
+      <div
+        style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:1rem;">
+        <span class="fr">Total sur 10 ans — base 100% = 720 000$</span>
+        <span class="en">10-year total — base 100% = $720,000</span>
+      </div>
+      <div class="cost-bar-list">
+        <!-- Private 6k: 720 000 = 100% -->
+        <div class="cost-bar-row">
+          <div class="cost-bar-lbl fr">Location privée (6 000$/mois)</div>
+          <div class="cost-bar-lbl en">Private lease ($6,000/mo)</div>
+          <div class="cost-bar-track">
+            <div class="cost-bar-fill" style="width:100%;background:rgba(255,68,68,0.55);">720 000$</div>
+          </div>
+        </div>
+        <!-- Private 4k: 480 000 = 66.7% -->
+        <div class="cost-bar-row">
+          <div class="cost-bar-lbl fr">Location privée (4 000$/mois)</div>
+          <div class="cost-bar-lbl en">Private lease ($4,000/mo)</div>
+          <div class="cost-bar-track">
+            <div class="cost-bar-fill" style="width:66.7%;background:rgba(255,107,53,0.6);">480 000$</div>
+          </div>
+        </div>
+        <!-- IPA annual mid: 165k = 22.9% -->
+        <div class="cost-bar-row">
+          <div class="cost-bar-lbl fr">IPA annuel (estimation médiane)</div>
+          <div class="cost-bar-lbl en">IPA annual (mid estimate)</div>
+          <div class="cost-bar-track">
+            <div class="cost-bar-fill" style="width:22.9%;background:rgba(90,180,255,0.65);">165 000$</div>
+          </div>
+        </div>
+        <!-- IPA 50y upfront: 115k = 16% -->
+        <div class="cost-bar-row">
+          <div class="cost-bar-lbl fr">IPA 50 ans anticipé (one-shot)</div>
+          <div class="cost-bar-lbl en">IPA 50-year upfront (one-shot)</div>
+          <div class="cost-bar-track">
+            <div class="cost-bar-fill" style="width:16%;background:rgba(77,255,145,0.6);">115 000$</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout orange" style="margin-bottom:2rem;">
+      <div class="callout-icon"><i data-lucide="info"></i></div>
+      <div>
+        <p class="fr" style="font-size:13px;color:var(--muted);line-height:1.6;">Le lease IPA est moins cher sur le long
+          terme, mais souvent <strong>mal positionné pour un club lifestyle</strong>. Le lease privé coûte plus cher
+          mais offre un meilleur emplacement.</p>
+        <p class="en" style="font-size:13px;color:var(--muted);line-height:1.6;">IPA lease is cheaper long-term, but
+          often <strong>poorly located for a lifestyle club</strong>. Private lease costs more but offers better
+          positioning.</p>
+      </div>
+    </div>
+
+    <!-- ══ SECTION 4 — TARGET ZONES ══ -->
+    <div class="section-header section-sep">
+      <div class="section-icon" style="background:rgba(200,245,90,0.12);color:var(--accent);">
+        <i data-lucide="map-pin"></i>
+      </div>
+      <div>
+        <div class="section-title fr">Zones cibles</div>
+        <div class="section-title en">Target areas</div>
+      </div>
+    </div>
+    <h2 class="section-h2 fr">Zones cibles</h2>
+    <h2 class="section-h2 en">Target Areas</h2>
+
+    <div class="zones-grid">
+
+      <div class="zone-card z-accent">
+        <div class="zone-map acc-bg">🏖</div>
+        <div class="zone-name">
+          <span>Ngũ Hành Sơn</span>
+          <span class="opt-tag accent fr">PRIORITÉ</span>
+          <span class="opt-tag accent en">PRIORITY</span>
+        </div>
+        <div class="zone-desc fr">District côtier, zone touristique premium, proximité plage et communauté expat. Zone
+          recherchée en priorité.</div>
+        <div class="zone-desc en">Coastal district, premium tourist area, close to beach and expat community. Primary
+          target zone.</div>
+      </div>
+
+      <div class="zone-card z-blue">
+        <div class="zone-map blue-bg">🌆</div>
+        <div class="zone-name">
+          <span>My An / An Thuong</span>
+          <span class="opt-tag blue fr">SECONDAIRE</span>
+          <span class="opt-tag blue en">SECONDARY</span>
+        </div>
+        <div class="zone-desc fr">Cœur de la zone expat de Da Nang. Cafés internationaux, coworkings, ambiance
+          lifestyle. Densément développé, peu d'espaces disponibles.</div>
+        <div class="zone-desc en">Heart of Da Nang's expat zone. International cafés, coworking spaces, lifestyle vibe.
+          Densely developed, limited availability.</div>
+      </div>
+
+      <div class="zone-card z-muted">
+        <div class="zone-map muted-bg">🌿</div>
+        <div class="zone-name">
+          <span>Sơn Trà</span>
+          <span class="opt-tag red fr">PEU PROBABLE</span>
+          <span class="opt-tag red en">UNLIKELY</span>
+        </div>
+        <div class="zone-desc fr">Zone environnementalement protégée. Nouvelles constructions commerciales très
+          limitées. Réservé aux complexes hôteliers et éco-tourisme.</div>
+        <div class="zone-desc en">Environmentally protected area. Very limited new commercial construction. Reserved for
+          hotel complexes and eco-tourism.</div>
+      </div>
+
+    </div>
+
+    <!-- ══ SECTION 5 — CONSTRUCTION OPTIONS ══ -->
+    <div class="section-header section-sep">
+      <div class="section-icon" style="background:rgba(167,139,250,0.12);color:var(--purple);">
+        <i data-lucide="hammer"></i>
+      </div>
+      <div>
+        <div class="section-title fr">Construction</div>
+        <div class="section-title en">Construction</div>
+      </div>
+    </div>
+    <h2 class="section-h2 fr">Options de construction</h2>
+    <h2 class="section-h2 en">Construction Options</h2>
+
+    <div class="constr-grid">
+
+      <div class="constr-card acc-hl">
+        <div class="constr-title">
+          <span class="fr">Entrepôt / local existant</span>
+          <span class="en">Existing warehouse / unit</span>
+          <span class="opt-tag accent fr">RECOMMANDÉ</span>
+          <span class="opt-tag accent en">RECOMMENDED</span>
+        </div>
+        <p class="constr-desc fr">Structure solide, résistante aux typhons, moins de travaux lourds. Potentiellement
+          plus cher en loyer mais délai d'ouverture plus court.</p>
+        <p class="constr-desc en">Solid structure, typhoon-resistant, less heavy construction work. Potentially higher
+          rent but shorter opening timeline.</p>
+      </div>
+
+      <div class="constr-card">
+        <div class="constr-title">
+          <span class="fr">Terrain nu + construction métal</span>
+          <span class="en">Raw land + metal construction</span>
+        </div>
+        <p class="constr-desc fr">Moins cher en foncier, mais nécessite une construction complète. Risque typhons à
+          dimensionner. Option viable si terrain IPA.</p>
+        <p class="constr-desc en">Lower land cost, but requires full construction. Typhoon risk to account for. Viable
+          option with IPA land.</p>
+      </div>
+
+    </div>
+
+    <div class="callout warn" style="margin-bottom:2rem;">
+      <div class="callout-icon"><i data-lucide="cloud-lightning"></i></div>
+      <div>
+        <p class="fr" style="font-size:13px;line-height:1.65;color:var(--text);">Da Nang est touché par des
+          <strong>typhons et inondations quasi-annuels (juillet – novembre)</strong>. La construction doit être
+          dimensionnée en conséquence. <strong>Pascal pilote ce sujet.</strong></p>
+        <p class="en" style="font-size:13px;line-height:1.65;color:var(--text);">Da Nang experiences <strong>near-annual
+            typhoons and flooding (July – November)</strong>. Construction must be designed accordingly. <strong>Pascal
+            is leading this.</strong></p>
+      </div>
+    </div>
+
+    <!-- ══ SECTION 6 — STATUS & NEXT STEPS ══ -->
+    <div class="section-header section-sep">
+      <div class="section-icon" style="background:rgba(77,255,145,0.1);color:var(--green);">
+        <i data-lucide="activity"></i>
+      </div>
+      <div>
+        <div class="section-title fr">État des démarches</div>
+        <div class="section-title en">Current status</div>
+      </div>
+    </div>
+    <h2 class="section-h2 fr">État des démarches</h2>
+    <h2 class="section-h2 en">Current Status</h2>
+
+    <div class="panel" style="padding:0;overflow:hidden;margin-bottom:1.25rem;">
+      <div class="status-list">
+        <div class="status-row">
+          <span class="status-action fr">CVR Central Vietnam Realty — contacté</span>
+          <span class="status-action en">CVR Central Vietnam Realty contacted</span>
+          <span class="status-badge done fr">✓ Fait</span>
+          <span class="status-badge done en">✓ Done</span>
+        </div>
+        <div class="status-row">
+          <span class="status-action fr">MizuLand — contacté</span>
+          <span class="status-action en">MizuLand contacted</span>
+          <span class="status-badge done fr">✓ Fait</span>
+          <span class="status-badge done en">✓ Done</span>
+        </div>
+        <div class="status-row">
+          <span class="status-action fr">IPA Da Nang contacté (Pascal)</span>
+          <span class="status-action en">IPA Da Nang contacted (Pascal)</span>
+          <span class="status-badge done fr">✓ Fait</span>
+          <span class="status-badge done en">✓ Done</span>
+        </div>
+        <div class="status-row">
+          <span class="status-action fr">Contact local Da Nang — amie de la femme de Julien (background paralégal, mari
+            architecte)</span>
+          <span class="status-action en">Local Da Nang contact — Julien's wife's friend (paralegal background, architect
+            husband)</span>
+          <span class="status-badge inprog fr">↺ En cours</span>
+          <span class="status-badge inprog en">↺ In progress</span>
+        </div>
+        <div class="status-row">
+          <span class="status-action fr">Annonces reçues des agents</span>
+          <span class="status-action en">Listings received from agents</span>
+          <span class="status-badge pending fr">⏳ En attente</span>
+          <span class="status-badge pending en">⏳ Pending</span>
+        </div>
+        <div class="status-row">
+          <span class="status-action fr">Disponibilité IPA dans Ngũ Hành Sơn confirmée</span>
+          <span class="status-action en">IPA land availability in Ngũ Hành Sơn confirmed</span>
+          <span class="status-badge pending fr">⏳ En attente</span>
+          <span class="status-badge pending en">⏳ Pending</span>
+        </div>
+        <div class="status-row">
+          <span class="status-action fr">Visites de sites</span>
+          <span class="status-action en">Site visits</span>
+          <span class="status-badge waiting fr">⌛ Non démarré</span>
+          <span class="status-badge waiting en">⌛ Not started</span>
+        </div>
+        <div class="status-row">
+          <span class="status-action fr">Bail signé</span>
+          <span class="status-action en">Lease signed</span>
+          <span class="status-badge waiting fr">⌛ Non démarré</span>
+          <span class="status-badge waiting en">⌛ Not started</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout accent">
+      <div class="callout-icon"><i data-lucide="trending-down"></i></div>
+      <div>
+        <p class="fr" style="font-size:13px;line-height:1.65;"><strong>Le loyer est le levier financier le plus critique
+            du projet.</strong> <span style="color:var(--muted);">Chaque 1 000$ de loyer en moins représente environ 1
+            an de ROI gagné.</span></p>
+        <p class="en" style="font-size:13px;line-height:1.65;"><strong>Rent is the most critical financial lever in this
+            project.</strong> <span style="color:var(--muted);">Every $1,000 less in monthly rent equals approximately 1
+            year of ROI gained.</span></p>
+      </div>
+    </div>
+
+  </div><!-- /.main -->
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <div class="footer">
+    Chiquita Academy · Da Nang, Vietnam · Business Plan 2026<br>
+    <span class="fr">Tous droits réservés</span>
+    <span class="en">All rights reserved</span>
+  </div>
+
+  <script>
+    // ── Active nav link ──────────────────────────────────────
+    (function () {
+      var file = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.nav-link').forEach(function (link) {
+        if (link.getAttribute('href') === file) link.classList.add('active');
+      });
+    })();
+
+    function toggleMobileNav() {
+      var nav = document.getElementById('mobile-nav');
+      var btn = document.getElementById('hamburger-btn');
+      var isOpen = nav.classList.contains('open');
+      nav.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      btn.querySelector('i').setAttribute('data-lucide', isOpen ? 'menu' : 'x');
+      lucide.createIcons();
+    }
+    document.addEventListener('click', function(e) {
+      var nav = document.getElementById('mobile-nav');
+      var btn = document.getElementById('hamburger-btn');
+      if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.querySelector('i').setAttribute('data-lucide', 'menu');
+        lucide.createIcons();
+      }
+    });
+
+    // ── Language toggle ──────────────────────────────────────
+    function setLang(lang) {
+      localStorage.setItem('chiquita-lang', lang);
+      document.documentElement.lang = lang;
+      document.documentElement.className = 'lang-' + lang;
+      document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    }
+
+    (function () {
+      var lang = localStorage.getItem('chiquita-lang') || 'fr';
+      document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    })();
+
+    // ── Lucide icons ─────────────────────────────────────────
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>

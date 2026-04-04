@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chiquita Academy — Facilities / Installations</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    (function () {
+      var l = localStorage.getItem('chiquita-lang') || 'fr';
+      document.documentElement.lang = l;
+      document.documentElement.className = 'lang-' + l;
+    })();
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    /* ── Lucide icon sizing ── */
+    .nav-logo-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: #0e0e0e;
+      stroke-width: 2.5;
+      display: block;
+    }
+
+    .section-icon svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      stroke-width: 2;
+      display: block;
+    }
+
+    .space-card-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 2;
+      display: block;
+    }
+
+    /* ── Section h2 ── */
+    .section-h2 {
+      font-size: clamp(17px, 2.8vw, 22px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin: -0.25rem 0 1.25rem;
+    }
+
+    /* ── Key Specs grid ── */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .spec-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem 1rem;
+    }
+
+    .spec-card.highlight {
+      border-color: var(--accent);
+    }
+
+    .spec-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .spec-value {
+      font-size: 22px;
+      font-weight: 600;
+      font-family: 'DM Mono', monospace;
+      line-height: 1.2;
+      color: var(--accent);
+    }
+
+    .spec-sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* ── Image gallery ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 560px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .gallery-item {
+      position: relative;
+      cursor: pointer;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .gallery-item:hover {
+      border-color: rgba(200, 245, 90, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.6rem 0.9rem;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
+      font-size: 12px;
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* ── Lightbox ── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.92);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    #lightbox.open {
+      display: flex;
+    }
+
+    #lightbox-img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 10px;
+      object-fit: contain;
+      display: block;
+    }
+
+    #lightbox-caption {
+      margin-top: 1rem;
+      font-size: 13px;
+      font-family: 'DM Mono', monospace;
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text);
+      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+
+    #lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .lightbox-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text);
+      border-radius: 10px;
+      width: 44px;
+      height: 44px;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+
+    .lightbox-arrow:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    #lightbox-prev {
+      left: 1.25rem;
+    }
+
+    #lightbox-next {
+      right: 1.25rem;
+    }
+
+    /* ── Space cards ── */
+    .spaces-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 560px) {
+      .spaces-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .space-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem;
+    }
+
+    .space-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 0.75rem;
+    }
+
+    .space-card-icon-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .space-card-icon-wrap.accent-bg {
+      background: rgba(200, 245, 90, 0.12);
+      color: var(--accent);
+    }
+
+    .space-card-icon-wrap.orange-bg {
+      background: rgba(255, 107, 53, 0.12);
+      color: var(--accent2);
+    }
+
+    .space-card-icon-wrap.blue-bg {
+      background: rgba(90, 180, 255, 0.12);
+      color: var(--blue);
+    }
+
+    .space-card-icon-wrap.purple-bg {
+      background: rgba(167, 139, 250, 0.12);
+      color: var(--purple);
+    }
+
+    .space-card-name {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .space-card-size {
+      font-size: 11px;
+      font-family: 'DM Mono', monospace;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .space-card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── Comparison table ── */
+    .compare-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      padding: 11px 16px;
+      text-align: center;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .compare-table thead th {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 16px;
+      background: var(--surface2);
+    }
+
+    .col-feature {
+      text-align: left !important;
+      color: var(--muted);
+    }
+
+    .th-competitor {
+      color: #ff6b6b;
+    }
+
+    .th-us {
+      color: var(--accent);
+    }
+
+    .col-competitor {
+      color: #ff6b6b;
+    }
+
+    .col-us {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .check-yes {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .check-no {
+      color: #555;
+    }
+
+    /* ── Closing callout ── */
+    .closing-callout {
+      background: rgba(200, 245, 90, 0.06);
+      border: 1px solid rgba(200, 245, 90, 0.2);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* ── Hamburger — mobile only ── */
+    .hamburger {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--text);
+      flex-shrink: 0;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .hamburger:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25); }
+    .hamburger svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; display: block; }
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 56px;
+      left: 0;
+      right: 0;
+      background: rgba(14,14,14,0.98);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 99;
+      padding: 0.5rem 0;
+    }
+    .mobile-nav.open { display: block; }
+    .mobile-nav a {
+      display: block;
+      padding: 13px 1.5rem;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.15s, background 0.15s;
+    }
+    .mobile-nav a:last-child { border-bottom: none; }
+    .mobile-nav a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .mobile-nav a.active { color: var(--accent); background: rgba(200,245,90,0.06); }
+    @media (max-width: 700px) {
+      .hamburger { display: flex; }
+      .nav-links  { display: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise"></div>
+
+  <!-- ── NAVBAR ─────────────────────────────────────────────── -->
+  <nav class="navbar" style="position:sticky;top:0;z-index:100;">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-icon"><i data-lucide="zap"></i></span>
+        <span class="nav-logo-text">Chiquita</span>
+      </a>
+      <button class="hamburger" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false">
+        <i data-lucide="menu" id="hamburger-icon"></i>
+      </button>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Project</a>
+        <a href="market.html" class="nav-link">Market</a>
+        <a href="facilities.html" class="nav-link">Facilities</a>
+        <a href="financial.html" class="nav-link">Financial</a>
+        <a href="legal.html" class="nav-link">Legal</a>
+        <a href="land.html" class="nav-link">Land</a>
+        <a href="investment.html" class="nav-link">Investment</a>
+      </div>
+      <div class="lang-toggle" style="margin-left:auto;">
+        <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+
+    <!-- ── MOBILE NAV DRAWER ── -->
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="index.html" class="nav-link">Project</a>
+      <a href="market.html" class="nav-link">Market</a>
+      <a href="facilities.html" class="nav-link">Facilities</a>
+      <a href="financial.html" class="nav-link">Financial</a>
+      <a href="legal.html" class="nav-link">Legal</a>
+      <a href="land.html" class="nav-link">Land</a>
+      <a href="investment.html" class="nav-link">Investment</a>
+    </div>
+  </nav>
+
+  <!-- ── PAGE HEADER ─────────────────────────────────────────── -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-subtitle">Chiquita - Padel Academy · Da Nang</div>
+      <h1>
+        <span class="fr">Les <span>installations</span></span>
+        <span class="en">The <span>Facility</span></span>
+      </h1>
+      <p class="page-tagline fr">1 500 m² · 4 courts · wellness · restaurant · pro shop</p>
+      <p class="page-tagline en">1,500 m² · 4 courts · wellness · restaurant · pro shop</p>
+    </div>
+  </div>
+
+  <!-- ── MAIN ─────────────────────────────────────────────────── -->
+  <div class="main">
+
+    <!-- ══ SECTION 1 — KEY SPECS ══ -->
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(200,245,90,0.12);color:var(--accent);">
+        <i data-lucide="layout-dashboard"></i>
+      </div>
+      <div>
+        <div class="section-title fr">Chiffres clés</div>
+        <div class="section-title en">Key Specs</div>
+      </div>
+    </div>
+    <h2 class="section-h2 fr">Les installations</h2>
+    <h2 class="section-h2 en">The Facility</h2>
+
+    <div class="specs-grid">
+      <div class="spec-card highlight">
+        <div class="spec-label fr">Surface totale</div>
+        <div class="spec-label en">Total area</div>
+        <div class="spec-value">1 500 m²</div>
+        <div class="spec-sub fr">emprise complète</div>
+        <div class="spec-sub en">full footprint</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-label fr">Courts intérieurs</div>
+        <div class="spec-label en">Indoor courts</div>
+        <div class="spec-value">4</div>
+        <div class="spec-sub fr">padel 10×20m</div>
+        <div class="spec-sub en">padel 10×20m</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-label fr">Hauteur sous plafond</div>
+        <div class="spec-label en">Ceiling height</div>
+        <div class="spec-value">10 m</div>
+        <div class="spec-sub fr">norme internationale</div>
+        <div class="spec-sub en">international standard</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-label fr">Restaurant</div>
+        <div class="spec-label en">Restaurant</div>
+        <div class="spec-value">45 m²</div>
+        <div class="spec-sub fr">restauration rapide</div>
+        <div class="spec-sub en">quick-service</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-label fr">Pro Shop</div>
+        <div class="spec-label en">Pro Shop</div>
+        <div class="spec-value">45 m²</div>
+        <div class="spec-sub fr">accueil + boutique</div>
+        <div class="spec-sub en">reception + retail</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-label fr">Espace Wellness</div>
+        <div class="spec-label en">Wellness Area</div>
+        <div class="spec-value" style="font-size:16px;padding-top:3px;">Ice bath + Sauna</div>
+        <div class="spec-sub fr">différenciation premium</div>
+        <div class="spec-sub en">premium differentiator</div>
+      </div>
+    </div>
+
+    <!-- ══ SECTION 2 — PLANS & VISUALS ══ -->
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(90,180,255,0.12);color:var(--blue);">
+        <i data-lucide="image"></i>
+      </div>
+      <div>
+        <div class="section-title fr">Visuels</div>
+        <div class="section-title en">Visuals</div>
+      </div>
+    </div>
+    <h2 class="section-h2 fr">Plans &amp; Visuels 3D</h2>
+    <h2 class="section-h2 en">3D Plans &amp; Visuals</h2>
+
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox(0)">
+        <img src="assets/images/Chiquita plan-view lateral-2.jpeg" alt="Vue latérale — espaces de convivialité"
+          loading="lazy">
+        <div class="gallery-caption">
+          <span class="fr">Vue latérale — espaces de convivialité</span>
+          <span class="en">Lateral view — social spaces</span>
+        </div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(1)">
+        <img src="assets/images/Chiquita plan-view lateral.jpeg" alt="Vue latérale — 4 courts couverts" loading="lazy">
+        <div class="gallery-caption">
+          <span class="fr">Vue latérale — 4 courts couverts</span>
+          <span class="en">Lateral view — 4 indoor courts</span>
+        </div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(2)">
+        <img src="assets/images/Chiquita plan-view up.jpeg" alt="Vue de dessus — agencement général" loading="lazy">
+        <div class="gallery-caption">
+          <span class="fr">Vue de dessus — agencement général</span>
+          <span class="en">Top view — general layout</span>
+        </div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(3)">
+        <img src="assets/images/Chiquita plan-view sky.jpeg" alt="Vue aérienne — concept global" loading="lazy">
+        <div class="gallery-caption">
+          <span class="fr">Vue aérienne — concept global</span>
+          <span class="en">Sky view — full concept</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SECTION 3 — THE 4 SPACES ══ -->
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(167,139,250,0.12);color:var(--purple);">
+        <i data-lucide="grid-2x2"></i>
+      </div>
+      <div>
+        <div class="section-title fr">Espaces</div>
+        <div class="section-title en">Spaces</div>
+      </div>
+    </div>
+    <h2 class="section-h2 fr">Les 4 espaces</h2>
+    <h2 class="section-h2 en">The 4 Spaces</h2>
+
+    <div class="spaces-grid">
+      <div class="space-card">
+        <div class="space-card-header">
+          <div class="space-card-icon-wrap accent-bg">
+            <span class="space-card-icon"><i data-lucide="activity"></i></span>
+          </div>
+          <div>
+            <div class="space-card-name fr">4 Courts de Padel</div>
+            <div class="space-card-name en">4 Padel Courts</div>
+          </div>
+        </div>
+        <p class="space-card-desc fr">Courts couverts 10×20m, 2,5m entre chaque court, 10m sous plafond. Gazon
+          synthétique premium, éclairage LED.</p>
+        <p class="space-card-desc en">Indoor courts 10×20m, 2.5m between courts, 10m ceiling height. Premium synthetic
+          turf, LED lighting.</p>
+      </div>
+
+      <div class="space-card">
+        <div class="space-card-header">
+          <div class="space-card-icon-wrap orange-bg">
+            <span class="space-card-icon"><i data-lucide="coffee"></i></span>
+          </div>
+          <div>
+            <div class="space-card-name fr">Restauration Rapide</div>
+            <div class="space-card-name en">Quick-Service Restaurant</div>
+            <div class="space-card-size">45 m²</div>
+          </div>
+        </div>
+        <p class="space-card-desc fr">Sandwich, smoothie, poke bowl, protein shake. Pensé pour la récupération et la
+          convivialité.</p>
+        <p class="space-card-desc en">Sandwiches, smoothies, poke bowls, protein shakes. Designed for recovery and
+          social moments.</p>
+      </div>
+
+      <div class="space-card">
+        <div class="space-card-header">
+          <div class="space-card-icon-wrap blue-bg">
+            <span class="space-card-icon"><i data-lucide="zap"></i></span>
+          </div>
+          <div>
+            <div class="space-card-name fr">Espace Wellness</div>
+            <div class="space-card-name en">Wellness Area</div>
+          </div>
+        </div>
+        <p class="space-card-desc fr">Ice bath et sauna. Différenciation premium vs la concurrence. Monétisé via
+          membership ou à la carte.</p>
+        <p class="space-card-desc en">Ice bath and sauna. Premium differentiator vs competition. Monetized via
+          membership or pay-per-use.</p>
+      </div>
+
+      <div class="space-card">
+        <div class="space-card-header">
+          <div class="space-card-icon-wrap purple-bg">
+            <span class="space-card-icon"><i data-lucide="shopping-bag"></i></span>
+          </div>
+          <div>
+            <div class="space-card-name fr">Accueil &amp; Boutique</div>
+            <div class="space-card-name en">Reception &amp; Pro Shop</div>
+            <div class="space-card-size">45 m²</div>
+          </div>
+        </div>
+        <p class="space-card-desc fr">Accueil premium, location de raquettes, vente d'équipement et de merchandising
+          Chiquita Academy.</p>
+        <p class="space-card-desc en">Premium reception, racket rental, equipment and Chiquita Academy merchandise.</p>
+      </div>
+    </div>
+
+    <!-- ══ SECTION 4 — PREMIUM POSITIONING ══ -->
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(200,245,90,0.12);color:var(--accent);">
+        <i data-lucide="trophy"></i>
+      </div>
+      <div>
+        <div class="section-title fr">Positionnement</div>
+        <div class="section-title en">Positioning</div>
+      </div>
+    </div>
+    <h2 class="section-h2 fr">Ce qui nous différencie</h2>
+    <h2 class="section-h2 en">What sets us apart</h2>
+
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th class="col-feature"></th>
+            <th class="th-competitor">Padel Xtra</th>
+            <th class="th-us">Chiquita Academy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-feature">
+              <span class="fr">Courts</span><span class="en">Courts</span>
+            </td>
+            <td class="col-competitor">2</td>
+            <td class="col-us">4</td>
+          </tr>
+          <tr>
+            <td class="col-feature">Wellness</td>
+            <td><span class="check-no">✗</span></td>
+            <td><span class="check-yes">✓ Ice bath + sauna</span></td>
+          </tr>
+          <tr>
+            <td class="col-feature">Restaurant</td>
+            <td><span class="check-no">✗</span></td>
+            <td><span class="check-yes">✓</span></td>
+          </tr>
+          <tr>
+            <td class="col-feature">Pro Shop</td>
+            <td><span class="check-no">✗</span></td>
+            <td><span class="check-yes">✓</span></td>
+          </tr>
+          <tr>
+            <td class="col-feature">
+              <span class="fr">Espaces sociaux</span><span class="en">Social spaces</span>
+            </td>
+            <td><span class="check-no">✗</span></td>
+            <td><span class="check-yes">✓</span></td>
+          </tr>
+          <tr>
+            <td class="col-feature">
+              <span class="fr">Décoration premium</span><span class="en">Premium decor</span>
+            </td>
+            <td><span class="check-no">✗</span></td>
+            <td><span class="check-yes">✓</span></td>
+          </tr>
+          <tr>
+            <td class="col-feature">Academy</td>
+            <td><span class="check-no">✗</span></td>
+            <td><span class="check-yes">✓</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="closing-callout">
+      <p class="fr">
+        <strong style="color:var(--accent);">Padel Xtra tourne à +80% d'occupation avec 2 courts et zéro
+          wellness.</strong>
+        <span style="color:var(--muted);"> Chiquita Academy arrive avec le double de courts et une expérience premium
+          complète.</span>
+      </p>
+      <p class="en">
+        <strong style="color:var(--accent);">Padel Xtra runs at +80% occupancy with 2 courts and zero
+          wellness.</strong>
+        <span style="color:var(--muted);"> Chiquita - Padel - Padel Academy arrives with twice the courts and a complete
+          premium
+          experience.</span>
+      </p>
+    </div>
+
+  </div><!-- /.main -->
+
+  <!-- ── LIGHTBOX ─────────────────────────────────────────────── -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button id="lightbox-close" onclick="closeLightbox()" aria-label="Close">&#x2715;</button>
+    <button class="lightbox-arrow" id="lightbox-prev" onclick="moveLightbox(-1)" aria-label="Previous">&#8592;</button>
+    <img id="lightbox-img" src="" alt="">
+    <div id="lightbox-caption"></div>
+    <button class="lightbox-arrow" id="lightbox-next" onclick="moveLightbox(1)" aria-label="Next">&#8594;</button>
+  </div>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <div class="footer">
+    Chiquita Academy · Da Nang, Vietnam · Business Plan 2026<br>
+    <span class="fr">Tous droits réservés</span>
+    <span class="en">All rights reserved</span>
+  </div>
+
+  <script>
+    // ── Active nav link ──────────────────────────────────────
+    (function () {
+      var file = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.nav-link').forEach(function (link) {
+        if (link.getAttribute('href') === file) link.classList.add('active');
+      });
+    })();
+
+    function toggleMobileNav() {
+      var nav = document.getElementById('mobile-nav');
+      var btn = document.getElementById('hamburger-btn');
+      var isOpen = nav.classList.contains('open');
+      nav.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      btn.querySelector('i').setAttribute('data-lucide', isOpen ? 'menu' : 'x');
+      lucide.createIcons();
+    }
+    document.addEventListener('click', function(e) {
+      var nav = document.getElementById('mobile-nav');
+      var btn = document.getElementById('hamburger-btn');
+      if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.querySelector('i').setAttribute('data-lucide', 'menu');
+        lucide.createIcons();
+      }
+    });
+
+    // ── Language toggle ──────────────────────────────────────
+    function setLang(lang) {
+      localStorage.setItem('chiquita-lang', lang);
+      document.documentElement.lang = lang;
+      document.documentElement.className = 'lang-' + lang;
+      document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      // Update lightbox caption if open
+      if (document.getElementById('lightbox').classList.contains('open')) {
+        renderLightbox();
+      }
+    }
+
+    (function () {
+      var lang = localStorage.getItem('chiquita-lang') || 'fr';
+      document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    })();
+
+    // ── Lightbox ─────────────────────────────────────────────
+    var lightboxImages = [
+      {
+        src: 'assets/images/Chiquita plan-view lateral-2.jpeg',
+        fr: 'Vue latérale — espaces de convivialité',
+        en: 'Lateral view — social spaces'
+      },
+      {
+        src: 'assets/images/Chiquita plan-view lateral.jpeg',
+        fr: 'Vue latérale — 4 courts couverts',
+        en: 'Lateral view — 4 indoor courts'
+      },
+      {
+        src: 'assets/images/Chiquita plan-view up.jpeg',
+        fr: 'Vue de dessus — agencement général',
+        en: 'Top view — general layout'
+      },
+      {
+        src: 'assets/images/Chiquita plan-view sky.jpeg',
+        fr: 'Vue aérienne — concept global',
+        en: 'Sky view — full concept'
+      }
+    ];
+
+    var currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      renderLightbox();
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function moveLightbox(dir) {
+      currentIndex = (currentIndex + dir + lightboxImages.length) % lightboxImages.length;
+      renderLightbox();
+    }
+
+    function renderLightbox() {
+      var item = lightboxImages[currentIndex];
+      var lang = localStorage.getItem('chiquita-lang') || 'fr';
+      document.getElementById('lightbox-img').src = item.src;
+      document.getElementById('lightbox-img').alt = item[lang];
+      document.getElementById('lightbox-caption').textContent = item[lang];
+    }
+
+    document.getElementById('lightbox').addEventListener('click', function (e) {
+      if (e.target === this) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') moveLightbox(-1);
+      if (e.key === 'ArrowRight') moveLightbox(1);
+    });
+
+    // ── Lucide icons ─────────────────────────────────────────
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>

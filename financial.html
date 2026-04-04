@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chiquita Academy — Financial / Modèle Financier</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    (function () {
+      var l = localStorage.getItem('chiquita-lang') || 'fr';
+      document.documentElement.lang = l;
+      document.documentElement.className = 'lang-' + l;
+    })();
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    /* ── Lucide icon sizing ── */
+    .nav-logo-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: #0e0e0e;
+      stroke-width: 2.5;
+      display: block;
+    }
+
+    .section-icon svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      stroke-width: 2;
+      display: block;
+    }
+
+    .callout-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      display: block;
+    }
+
+    /* ── Sticky controls bar ── */
+    .controls-sticky {
+      position: sticky;
+      top: 56px;
+      z-index: 50;
+      background: rgba(14, 14, 14, 0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .controls-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0.9rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: flex-end;
+    }
+
+    .ctrl-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex: 1;
+      min-width: 170px;
+    }
+
+    .ctrl-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    input[type=range] {
+      flex: 1;
+      -webkit-appearance: none;
+      height: 4px;
+      background: var(--border2);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 0 0 4px rgba(200, 245, 90, 0.15);
+    }
+
+    .slider-val {
+      font-family: 'DM Mono', monospace;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent);
+      min-width: 56px;
+      text-align: right;
+    }
+
+    .ctrl-hint {
+      font-size: 10px;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      opacity: 0.65;
+    }
+
+    .toggle-group {
+      display: flex;
+      gap: 5px;
+    }
+
+    .toggle-btn {
+      padding: 6px 12px;
+      border-radius: 7px;
+      border: 1px solid var(--border2);
+      background: transparent;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .toggle-btn.active {
+      background: var(--accent);
+      color: #0e0e0e;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ── Section h2 ── */
+    .section-h2 {
+      font-size: clamp(17px, 2.8vw, 22px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin: -0.25rem 0 1.25rem;
+    }
+
+    /* ── Revenue table ── */
+    .rev-table,
+    .cost-table,
+    .tax-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .rev-table td,
+    .cost-table td,
+    .tax-table td {
+      padding: 10px 14px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .rev-table tr:last-child td,
+    .cost-table tr:last-child td,
+    .tax-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .lbl-main {
+      font-size: 13px;
+    }
+
+    .lbl-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .amt {
+      text-align: right;
+      font-family: 'DM Mono', monospace;
+      font-weight: 600;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+
+    .amt.acc {
+      color: var(--accent);
+    }
+
+    .amt.muted {
+      color: var(--muted);
+    }
+
+    .amt.dynamic {
+      color: var(--accent);
+    }
+
+    tr.sep-top td {
+      border-top: 1px solid var(--border2);
+    }
+
+    tr.total-tr td {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    /* ── Result metric cards ── */
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 1.25rem;
+    }
+
+    @media (max-width: 640px) {
+      .result-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .res-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+
+    .res-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .res-value {
+      font-size: 20px;
+      font-weight: 700;
+      font-family: 'DM Mono', monospace;
+      line-height: 1.2;
+    }
+
+    .res-value.acc {
+      color: var(--accent);
+    }
+
+    .res-value.pos {
+      color: var(--green);
+    }
+
+    .res-value.neg {
+      color: var(--red);
+    }
+
+    .res-value.muted {
+      color: var(--muted);
+    }
+
+    /* ── Verdict ── */
+    .verdict-box {
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2rem;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .verdict-box.good {
+      background: rgba(77, 255, 145, 0.08);
+      border: 1px solid rgba(77, 255, 145, 0.25);
+      color: var(--green);
+    }
+
+    .verdict-box.warn {
+      background: rgba(255, 200, 50, 0.08);
+      border: 1px solid rgba(255, 200, 50, 0.25);
+      color: #ffc832;
+    }
+
+    .verdict-box.bad {
+      background: rgba(255, 68, 68, 0.08);
+      border: 1px solid rgba(255, 68, 68, 0.25);
+      color: var(--red);
+    }
+
+    /* ── Scenario table ── */
+    .scenario-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: auto;
+      margin-bottom: 2rem;
+    }
+
+    .scenario-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 380px;
+    }
+
+    .scenario-table th,
+    .scenario-table td {
+      padding: 10px 14px;
+      text-align: center;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+      font-family: 'DM Mono', monospace;
+    }
+
+    .scenario-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .scenario-table thead th {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 12px 14px;
+      background: var(--surface2);
+    }
+
+    .scenario-table .col-occ {
+      text-align: left;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .scenario-table .cell-pos {
+      color: var(--green);
+    }
+
+    .scenario-table .cell-neg {
+      color: var(--red);
+    }
+
+    .scenario-table td.cell-active {
+      background: rgba(200, 245, 90, 0.07);
+      outline: 1px solid rgba(200, 245, 90, 0.35);
+      outline-offset: -1px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .scenario-table tr.row-active .col-occ {
+      color: var(--accent);
+    }
+
+    /* ── Investment bar chart ── */
+    .invest-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .invest-row:last-child {
+      border-bottom: none;
+    }
+
+    .invest-lbl {
+      font-size: 12px;
+      color: var(--muted);
+      width: 210px;
+      flex-shrink: 0;
+      line-height: 1.4;
+    }
+
+    .invest-track {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 4px;
+      height: 22px;
+      overflow: hidden;
+    }
+
+    .invest-fill {
+      height: 100%;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      padding-left: 8px;
+      font-size: 11px;
+      font-family: 'DM Mono', monospace;
+      font-weight: 600;
+      color: #0e0e0e;
+      white-space: nowrap;
+    }
+
+    .invest-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 14px;
+      background: var(--surface2);
+      border-radius: 0 0 12px 12px;
+    }
+
+    .invest-total-row .itlbl {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .invest-total-row .itval {
+      font-family: 'DM Mono', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* ── ROI callout ── */
+    .roi-callout {
+      background: rgba(200, 245, 90, 0.05);
+      border: 1px solid rgba(200, 245, 90, 0.18);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ── section spacing ── */
+    .section-sep {
+      margin-top: 2.5rem;
+    }
+
+    /* ── Hamburger — mobile only ── */
+    .hamburger {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--text);
+      flex-shrink: 0;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .hamburger:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25); }
+    .hamburger svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; display: block; }
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 56px;
+      left: 0;
+      right: 0;
+      background: rgba(14,14,14,0.98);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 99;
+      padding: 0.5rem 0;
+    }
+    .mobile-nav.open { display: block; }
+    .mobile-nav a {
+      display: block;
+      padding: 13px 1.5rem;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.15s, background 0.15s;
+    }
+    .mobile-nav a:last-child { border-bottom: none; }
+    .mobile-nav a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .mobile-nav a.active { color: var(--accent); background: rgba(200,245,90,0.06); }
+    @media (max-width: 700px) {
+      .hamburger { display: flex; }
+      .nav-links  { display: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise"></div>
+
+  <!-- ── NAVBAR ─────────────────────────────────────────────── -->
+  <nav class="navbar" style="position:sticky;top:0;z-index:100;">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-icon"><i data-lucide="zap"></i></span>
+        <span class="nav-logo-text">Chiquita</span>
+      </a>
+      <button class="hamburger" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false">
+        <i data-lucide="menu" id="hamburger-icon"></i>
+      </button>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Project</a>
+        <a href="market.html" class="nav-link">Market</a>
+        <a href="facilities.html" class="nav-link">Facilities</a>
+        <a href="financial.html" class="nav-link">Financial</a>
+        <a href="legal.html" class="nav-link">Legal</a>
+        <a href="land.html" class="nav-link">Land</a>
+        <a href="investment.html" class="nav-link">Investment</a>
+      </div>
+      <div class="lang-toggle" style="margin-left:auto;">
+        <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+
+    <!-- ── MOBILE NAV DRAWER ── -->
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="index.html" class="nav-link">Project</a>
+      <a href="market.html" class="nav-link">Market</a>
+      <a href="facilities.html" class="nav-link">Facilities</a>
+      <a href="financial.html" class="nav-link">Financial</a>
+      <a href="legal.html" class="nav-link">Legal</a>
+      <a href="land.html" class="nav-link">Land</a>
+      <a href="investment.html" class="nav-link">Investment</a>
+    </div>
+  </nav>
+
+  <!-- ── STICKY CONTROLS BAR ─────────────────────────────────── -->
+  <div class="controls-sticky">
+    <div class="controls-inner">
+
+      <!-- Occupancy -->
+      <div class="ctrl-group">
+        <div class="ctrl-label fr">Taux d'occupation</div>
+        <div class="ctrl-label en">Occupancy rate</div>
+        <div class="slider-row">
+          <input type="range" id="occ-slider" min="10" max="90" step="5" value="40" oninput="onOccChange(this.value)">
+          <span class="slider-val" id="occ-val">40%</span>
+        </div>
+        <div class="ctrl-hint">10% → 90%, step 5%</div>
+      </div>
+
+      <!-- Rent -->
+      <div class="ctrl-group" style="flex:none;">
+        <div class="ctrl-label fr">Loyer mensuel</div>
+        <div class="ctrl-label en">Monthly rent</div>
+        <div class="toggle-group">
+          <button class="toggle-btn" id="rent-2000" onclick="onRentChange(2000)">2 000$</button>
+          <button class="toggle-btn active" id="rent-4000" onclick="onRentChange(4000)">4 000$</button>
+          <button class="toggle-btn" id="rent-6000" onclick="onRentChange(6000)">6 000$</button>
+        </div>
+      </div>
+
+      <!-- Staff -->
+      <div class="ctrl-group">
+        <div class="ctrl-label fr">Masse salariale / mois</div>
+        <div class="ctrl-label en">Staff costs / month</div>
+        <div class="slider-row">
+          <input type="range" id="staff-slider" min="2860" max="4500" step="100" value="3200"
+            oninput="onStaffChange(this.value)">
+          <span class="slider-val" id="staff-val">3 200$</span>
+        </div>
+        <div class="ctrl-hint fr">Pascal: 2–3 pers. · Julien: 5–7 pers.</div>
+        <div class="ctrl-hint en">Pascal: 2–3 people · Julien: 5–7 people</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── PAGE HEADER ─────────────────────────────────────────── -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-subtitle">Chiquita Academy · Da Nang</div>
+      <h1>
+        <span class="fr">Modèle <span>financier</span></span>
+        <span class="en">Financial <span>model</span></span>
+      </h1>
+      <p class="page-tagline fr">Chiffres dynamiques — ajustez les curseurs pour simuler vos scénarios</p>
+      <p class="page-tagline en">Live figures — adjust the controls to simulate your scenarios</p>
+    </div>
+  </div>
+
+  <!-- ── MAIN ─────────────────────────────────────────────────── -->
+  <div class="main">
+
+    <!-- ══ SECTION 1 — REVENUE ══ -->
+    <div class="section-header section-sep">
+      <div class="section-icon" style="background:rgba(200,245,90,0.12);color:var(--accent);">
+        <i data-lucide="trending-up"></i>
+      </div>
+      <div>
+        <div class="section-title fr">Revenus</div>
+        <div class="section-title en">Revenue</div>
+      </div>
+    </div>
+    <h2 class="section-h2 fr">Revenus</h2>
+    <h2 class="section-h2 en">Revenue</h2>
+
+    <div class="panel" style="padding:0;overflow:hidden;">
+      <table class="rev-table">
+        <tbody>
+          <tr>
+            <td style="width:65%;">
+              <div class="lbl-main fr">Courts</div>
+              <div class="lbl-main en">Courts</div>
+              <div class="lbl-sub fr">13 140 créneaux/an × <span id="occ-pct-a">40</span>% × 36$/créneau → <span
+                  id="rev-slots-fr">5 256</span> créneaux utilisés</div>
+              <div class="lbl-sub en">13,140 slots/yr × <span id="occ-pct-b">40</span>% × $36/slot → <span
+                  id="rev-slots-en">5,256</span> slots used</div>
+            </td>
+            <td class="amt acc" id="rev-courts">189,216$</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="lbl-main fr">Restauration</div>
+              <div class="lbl-main en">F&amp;B</div>
+              <div class="lbl-sub fr">4 joueurs/créneau × 40% de conso × 3$</div>
+              <div class="lbl-sub en">4 players/slot × 40% consumption × $3</div>
+            </td>
+            <td class="amt" id="rev-food">25,229$</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="lbl-main fr">Wellness &amp; boutique</div>
+              <div class="lbl-main en">Wellness &amp; pro shop</div>
+              <div class="lbl-sub fr">proportionnel à l'occupation (base 24 000$/an à 40%)</div>
+              <div class="lbl-sub en">proportional to occupancy (base $24,000/yr at 40%)</div>
+            </td>
+            <td class="amt" id="rev-wellness">24,000$</td>
+          </tr>
+          <tr class="sep-top">
+            <td style="font-weight:700;">
+              <span class="fr">CA annuel total</span>
+              <span class="en">Total annual revenue</span>
+            </td>
+            <td class="amt acc" id="rev-total" style="font-size:16px;">238,445$</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ══ SECTION 2 — MONTHLY FIXED COSTS ══ -->
+    <div class="section-header section-sep">
+      <div class="section-icon" style="background:rgba(255,68,68,0.12);color:var(--red);">
+        <i data-lucide="receipt"></i>
+      </div>
+      <div>
+        <div class="section-title fr">Charges fixes</div>
+        <div class="section-title en">Fixed costs</div>
+      </div>
+    </div>
+    <h2 class="section-h2 fr">Charges mensuelles fixes</h2>
+    <h2 class="section-h2 en">Monthly Fixed Costs</h2>
+
+    <div class="panel" style="padding:0;overflow:hidden;">
+      <table class="cost-table">
+        <tbody>
+          <tr>
+            <td style="width:65%;"><span class="fr">Loyer</span><span class="en">Rent</span></td>
+            <td class="amt dynamic" id="cost-rent">4,000$</td>
+          </tr>
+          <tr>
+            <td><span class="fr">Staff</span><span class="en">Staff</span></td>
+            <td class="amt dynamic" id="cost-staff">3,200$</td>
+          </tr>
+          <tr>
+            <td><span class="fr">Électricité</span><span class="en">Electricity</span></td>
+            <td class="amt">1,000$</td>
+          </tr>
+          <tr>
+            <td><span class="fr">Maintenance courts</span><span class="en">Court maintenance</span></td>
+            <td class="amt">800$</td>
+          </tr>
+          <tr>
+            <td><span class="fr">Marketing</span><span class="en">Marketing</span></td>
+            <td class="amt">200$</td>
+          </tr>
+          <tr>
+            <td><span class="fr">Admin + compta Vietnam</span><span class="en">Admin + Vietnam accounting</span></td>
+            <td class="amt">500$</td>
+          </tr>
+          <tr>
+            <td><span class="fr">Assurance</span><span class="en">Insurance</span></td>
+            <td class="amt">300$</td>
+          </tr>
+          <tr>
+            <td><span class="fr">Holding Singapour (maintenance + compta)</span><span class="en">Singapore Holding
+                (maintenance + accounting)</span></td>
+            <td class="amt muted">145$–470$</td>
+          </tr>
+          <tr class="sep-top total-tr">
+            <td><span class="fr">Total mensuel</span><span class="en">Monthly total</span></td>
+            <td class="amt dynamic" id="cost-monthly">10,200$</td>
+          </tr>
+          <tr class="total-tr" style="font-size:13px;">
+            <td><span class="fr">Total annuel</span><span class="en">Annual total</span></td>
+            <td class="amt dynamic" id="cost-annual">122,400$</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ══ SECTION 3 — RESULT ══ -->
+    <div class="section-header section-sep">
+      <div class="section-icon" style="background:rgba(77,255,145,0.1);color:var(--green);">
+        <i data-lucide="bar-chart-2"></i>
+      </div>
+      <div>
+        <div class="section-title fr">Résultat</div>
+        <div class="section-title en">Result</div>
+      </div>
+    </div>
+    <h2 class="section-h2 fr">Résultat</h2>
+    <h2 class="section-h2 en">Result</h2>
+
+    <div class="result-grid">
+      <div class="res-card">
+        <div class="res-label fr">CA annuel</div>
+        <div class="res-label en">Annual revenue</div>
+        <div class="res-value acc" id="res-revenue">238,445$</div>
+      </div>
+      <div class="res-card">
+        <div class="res-label fr">Charges annuelles</div>
+        <div class="res-label en">Annual costs</div>
+        <div class="res-value muted" id="res-costs">122,400$</div>
+      </div>
+      <div class="res-card">
+        <div class="res-label fr">Résultat brut</div>
+        <div class="res-label en">Gross result</div>
+        <div class="res-value pos" id="res-result">+116,045$</div>
+      </div>
+      <div class="res-card">
+        <div class="res-label fr">Marge</div>
+        <div class="res-label en">Margin</div>
+        <div class="res-value pos" id="res-margin">49%</div>
+      </div>
+    </div>
+
+    <div class="verdict-box good" id="verdict-box">
+      <span id="verdict-icon">✓</span>
+      <span id="verdict-text">
+        <span class="fr">Rentable et confortable</span>
+        <span class="en">Profitable and comfortable</span>
+      </span>
+    </div>
+
+    <!-- ══ SECTION 4 — SCENARIO COMPARISON ══ -->
+    <div class="section-header section-sep">
+      <div class="section-icon" style="background:rgba(90,180,255,0.12);color:var(--blue);">
+        <i data-lucide="table-2"></i>
+      </div>
+      <div>
+        <div class="section-title fr">Scénarios</div>
+        <div class="section-title en">Scenarios</div>
+      </div>
+    </div>
+    <h2 class="section-h2 fr">Comparaison des scénarios</h2>
+    <h2 class="section-h2 en">Scenario Comparison</h2>
+
+    <div class="scenario-wrap">
+      <table class="scenario-table">
+        <thead>
+          <tr>
+            <th style="text-align:left;">
+              <span class="fr">Occupation</span>
+              <span class="en">Occupancy</span>
+            </th>
+            <th style="color:#ff6b6b;">
+              <span class="fr">Loyer 2 000$</span>
+              <span class="en">Rent $2,000</span>
+            </th>
+            <th>
+              <span class="fr">Loyer 4 000$</span>
+              <span class="en">Rent $4,000</span>
+            </th>
+            <th>
+              <span class="fr">Loyer 6 000$</span>
+              <span class="en">Rent $6,000</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="scenario-tbody">
+          <!-- generated by JS -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ══ SECTION 5 — INITIAL INVESTMENT ══ -->
+    <div class="section-header section-sep">
+      <div class="section-icon" style="background:rgba(251,191,36,0.1);color:var(--yellow);">
+        <i data-lucide="landmark"></i>
+      </div>
+      <div>
+        <div class="section-title fr">Investissement initial</div>
+        <div class="section-title en">Initial investment</div>
+      </div>
+    </div>
+    <h2 class="section-h2 fr">Investissement initial</h2>
+    <h2 class="section-h2 en">Initial Investment</h2>
+
+    <div class="panel" style="padding:1.25rem 1.5rem;">
+      <div class="invest-row">
+        <div class="invest-lbl">
+          <span class="fr">4 courts + transport + taxes</span>
+          <span class="en">4 courts + shipping + taxes</span>
+        </div>
+        <div class="invest-track">
+          <div class="invest-fill" style="width:41.7%;background:var(--accent);">50,000$</div>
+        </div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-lbl">
+          <span class="fr">Construction / aménagement</span>
+          <span class="en">Construction / fit-out</span>
+        </div>
+        <div class="invest-track">
+          <div class="invest-fill" style="width:100%;background:var(--accent);">120,000$</div>
+        </div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-lbl">
+          <span class="fr">Accueil + boutique</span>
+          <span class="en">Reception + pro shop</span>
+        </div>
+        <div class="invest-track">
+          <div class="invest-fill" style="width:16.7%;background:rgba(200,245,90,0.7);">20,000$</div>
+        </div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-lbl">
+          <span class="fr">Restauration rapide</span>
+          <span class="en">Quick-service restaurant</span>
+        </div>
+        <div class="invest-track">
+          <div class="invest-fill" style="width:20.8%;background:rgba(200,245,90,0.7);">25,000$</div>
+        </div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-lbl">
+          <span class="fr">Ice bath + sauna</span>
+          <span class="en">Ice bath + sauna</span>
+        </div>
+        <div class="invest-track">
+          <div class="invest-fill" style="width:16.7%;background:rgba(90,180,255,0.6);">20,000$</div>
+        </div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-lbl">
+          <span class="fr">Mobilier, déco, lumières</span>
+          <span class="en">Furniture, decor, lighting</span>
+        </div>
+        <div class="invest-track">
+          <div class="invest-fill" style="width:20.8%;background:rgba(90,180,255,0.6);">25,000$</div>
+        </div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-lbl">
+          <span class="fr">Fonds de roulement (3 mois)</span>
+          <span class="en">Working capital (3 months)</span>
+        </div>
+        <div class="invest-track">
+          <div class="invest-fill" style="width:25%;background:rgba(167,139,250,0.65);">30,000$</div>
+        </div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-lbl">
+          <span class="fr">Setup légal Vietnam (IRC+ERC+notaire)</span>
+          <span class="en">Vietnam legal setup (IRC+ERC+notaire)</span>
+        </div>
+        <div class="invest-track">
+          <div class="invest-fill" style="width:4.6%;background:rgba(255,107,53,0.65);">3–8k$</div>
+        </div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-lbl">
+          <span class="fr">Création Holding Singapour (Pte Ltd)</span>
+          <span class="en">Singapore Holding setup (Pte Ltd)</span>
+        </div>
+        <div class="invest-track">
+          <div class="invest-fill" style="width:1.7%;background:rgba(255,107,53,0.65);" title="1,500$–2,500$">&nbsp;
+          </div>
+        </div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-lbl">
+          <span class="fr">Imprévus (10%)</span>
+          <span class="en">Contingency (10%)</span>
+        </div>
+        <div class="invest-track">
+          <div class="invest-fill" style="width:24.2%;background:rgba(255,68,68,0.5);">29,000$</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="invest-total-row">
+      <span class="itlbl fr">Total estimé</span>
+      <span class="itlbl en">Estimated total</span>
+      <span class="itval">~325 000$ – 330 000$</span>
+    </div>
+
+    <div class="roi-callout">
+      <p id="roi-text">
+        <span class="fr">Au taux d'occupation actuel, le retour sur investissement est estimé à <strong
+            style="color:var(--accent);" id="roi-val-fr">~3 ans</strong>.</span>
+        <span class="en">At the current occupancy rate, the estimated return on investment is <strong
+            style="color:var(--accent);" id="roi-val-en">~3 years</strong>.</span>
+      </p>
+    </div>
+
+    <!-- ══ SECTION 6 — TAXATION ══ -->
+    <div class="section-header section-sep">
+      <div class="section-icon" style="background:rgba(255,107,53,0.12);color:var(--accent2);">
+        <i data-lucide="file-text"></i>
+      </div>
+      <div>
+        <div class="section-title fr">Fiscalité</div>
+        <div class="section-title en">Taxation</div>
+      </div>
+    </div>
+    <h2 class="section-h2 fr">Fiscalité</h2>
+    <h2 class="section-h2 en">Taxation</h2>
+
+    <div class="panel" style="padding:0;overflow:hidden;">
+      <table class="tax-table">
+        <tbody>
+          <tr>
+            <td style="width:65%;"><span class="fr">Impôt sur les sociétés Vietnam (CIT)</span><span class="en">Vietnam
+                Corporate Income Tax (CIT)</span></td>
+            <td class="amt" style="color:var(--accent2);">20%<br><span
+                style="font-size:10px;font-weight:400;color:var(--muted);">sur bénéfices / on profits</span></td>
+          </tr>
+          <tr>
+            <td><span class="fr">TVA services sportifs</span><span class="en">VAT on sports services</span></td>
+            <td class="amt" style="color:var(--yellow);">10%</td>
+          </tr>
+          <tr>
+            <td><span class="fr">Taxe annuelle de licence</span><span class="en">Annual license fee</span></td>
+            <td class="amt muted">~100$<span style="font-size:10px;font-weight:400;"> /an · /yr</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout orange" style="margin-top:1rem;">
+      <div class="callout-icon"><i data-lucide="info"></i></div>
+      <div>
+        <p class="fr" style="font-size:13px;color:var(--muted);line-height:1.6;">Les zones franches de Da Nang ne
+          s'appliquent pas à notre secteur. <strong>Régime fiscal standard.</strong></p>
+        <p class="en" style="font-size:13px;color:var(--muted);line-height:1.6;">Da Nang free trade zones do not apply
+          to our sector. <strong>Standard tax regime.</strong></p>
+      </div>
+    </div>
+
+  </div><!-- /.main -->
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <div class="footer">
+    Chiquita Academy · Da Nang, Vietnam · Business Plan 2026<br>
+    <span class="fr">Tous droits réservés</span>
+    <span class="en">All rights reserved</span>
+  </div>
+
+  <script>
+    // ── Active nav link ──────────────────────────────────────
+    (function () {
+      var file = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.nav-link').forEach(function (link) {
+        if (link.getAttribute('href') === file) link.classList.add('active');
+      });
+    })();
+
+    function toggleMobileNav() {
+      var nav = document.getElementById('mobile-nav');
+      var btn = document.getElementById('hamburger-btn');
+      var isOpen = nav.classList.contains('open');
+      nav.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      btn.querySelector('i').setAttribute('data-lucide', isOpen ? 'menu' : 'x');
+      lucide.createIcons();
+    }
+    document.addEventListener('click', function(e) {
+      var nav = document.getElementById('mobile-nav');
+      var btn = document.getElementById('hamburger-btn');
+      if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.querySelector('i').setAttribute('data-lucide', 'menu');
+        lucide.createIcons();
+      }
+    });
+
+    // ── Language toggle ──────────────────────────────────────
+    function setLang(lang) {
+      localStorage.setItem('chiquita-lang', lang);
+      document.documentElement.lang = lang;
+      document.documentElement.className = 'lang-' + lang;
+      document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    }
+
+    (function () {
+      var lang = localStorage.getItem('chiquita-lang') || 'fr';
+      document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    })();
+
+    // ── State ────────────────────────────────────────────────
+    var state = { occ: 40, rent: 4000, staff: 3200 };
+
+    // ── Calculation logic (exact spec) ───────────────────────
+    var TOTAL_SLOTS = 4 * 9 * 365; // 13,140
+    var PRICE_SLOT = 36;
+    var WELLNESS_BASE = 2000 * 12;   // at 40%
+    var INVEST_TOTAL = 327500;
+
+    function calc(occPct, rent, staff) {
+      var usedSlots = Math.round(TOTAL_SLOTS * occPct / 100);
+      var revCourts = usedSlots * PRICE_SLOT;
+      var revFood = Math.round(usedSlots * 4 * 0.4 * 3);
+      var revWellness = Math.round(WELLNESS_BASE * (occPct / 40));
+      var revTotal = revCourts + revFood + revWellness;
+      var costsMonthly = rent + staff + 1000 + 800 + 200 + 500 + 300 + 200;
+      var costsAnnual = costsMonthly * 12;
+      var result = revTotal - costsAnnual;
+      var margin = revTotal > 0 ? Math.round(result / revTotal * 100) : 0;
+      var roi = result > 0 ? Math.round(INVEST_TOTAL / result) : null;
+      return {
+        usedSlots: usedSlots, revCourts: revCourts, revFood: revFood,
+        revWellness: revWellness, revTotal: revTotal,
+        costsMonthly: costsMonthly, costsAnnual: costsAnnual,
+        result: result, margin: margin, roi: roi
+      };
+    }
+
+    // ── Formatters ───────────────────────────────────────────
+    function fmt(n) {
+      return Math.round(n).toLocaleString('en-US');
+    }
+
+    function $$(n) {
+      return fmt(n) + '$';
+    }
+
+    // ── Main update ──────────────────────────────────────────
+    function update() {
+      var d = calc(state.occ, state.rent, state.staff);
+
+      // Revenue
+      document.getElementById('occ-pct-a').textContent = state.occ;
+      document.getElementById('occ-pct-b').textContent = state.occ;
+      document.getElementById('rev-slots-fr').textContent = fmt(d.usedSlots);
+      document.getElementById('rev-slots-en').textContent = fmt(d.usedSlots);
+      document.getElementById('rev-courts').textContent = $$(d.revCourts);
+      document.getElementById('rev-food').textContent = $$(d.revFood);
+      document.getElementById('rev-wellness').textContent = $$(d.revWellness);
+      document.getElementById('rev-total').textContent = $$(d.revTotal);
+
+      // Costs
+      document.getElementById('cost-rent').textContent = $$(state.rent);
+      document.getElementById('cost-staff').textContent = $$(state.staff);
+      document.getElementById('cost-monthly').textContent = $$(d.costsMonthly);
+      document.getElementById('cost-annual').textContent = $$(d.costsAnnual);
+
+      // Result cards
+      document.getElementById('res-revenue').textContent = $$(d.revTotal);
+      document.getElementById('res-costs').textContent = $$(d.costsAnnual);
+
+      var resEl = document.getElementById('res-result');
+      resEl.textContent = (d.result >= 0 ? '+' : '') + $$(d.result);
+      resEl.className = 'res-value ' + (d.result >= 0 ? 'pos' : 'neg');
+
+      var margEl = document.getElementById('res-margin');
+      margEl.textContent = d.margin + '%';
+      margEl.className = 'res-value ' + (d.result >= 0 ? 'pos' : 'neg');
+
+      // Verdict
+      var vbox = document.getElementById('verdict-box');
+      var vico = document.getElementById('verdict-icon');
+      var vtxt = document.getElementById('verdict-text');
+      if (d.result > 40000) {
+        vbox.className = 'verdict-box good';
+        vico.textContent = '✓';
+        vtxt.innerHTML = '<span class="fr">Rentable et confortable</span><span class="en">Profitable and comfortable</span>';
+      } else if (d.result >= 0) {
+        vbox.className = 'verdict-box warn';
+        vico.textContent = '⚠';
+        vtxt.innerHTML = '<span class="fr">Rentable mais serré</span><span class="en">Profitable but tight</span>';
+      } else {
+        vbox.className = 'verdict-box bad';
+        vico.textContent = '✗';
+        vtxt.innerHTML = '<span class="fr">Déficitaire à ce taux d\'occupation</span><span class="en">Loss-making at this occupancy rate</span>';
+      }
+
+      // ROI
+      var roiFr = document.getElementById('roi-val-fr');
+      var roiEn = document.getElementById('roi-val-en');
+      if (d.roi !== null) {
+        roiFr.textContent = '~' + d.roi + ' an' + (d.roi > 1 ? 's' : '');
+        roiEn.textContent = '~' + d.roi + ' year' + (d.roi > 1 ? 's' : '');
+      } else {
+        roiFr.textContent = '—';
+        roiEn.textContent = '—';
+        var rp = document.getElementById('roi-text');
+        rp.querySelector('.fr').innerHTML = 'Le projet n\'est pas rentable à ce taux d\'occupation.';
+        rp.querySelector('.en').innerHTML = 'The project is not profitable at this occupancy rate.';
+      }
+
+      // Scenario table
+      renderScenarioTable();
+    }
+
+    // ── Scenario table ───────────────────────────────────────
+    var SCEN_OCCS = [20, 30, 40, 50, 60, 70];
+    var SCEN_RENTS = [2000, 4000, 6000];
+
+    function renderScenarioTable() {
+      var tbody = document.getElementById('scenario-tbody');
+      var rows = '';
+      SCEN_OCCS.forEach(function (occ) {
+        var isRowActive = (occ === state.occ);
+        rows += '<tr' + (isRowActive ? ' class="row-active"' : '') + '>';
+        rows += '<td class="col-occ">' + occ + '%</td>';
+        SCEN_RENTS.forEach(function (rent) {
+          var d = calc(occ, rent, state.staff);
+          var isCell = isRowActive && (rent === state.rent);
+          var color = d.result >= 0 ? 'cell-pos' : 'cell-neg';
+          var active = isCell ? ' cell-active' : '';
+          rows += '<td class="' + color + active + '">';
+          rows += (d.result >= 0 ? '+' : '') + $$(d.result);
+          rows += '</td>';
+        });
+        rows += '</tr>';
+      });
+      tbody.innerHTML = rows;
+    }
+
+    // ── Control handlers ─────────────────────────────────────
+    function onOccChange(val) {
+      state.occ = parseInt(val, 10);
+      document.getElementById('occ-val').textContent = val + '%';
+      update();
+    }
+
+    function onRentChange(val) {
+      state.rent = val;
+      [2000, 4000, 6000].forEach(function (r) {
+        document.getElementById('rent-' + r).classList.toggle('active', r === val);
+      });
+      update();
+    }
+
+    function onStaffChange(val) {
+      state.staff = parseInt(val, 10);
+      document.getElementById('staff-val').textContent = fmt(state.staff) + '$';
+      update();
+    }
+
+    // ── Initial render ───────────────────────────────────────
+    update();
+
+    // ── Lucide icons ─────────────────────────────────────────
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>

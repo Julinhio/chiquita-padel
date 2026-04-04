@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chiquita Academy — Investment</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    (function () {
+      var l = localStorage.getItem('chiquita-lang') || 'fr';
+      document.documentElement.lang = l;
+      document.documentElement.className = 'lang-' + l;
+    })();
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    .nav-logo-icon svg { width: 18px; height: 18px; stroke: #0e0e0e; stroke-width: 2.5; display: block; }
+    /* ── Hamburger — mobile only ── */
+    .hamburger {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--text);
+      flex-shrink: 0;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .hamburger:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25); }
+    .hamburger svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; display: block; }
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 56px;
+      left: 0;
+      right: 0;
+      background: rgba(14,14,14,0.98);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 99;
+      padding: 0.5rem 0;
+    }
+    .mobile-nav.open { display: block; }
+    .mobile-nav a {
+      display: block;
+      padding: 13px 1.5rem;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.15s, background 0.15s;
+    }
+    .mobile-nav a:last-child { border-bottom: none; }
+    .mobile-nav a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .mobile-nav a.active { color: var(--accent); background: rgba(200,245,90,0.06); }
+    @media (max-width: 700px) {
+      .hamburger { display: flex; }
+      .nav-links  { display: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise"></div>
+
+  <!-- ── NAVBAR ─────────────────────────────────────────────── -->
+  <nav class="navbar" style="position:sticky;top:0;z-index:100;">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-icon"><i data-lucide="zap"></i></span>
+        <span class="nav-logo-text">Chiquita</span>
+      </a>
+      <button class="hamburger" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false">
+        <i data-lucide="menu" id="hamburger-icon"></i>
+      </button>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Project</a>
+        <a href="market.html" class="nav-link">Market</a>
+        <a href="facilities.html" class="nav-link">Facilities</a>
+        <a href="financial.html" class="nav-link">Financial</a>
+        <a href="legal.html" class="nav-link">Legal</a>
+        <a href="land.html" class="nav-link">Land</a>
+        <a href="investment.html" class="nav-link">Investment</a>
+      </div>
+      <div class="lang-toggle" style="margin-left:auto;">
+        <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+
+    <!-- ── MOBILE NAV DRAWER ── -->
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="index.html" class="nav-link">Project</a>
+      <a href="market.html" class="nav-link">Market</a>
+      <a href="facilities.html" class="nav-link">Facilities</a>
+      <a href="financial.html" class="nav-link">Financial</a>
+      <a href="legal.html" class="nav-link">Legal</a>
+      <a href="land.html" class="nav-link">Land</a>
+      <a href="investment.html" class="nav-link">Investment</a>
+    </div>
+  </nav>
+
+  <!-- ── PLACEHOLDER ────────────────────────────────────────── -->
+  <div class="placeholder-content">
+    <p class="placeholder-eyebrow">
+      <span class="fr">Section à venir</span>
+      <span class="en">Section coming soon</span>
+    </p>
+    <p class="placeholder-headline">Investment</p>
+    <p class="placeholder-sub">
+      <span class="fr">Structure d'investissement · Apports · Rendement · Exit</span>
+      <span class="en">Investment structure · Contributions · Returns · Exit</span>
+    </p>
+  </div>
+
+  <!-- ── FOOTER ──────────────────────────────────────────────── -->
+  <div class="footer">
+    Chiquita Academy · Da Nang, Vietnam · Business Plan 2025<br>
+    <span class="fr">Tous droits réservés</span>
+    <span class="en">All rights reserved</span>
+  </div>
+
+  <script>
+    (function () {
+      var file = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.nav-link').forEach(function (link) {
+        if (link.getAttribute('href') === file) link.classList.add('active');
+      });
+    })();
+
+    function toggleMobileNav() {
+      var nav = document.getElementById('mobile-nav');
+      var btn = document.getElementById('hamburger-btn');
+      var isOpen = nav.classList.contains('open');
+      nav.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      btn.querySelector('i').setAttribute('data-lucide', isOpen ? 'menu' : 'x');
+      lucide.createIcons();
+    }
+    document.addEventListener('click', function(e) {
+      var nav = document.getElementById('mobile-nav');
+      var btn = document.getElementById('hamburger-btn');
+      if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.querySelector('i').setAttribute('data-lucide', 'menu');
+        lucide.createIcons();
+      }
+    });
+
+    function setLang(lang) {
+      localStorage.setItem('chiquita-lang', lang);
+      document.documentElement.lang = lang;
+      document.documentElement.className = 'lang-' + lang;
+      document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    }
+
+    (function () {
+      var lang = localStorage.getItem('chiquita-lang') || 'fr';
+      document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    })();
+  </script>
+</body>
+
+</html>

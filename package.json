@@ -1,0 +1,8 @@
+{
+  "name": "chiquita-academy",
+  "version": "1.0.0",
+  "description": "Chiquita Academy — Da Nang padel club business plan",
+  "scripts": {
+    "dev": "npx live-server --port=3000"
+  }
+}
