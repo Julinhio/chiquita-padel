@@ -55,7 +55,7 @@
             top: 56px;
             left: 0;
             right: 0;
-            background: rgba(14, 14, 14, 0.98);
+            background: rgba(6, 8, 38, 0.98);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
             z-index: 99;
@@ -88,7 +88,7 @@
 
         .mobile-nav a.active {
             color: var(--accent);
-            background: rgba(200, 245, 90, 0.06);
+            background: rgba(242, 125, 22, 0.06);
         }
 
         @media (max-width: 700px) {
@@ -104,7 +104,7 @@
         .nav-logo-icon svg {
             width: 18px;
             height: 18px;
-            stroke: #0e0e0e;
+            stroke: #060826;
             stroke-width: 2.5;
             display: block;
         }
@@ -132,6 +132,11 @@
             stroke-width: 2;
             display: block;
         }
+
+        /* Logo icon: dark stroke on orange pill */
+        .nav-logo-icon svg { stroke: #060826; }
+        /* Noise stays subtle on navy */
+        .noise { opacity: 0.025; }
     </style>
 </head>
 
