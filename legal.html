@@ -686,21 +686,37 @@
             flex-shrink: 0;
             transition: background 0.15s, border-color 0.15s;
         }
-        .hamburger:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25); }
-        .hamburger svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; display: block; }
+
+        .hamburger:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .hamburger svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
+            display: block;
+        }
+
         .mobile-nav {
             display: none;
             position: absolute;
             top: 56px;
             left: 0;
             right: 0;
-            background: rgba(14,14,14,0.98);
+            background: rgba(14, 14, 14, 0.98);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
             z-index: 99;
             padding: 0.5rem 0;
         }
-        .mobile-nav.open { display: block; }
+
+        .mobile-nav.open {
+            display: block;
+        }
+
         .mobile-nav a {
             display: block;
             padding: 13px 1.5rem;
@@ -711,12 +727,29 @@
             border-bottom: 1px solid var(--border);
             transition: color 0.15s, background 0.15s;
         }
-        .mobile-nav a:last-child { border-bottom: none; }
-        .mobile-nav a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
-        .mobile-nav a.active { color: var(--accent); background: rgba(200,245,90,0.06); }
+
+        .mobile-nav a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .mobile-nav a.active {
+            color: var(--accent);
+            background: rgba(200, 245, 90, 0.06);
+        }
+
         @media (max-width: 700px) {
-            .hamburger { display: flex; }
-            .nav-links  { display: none !important; }
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -731,7 +764,8 @@
                 <span class="nav-logo-icon"><i data-lucide="zap"></i></span>
                 <span class="nav-logo-text">Chiquita</span>
             </a>
-            <button class="hamburger" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false">
+            <button class="hamburger" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu"
+                aria-expanded="false">
                 <i data-lucide="menu" id="hamburger-icon"></i>
             </button>
             <div class="nav-links">
@@ -793,8 +827,8 @@
         <div class="panel" style="margin-bottom:1rem;">
             <div class="corp-diagram">
                 <div class="corp-box investors">
-                    <span class="fr">Investisseurs</span>
-                    <span class="en">Investors</span>
+                    <span class="fr">Partenaires / Investisseurs</span>
+                    <span class="en">Partners / Investors</span>
                 </div>
                 <div class="corp-arrow"><span></span>↓<span></span></div>
                 <div class="corp-box singapore">
@@ -1546,23 +1580,23 @@
         })();
 
         function toggleMobileNav() {
-          var nav = document.getElementById('mobile-nav');
-          var btn = document.getElementById('hamburger-btn');
-          var isOpen = nav.classList.contains('open');
-          nav.classList.toggle('open', !isOpen);
-          btn.setAttribute('aria-expanded', String(!isOpen));
-          btn.querySelector('i').setAttribute('data-lucide', isOpen ? 'menu' : 'x');
-          lucide.createIcons();
-        }
-        document.addEventListener('click', function(e) {
-          var nav = document.getElementById('mobile-nav');
-          var btn = document.getElementById('hamburger-btn');
-          if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
-            nav.classList.remove('open');
-            btn.setAttribute('aria-expanded', 'false');
-            btn.querySelector('i').setAttribute('data-lucide', 'menu');
+            var nav = document.getElementById('mobile-nav');
+            var btn = document.getElementById('hamburger-btn');
+            var isOpen = nav.classList.contains('open');
+            nav.classList.toggle('open', !isOpen);
+            btn.setAttribute('aria-expanded', String(!isOpen));
+            btn.querySelector('i').setAttribute('data-lucide', isOpen ? 'menu' : 'x');
             lucide.createIcons();
-          }
+        }
+        document.addEventListener('click', function (e) {
+            var nav = document.getElementById('mobile-nav');
+            var btn = document.getElementById('hamburger-btn');
+            if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
+                nav.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+                btn.querySelector('i').setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            }
         });
 
         // ── Language toggle ──────────────────────────────────────

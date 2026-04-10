@@ -462,21 +462,37 @@
       flex-shrink: 0;
       transition: background 0.15s, border-color 0.15s;
     }
-    .hamburger:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25); }
-    .hamburger svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; display: block; }
+
+    .hamburger:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .hamburger svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      display: block;
+    }
+
     .mobile-nav {
       display: none;
       position: absolute;
       top: 56px;
       left: 0;
       right: 0;
-      background: rgba(14,14,14,0.98);
+      background: rgba(14, 14, 14, 0.98);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       z-index: 99;
       padding: 0.5rem 0;
     }
-    .mobile-nav.open { display: block; }
+
+    .mobile-nav.open {
+      display: block;
+    }
+
     .mobile-nav a {
       display: block;
       padding: 13px 1.5rem;
@@ -487,12 +503,29 @@
       border-bottom: 1px solid var(--border);
       transition: color 0.15s, background 0.15s;
     }
-    .mobile-nav a:last-child { border-bottom: none; }
-    .mobile-nav a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
-    .mobile-nav a.active { color: var(--accent); background: rgba(200,245,90,0.06); }
+
+    .mobile-nav a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-nav a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .mobile-nav a.active {
+      color: var(--accent);
+      background: rgba(200, 245, 90, 0.06);
+    }
+
     @media (max-width: 700px) {
-      .hamburger { display: flex; }
-      .nav-links  { display: none !important; }
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none !important;
+      }
     }
   </style>
 </head>
@@ -557,7 +590,6 @@
         <div class="ctrl-label fr">Loyer mensuel</div>
         <div class="ctrl-label en">Monthly rent</div>
         <div class="toggle-group">
-          <button class="toggle-btn" id="rent-2000" onclick="onRentChange(2000)">2 000$</button>
           <button class="toggle-btn active" id="rent-4000" onclick="onRentChange(4000)">4 000$</button>
           <button class="toggle-btn" id="rent-6000" onclick="onRentChange(6000)">6 000$</button>
         </div>
@@ -568,13 +600,14 @@
         <div class="ctrl-label fr">Masse salariale / mois</div>
         <div class="ctrl-label en">Staff costs / month</div>
         <div class="slider-row">
-          <input type="range" id="staff-slider" min="2860" max="4500" step="100" value="3200"
+          <input type="range" id="staff-slider" min="2500" max="4000" step="100" value="3200"
             oninput="onStaffChange(this.value)">
           <span class="slider-val" id="staff-val">3 200$</span>
         </div>
         <div class="ctrl-hint fr">Pascal: 2–3 pers. · Julien: 5–7 pers.</div>
         <div class="ctrl-hint en">Pascal: 2–3 people · Julien: 5–7 people</div>
       </div>
+
 
     </div>
   </div>
@@ -615,10 +648,10 @@
             <td style="width:65%;">
               <div class="lbl-main fr">Courts</div>
               <div class="lbl-main en">Courts</div>
-              <div class="lbl-sub fr">13 140 créneaux/an × <span id="occ-pct-a">40</span>% × 36$/créneau → <span
-                  id="rev-slots-fr">5 256</span> créneaux utilisés</div>
-              <div class="lbl-sub en">13,140 slots/yr × <span id="occ-pct-b">40</span>% × $36/slot → <span
-                  id="rev-slots-en">5,256</span> slots used</div>
+              <div class="lbl-sub fr">16 425 créneaux/an × <span id="occ-pct-a">40</span>% × 36$/créneau → <span
+                  id="rev-slots-fr">6 570</span> créneaux utilisés</div>
+              <div class="lbl-sub en">16,425 slots/yr × <span id="occ-pct-b">40</span>% × $36/slot → <span
+                  id="rev-slots-en">6,570</span> slots used</div>
             </td>
             <td class="amt acc" id="rev-courts">189,216$</td>
           </tr>
@@ -700,6 +733,20 @@
                 (maintenance + accounting)</span></td>
             <td class="amt muted">145$–470$</td>
           </tr>
+          <tr>
+            <td>
+              <div class="lbl-main fr">Plateforme de réservation</div>
+              <div class="lbl-main en">Booking platform</div>
+              <div style="display:flex; gap:5px; margin-top:6px; flex-wrap:wrap;">
+                <button class="toggle-btn active" id="book-direct" onclick="onBookingChange('direct')">Direct</button>
+                <button class="toggle-btn" id="book-padelmates" onclick="onBookingChange('padelmates')">Padel
+                  Mates</button>
+                <button class="toggle-btn" id="book-playtomic" onclick="onBookingChange('playtomic')">Playtomic</button>
+              </div>
+              <div class="ctrl-hint" id="booking-hint">Stripe fees only — ~1.5% per transaction</div>
+            </td>
+            <td class="amt dynamic" id="cost-booking">—</td>
+          </tr>
           <tr class="sep-top total-tr">
             <td><span class="fr">Total mensuel</span><span class="en">Monthly total</span></td>
             <td class="amt dynamic" id="cost-monthly">10,200$</td>
@@ -777,10 +824,6 @@
               <span class="fr">Occupation</span>
               <span class="en">Occupancy</span>
             </th>
-            <th style="color:#ff6b6b;">
-              <span class="fr">Loyer 2 000$</span>
-              <span class="en">Rent $2,000</span>
-            </th>
             <th>
               <span class="fr">Loyer 4 000$</span>
               <span class="en">Rent $4,000</span>
@@ -813,11 +856,11 @@
     <div class="panel" style="padding:1.25rem 1.5rem;">
       <div class="invest-row">
         <div class="invest-lbl">
-          <span class="fr">4 courts + transport + taxes</span>
-          <span class="en">4 courts + shipping + taxes</span>
+          <span class="fr">5 courts + transport + taxes</span>
+          <span class="en">5 courts + shipping + taxes</span>
         </div>
         <div class="invest-track">
-          <div class="invest-fill" style="width:41.7%;background:var(--accent);">50,000$</div>
+          <div class="invest-fill" style="width:34%;background:var(--accent);">60,000$</div>
         </div>
       </div>
       <div class="invest-row">
@@ -826,7 +869,7 @@
           <span class="en">Construction / fit-out</span>
         </div>
         <div class="invest-track">
-          <div class="invest-fill" style="width:100%;background:var(--accent);">120,000$</div>
+          <div class="invest-fill" style="width:100%;background:var(--accent);">150 – 200k$</div>
         </div>
       </div>
       <div class="invest-row">
@@ -835,7 +878,7 @@
           <span class="en">Reception + pro shop</span>
         </div>
         <div class="invest-track">
-          <div class="invest-fill" style="width:16.7%;background:rgba(200,245,90,0.7);">20,000$</div>
+          <div class="invest-fill" style="width:14%;background:rgba(200,245,90,0.7);">25,000$</div>
         </div>
       </div>
       <div class="invest-row">
@@ -844,7 +887,7 @@
           <span class="en">Quick-service restaurant</span>
         </div>
         <div class="invest-track">
-          <div class="invest-fill" style="width:20.8%;background:rgba(200,245,90,0.7);">25,000$</div>
+          <div class="invest-fill" style="width:20%;background:rgba(200,245,90,0.7);">35,000$</div>
         </div>
       </div>
       <div class="invest-row">
@@ -853,7 +896,7 @@
           <span class="en">Ice bath + sauna</span>
         </div>
         <div class="invest-track">
-          <div class="invest-fill" style="width:16.7%;background:rgba(90,180,255,0.6);">20,000$</div>
+          <div class="invest-fill" style="width:17%;background:rgba(90,180,255,0.6);">30,000$</div>
         </div>
       </div>
       <div class="invest-row">
@@ -862,7 +905,7 @@
           <span class="en">Furniture, decor, lighting</span>
         </div>
         <div class="invest-track">
-          <div class="invest-fill" style="width:20.8%;background:rgba(90,180,255,0.6);">25,000$</div>
+          <div class="invest-fill" style="width:23%;background:rgba(90,180,255,0.6);">40,000$</div>
         </div>
       </div>
       <div class="invest-row">
@@ -871,7 +914,7 @@
           <span class="en">Working capital (3 months)</span>
         </div>
         <div class="invest-track">
-          <div class="invest-fill" style="width:25%;background:rgba(167,139,250,0.65);">30,000$</div>
+          <div class="invest-fill" style="width:23%;background:rgba(167,139,250,0.65);">40,000$</div>
         </div>
       </div>
       <div class="invest-row">
@@ -880,7 +923,7 @@
           <span class="en">Vietnam legal setup (IRC+ERC+notaire)</span>
         </div>
         <div class="invest-track">
-          <div class="invest-fill" style="width:4.6%;background:rgba(255,107,53,0.65);">3–8k$</div>
+          <div class="invest-fill" style="width:4%;background:rgba(255,107,53,0.65);">5–10k$</div>
         </div>
       </div>
       <div class="invest-row">
@@ -889,17 +932,17 @@
           <span class="en">Singapore Holding setup (Pte Ltd)</span>
         </div>
         <div class="invest-track">
-          <div class="invest-fill" style="width:1.7%;background:rgba(255,107,53,0.65);" title="1,500$–2,500$">&nbsp;
+          <div class="invest-fill" style="width:1%;background:rgba(255,107,53,0.65);" title="1,500$–2,500$">&nbsp;
           </div>
         </div>
       </div>
       <div class="invest-row">
         <div class="invest-lbl">
-          <span class="fr">Imprévus (10%)</span>
-          <span class="en">Contingency (10%)</span>
+          <span class="fr">Imprévus (~10%)</span>
+          <span class="en">Contingency (~10%)</span>
         </div>
         <div class="invest-track">
-          <div class="invest-fill" style="width:24.2%;background:rgba(255,68,68,0.5);">29,000$</div>
+          <div class="invest-fill" style="width:24%;background:rgba(255,68,68,0.5);">~42,000$</div>
         </div>
       </div>
     </div>
@@ -907,7 +950,7 @@
     <div class="invest-total-row">
       <span class="itlbl fr">Total estimé</span>
       <span class="itlbl en">Estimated total</span>
-      <span class="itval">~325 000$ – 330 000$</span>
+      <span class="itval">~450 000$ – 460 000$</span>
     </div>
 
     <div class="roi-callout">
@@ -963,6 +1006,139 @@
       </div>
     </div>
 
+    <!-- ══ SECTION 7 — INTERPRETATION ══ -->
+    <div class="section-header section-sep">
+      <div class="section-icon" style="background:rgba(77,255,145,0.1);color:var(--green);">
+        <i data-lucide="shield-check"></i>
+      </div>
+      <div>
+        <div class="section-title fr">Interprétation des résultats</div>
+        <div class="section-title en">Results Interpretation</div>
+      </div>
+    </div>
+    <h2 class="section-h2 fr">Un projet solide, avec une marge de sécurité confortable</h2>
+    <h2 class="section-h2 en">A solid project with a comfortable safety margin</h2>
+
+    <!-- Target scenario callout -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.75rem;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-family:'DM Mono',monospace;">
+        <span class="fr">Scénario de référence fixe — indépendant des curseurs ci-dessus</span>
+        <span class="en">Fixed reference scenario — independent of the sliders above</span>
+      </div>
+      <div style="flex:1;height:1px;background:var(--border);"></div>
+    </div>
+    <div class="callout" style="background:rgba(77,255,145,0.06);border:1px solid rgba(77,255,145,0.2);margin-bottom:1.5rem;">
+      <div class="callout-icon" style="color:var(--green);"><i data-lucide="target"></i></div>
+      <div style="flex:1;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--green);margin-bottom:0.5rem;">
+          <span class="fr">Scénario cible · atteignable en 4–6 mois</span>
+          <span class="en">Target scenario · achievable within 4–6 months</span>
+        </div>
+        <div style="font-size:13px;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:0.75rem;">
+          <span class="fr">50% occupation · Loyer 4 000$ · Staff 3 000$ · Padel Mates</span>
+          <span class="en">50% occupancy · Rent $4,000 · Staff $3,000 · Padel Mates</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+          <div>
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;"><span class="fr">CA annuel</span><span class="en">Annual revenue</span></div>
+            <div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;color:var(--accent);">365 090$</div>
+          </div>
+          <div>
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;"><span class="fr">Charges</span><span class="en">Costs</span></div>
+            <div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;color:var(--muted);">~142 500$</div>
+          </div>
+          <div>
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;"><span class="fr">Résultat brut</span><span class="en">Gross result</span></div>
+            <div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;color:var(--green);">+222 500$</div>
+          </div>
+          <div>
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;"><span class="fr">Marge</span><span class="en">Margin</span></div>
+            <div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;color:var(--green);">61%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key points panel -->
+    <div class="panel">
+
+      <!-- Breakeven -->
+      <div class="fact-item" style="display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px;"></div>
+        <div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px;">
+            <span class="fr">Point d'équilibre à ~20–25% d'occupation</span>
+            <span class="en">Break-even at ~20–25% occupancy</span>
+          </div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.65;">
+            <span class="fr">À seulement 20–25% de remplissage des 5 courts, le club couvre l'intégralité de ses charges fixes. C'est un seuil très conservateur, atteint dès les premières semaines d'exploitation avec une clientèle expat de base.</span>
+            <span class="en">At just 20–25% fill rate across 5 courts, the club covers all its fixed costs. This is a very conservative threshold, reachable within the first weeks of operations with a core expat clientele.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Padel Mates leverage -->
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px;"></div>
+        <div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px;">
+            <span class="fr">Padel Mates — acquisition clients intégrée</span>
+            <span class="en">Padel Mates — built-in customer acquisition</span>
+          </div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.65;">
+            <span class="fr">Padel Mates est l'application dominante au Vietnam (Padel Xtra Da Nang l'utilise déjà). La commission de 7% est compensée par un accès immédiat à une base de joueurs existante, sans budget acquisition. Le concurrent direct tourne à +80% grâce à cette plateforme seule.</span>
+            <span class="en">Padel Mates is the dominant app in Vietnam (Padel Xtra Da Nang already uses it). The 7% commission is offset by immediate access to an existing player base with zero acquisition budget. The direct competitor runs at +80% thanks to this platform alone.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROI -->
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px;"></div>
+        <div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px;">
+            <span class="fr">Retour sur investissement en ~2 ans</span>
+            <span class="en">Return on investment in ~2 years</span>
+          </div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.65;">
+            <span class="fr">Sur la base du scénario cible (50% · 222 500$/an de résultat), l'investissement initial de ~455 000$ est remboursé en <strong style="color:var(--accent);">environ 2 ans</strong>. Dès la 3e année, le projet génère un cash-flow libre significatif.</span>
+            <span class="en">Based on the target scenario (50% · $222,500/yr result), the ~$455,000 initial investment is recouped in <strong style="color:var(--accent);">approximately 2 years</strong>. From year 3 onward, the project generates significant free cash flow.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upside -->
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 0;">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px;"></div>
+        <div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px;">
+            <span class="fr">Un upside structurel — marché en croissance</span>
+            <span class="en">Structural upside — growing market</span>
+          </div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.65;">
+            <span class="fr">Ces projections reposent sur le marché actuel. Le padel en Asie du Sud-Est croît à +1 283% de recherches en 2024–25, et Da Nang voit son flux d'expats augmenter de +60%/an. Le scénario à 60–70% d'occupation — très plausible à 12–18 mois — porterait le résultat annuel à plus de <strong style="color:var(--accent);">300 000$</strong>.</span>
+            <span class="en">These projections are based on the current market. Padel in Southeast Asia is growing at +1,283% in search interest in 2024–25, and Da Nang sees its expat base grow by +60%/yr. The 60–70% occupancy scenario — very plausible at 12–18 months — would push the annual result above <strong style="color:var(--accent);">$300,000</strong>.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Final investor callout -->
+    <div class="callout accent" style="margin-top:1rem;">
+      <div class="callout-icon" style="color:var(--accent);"><i data-lucide="trending-up"></i></div>
+      <div>
+        <p class="fr" style="font-size:14px;line-height:1.75;margin:0;">
+          <strong>Le risque est asymétrique — en notre faveur.</strong><br>
+          <span style="color:var(--muted);">Le seuil de rentabilité est bas (20–25%), le marché est en hyper-croissance, et le seul concurrent tourne déjà à 80% de capacité. Même un scénario conservateur à 40% dégage plus de 150 000$ de résultat annuel.</span>
+        </p>
+        <p class="en" style="font-size:14px;line-height:1.75;margin:0;">
+          <strong>Risk is asymmetric — in our favor.</strong><br>
+          <span style="color:var(--muted);">The break-even threshold is low (20–25%), the market is in hyper-growth, and the only competitor already runs at 80% capacity. Even a conservative 40% scenario delivers over $150,000 in annual profit.</span>
+        </p>
+      </div>
+    </div>
+
   </div><!-- /.main -->
 
   <!-- ── FOOTER ─────────────────────────────────────────────── -->
@@ -990,7 +1166,7 @@
       btn.querySelector('i').setAttribute('data-lucide', isOpen ? 'menu' : 'x');
       lucide.createIcons();
     }
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       var nav = document.getElementById('mobile-nav');
       var btn = document.getElementById('hamburger-btn');
       if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
@@ -1017,30 +1193,38 @@
     })();
 
     // ── State ────────────────────────────────────────────────
-    var state = { occ: 40, rent: 4000, staff: 3200 };
+    var state = { occ: 40, rent: 4000, staff: 3200, booking: 'direct' };
 
     // ── Calculation logic (exact spec) ───────────────────────
-    var TOTAL_SLOTS = 4 * 9 * 365; // 13,140
+    var TOTAL_SLOTS = 5 * 9 * 365; // 16,425
     var PRICE_SLOT = 36;
     var WELLNESS_BASE = 2000 * 12;   // at 40%
-    var INVEST_TOTAL = 327500;
+    var INVEST_TOTAL = 455000;
 
-    function calc(occPct, rent, staff) {
+    var BOOKING = {
+      direct: { commRate: 0.015, monthly: 0 },
+      padelmates: { commRate: 0.07, monthly: 150 },
+      playtomic: { commRate: 0.12, monthly: 200 }
+    };
+
+    function calc(occPct, rent, staff, booking) {
+      booking = booking || 'direct';
       var usedSlots = Math.round(TOTAL_SLOTS * occPct / 100);
       var revCourts = usedSlots * PRICE_SLOT;
       var revFood = Math.round(usedSlots * 4 * 0.4 * 3);
       var revWellness = Math.round(WELLNESS_BASE * (occPct / 40));
       var revTotal = revCourts + revFood + revWellness;
       var costsMonthly = rent + staff + 1000 + 800 + 200 + 500 + 300 + 200;
-      var costsAnnual = costsMonthly * 12;
+      var bookingCostAnnual = Math.round(revCourts * BOOKING[booking].commRate + BOOKING[booking].monthly * 12);
+      var costsAnnual = costsMonthly * 12 + bookingCostAnnual;
       var result = revTotal - costsAnnual;
       var margin = revTotal > 0 ? Math.round(result / revTotal * 100) : 0;
       var roi = result > 0 ? Math.round(INVEST_TOTAL / result) : null;
       return {
         usedSlots: usedSlots, revCourts: revCourts, revFood: revFood,
         revWellness: revWellness, revTotal: revTotal,
-        costsMonthly: costsMonthly, costsAnnual: costsAnnual,
-        result: result, margin: margin, roi: roi
+        costsMonthly: costsMonthly, bookingCostAnnual: bookingCostAnnual,
+        costsAnnual: costsAnnual, result: result, margin: margin, roi: roi
       };
     }
 
@@ -1055,7 +1239,7 @@
 
     // ── Main update ──────────────────────────────────────────
     function update() {
-      var d = calc(state.occ, state.rent, state.staff);
+      var d = calc(state.occ, state.rent, state.staff, state.booking);
 
       // Revenue
       document.getElementById('occ-pct-a').textContent = state.occ;
@@ -1072,6 +1256,9 @@
       document.getElementById('cost-staff').textContent = $$(state.staff);
       document.getElementById('cost-monthly').textContent = $$(d.costsMonthly);
       document.getElementById('cost-annual').textContent = $$(d.costsAnnual);
+
+      // Booking cost row
+      document.getElementById('cost-booking').textContent = $$(d.bookingCostAnnual);
 
       // Result cards
       document.getElementById('res-revenue').textContent = $$(d.revTotal);
@@ -1123,7 +1310,7 @@
 
     // ── Scenario table ───────────────────────────────────────
     var SCEN_OCCS = [20, 30, 40, 50, 60, 70];
-    var SCEN_RENTS = [2000, 4000, 6000];
+    var SCEN_RENTS = [4000, 6000];
 
     function renderScenarioTable() {
       var tbody = document.getElementById('scenario-tbody');
@@ -1133,7 +1320,7 @@
         rows += '<tr' + (isRowActive ? ' class="row-active"' : '') + '>';
         rows += '<td class="col-occ">' + occ + '%</td>';
         SCEN_RENTS.forEach(function (rent) {
-          var d = calc(occ, rent, state.staff);
+          var d = calc(occ, rent, state.staff, state.booking);
           var isCell = isRowActive && (rent === state.rent);
           var color = d.result >= 0 ? 'cell-pos' : 'cell-neg';
           var active = isCell ? ' cell-active' : '';
@@ -1155,7 +1342,7 @@
 
     function onRentChange(val) {
       state.rent = val;
-      [2000, 4000, 6000].forEach(function (r) {
+      [4000, 6000].forEach(function (r) {
         document.getElementById('rent-' + r).classList.toggle('active', r === val);
       });
       update();
@@ -1164,6 +1351,21 @@
     function onStaffChange(val) {
       state.staff = parseInt(val, 10);
       document.getElementById('staff-val').textContent = fmt(state.staff) + '$';
+      update();
+    }
+
+    var BOOKING_HINTS = {
+      direct: 'Stripe fees only — ~1.5% per transaction',
+      padelmates: '~7% commission + $150/mo subscription',
+      playtomic: '~12% commission + $200/mo subscription'
+    };
+
+    function onBookingChange(val) {
+      state.booking = val;
+      ['direct', 'padelmates', 'playtomic'].forEach(function (k) {
+        document.getElementById('book-' + k).classList.toggle('active', k === val);
+      });
+      document.getElementById('booking-hint').textContent = BOOKING_HINTS[val];
       update();
     }
 

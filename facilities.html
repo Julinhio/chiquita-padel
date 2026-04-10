@@ -400,21 +400,37 @@
       flex-shrink: 0;
       transition: background 0.15s, border-color 0.15s;
     }
-    .hamburger:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25); }
-    .hamburger svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; display: block; }
+
+    .hamburger:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .hamburger svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      display: block;
+    }
+
     .mobile-nav {
       display: none;
       position: absolute;
       top: 56px;
       left: 0;
       right: 0;
-      background: rgba(14,14,14,0.98);
+      background: rgba(14, 14, 14, 0.98);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       z-index: 99;
       padding: 0.5rem 0;
     }
-    .mobile-nav.open { display: block; }
+
+    .mobile-nav.open {
+      display: block;
+    }
+
     .mobile-nav a {
       display: block;
       padding: 13px 1.5rem;
@@ -425,12 +441,29 @@
       border-bottom: 1px solid var(--border);
       transition: color 0.15s, background 0.15s;
     }
-    .mobile-nav a:last-child { border-bottom: none; }
-    .mobile-nav a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
-    .mobile-nav a.active { color: var(--accent); background: rgba(200,245,90,0.06); }
+
+    .mobile-nav a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-nav a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .mobile-nav a.active {
+      color: var(--accent);
+      background: rgba(200, 245, 90, 0.06);
+    }
+
     @media (max-width: 700px) {
-      .hamburger { display: flex; }
-      .nav-links  { display: none !important; }
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none !important;
+      }
     }
   </style>
 </head>
@@ -483,8 +516,8 @@
         <span class="fr">Les <span>installations</span></span>
         <span class="en">The <span>Facility</span></span>
       </h1>
-      <p class="page-tagline fr">1 500 m² · 4 courts · wellness · restaurant · pro shop</p>
-      <p class="page-tagline en">1,500 m² · 4 courts · wellness · restaurant · pro shop</p>
+      <p class="page-tagline fr">1 500 - 2 000 m² · 4 courts · wellness · restaurant · pro shop</p>
+      <p class="page-tagline en">1,500 - 2,000 m² · 4 courts · wellness · restaurant · pro shop</p>
     </div>
   </div>
 
@@ -508,14 +541,14 @@
       <div class="spec-card highlight">
         <div class="spec-label fr">Surface totale</div>
         <div class="spec-label en">Total area</div>
-        <div class="spec-value">1 500 m²</div>
+        <div class="spec-value">2 000 m²</div>
         <div class="spec-sub fr">emprise complète</div>
         <div class="spec-sub en">full footprint</div>
       </div>
       <div class="spec-card">
         <div class="spec-label fr">Courts intérieurs</div>
         <div class="spec-label en">Indoor courts</div>
-        <div class="spec-value">4</div>
+        <div class="spec-value">5</div>
         <div class="spec-sub fr">padel 10×20m</div>
         <div class="spec-sub en">padel 10×20m</div>
       </div>
@@ -614,8 +647,8 @@
             <span class="space-card-icon"><i data-lucide="activity"></i></span>
           </div>
           <div>
-            <div class="space-card-name fr">4 Courts de Padel</div>
-            <div class="space-card-name en">4 Padel Courts</div>
+            <div class="space-card-name fr">4-5 Courts de Padel</div>
+            <div class="space-card-name en">4-5 Padel Courts</div>
           </div>
         </div>
         <p class="space-card-desc fr">Courts couverts 10×20m, 2,5m entre chaque court, 10m sous plafond. Gazon
@@ -702,7 +735,7 @@
               <span class="fr">Courts</span><span class="en">Courts</span>
             </td>
             <td class="col-competitor">2</td>
-            <td class="col-us">4</td>
+            <td class="col-us">5</td>
           </tr>
           <tr>
             <td class="col-feature">Wellness</td>
@@ -794,7 +827,7 @@
       btn.querySelector('i').setAttribute('data-lucide', isOpen ? 'menu' : 'x');
       lucide.createIcons();
     }
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       var nav = document.getElementById('mobile-nav');
       var btn = document.getElementById('hamburger-btn');
       if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {

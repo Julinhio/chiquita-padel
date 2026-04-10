@@ -501,21 +501,37 @@
       flex-shrink: 0;
       transition: background 0.15s, border-color 0.15s;
     }
-    .hamburger:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25); }
-    .hamburger svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; display: block; }
+
+    .hamburger:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .hamburger svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      display: block;
+    }
+
     .mobile-nav {
       display: none;
       position: absolute;
       top: 56px;
       left: 0;
       right: 0;
-      background: rgba(14,14,14,0.98);
+      background: rgba(14, 14, 14, 0.98);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       z-index: 99;
       padding: 0.5rem 0;
     }
-    .mobile-nav.open { display: block; }
+
+    .mobile-nav.open {
+      display: block;
+    }
+
     .mobile-nav a {
       display: block;
       padding: 13px 1.5rem;
@@ -526,12 +542,29 @@
       border-bottom: 1px solid var(--border);
       transition: color 0.15s, background 0.15s;
     }
-    .mobile-nav a:last-child { border-bottom: none; }
-    .mobile-nav a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
-    .mobile-nav a.active { color: var(--accent); background: rgba(200,245,90,0.06); }
+
+    .mobile-nav a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-nav a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .mobile-nav a.active {
+      color: var(--accent);
+      background: rgba(200, 245, 90, 0.06);
+    }
+
     @media (max-width: 700px) {
-      .hamburger { display: flex; }
-      .nav-links  { display: none !important; }
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none !important;
+      }
     }
   </style>
 </head>
@@ -584,8 +617,8 @@
         <span class="fr"><span>Foncier</span> &amp; Localisation</span>
         <span class="en">Land &amp; <span>Location</span></span>
       </h1>
-      <p class="page-tagline fr">~1 500 m² · entrepôt ou commercial · Ngũ Hành Sơn · location privée ou IPA</p>
-      <p class="page-tagline en">~1,500 m² · warehouse or commercial · Ngũ Hành Sơn · private or IPA lease</p>
+      <p class="page-tagline fr">~1 500 m² · entrepôt ou commercial · Ngu Hanh Son / FPT City · location privée</p>
+      <p class="page-tagline en">~1,500 m² · warehouse or commercial · Ngu Hanh Son / FPT City · private lease</p>
     </div>
   </div>
 
@@ -643,8 +676,8 @@
           <div class="req-label fr">Localisation cible</div>
           <div class="req-label en">Target location</div>
           <div class="req-value">
-            <span class="fr">Ngũ Hành Sơn en priorité · My An · An Thuong</span>
-            <span class="en">Ngũ Hành Sơn preferred · My An · An Thuong</span>
+            <span class="fr">Ngu Hanh Son / FPT City en priorité · My An · An Thuong</span>
+            <span class="en">Ngu Hanh Son / FPT City preferred · My An · An Thuong</span>
           </div>
         </div>
       </div>
@@ -654,8 +687,8 @@
           <div class="req-label fr">Budget loyer</div>
           <div class="req-label en">Rent budget</div>
           <div class="req-value">
-            <span class="fr">Jusqu'à 6 000$/mois (location privée) · ou paiement anticipé 50 ans (IPA)</span>
-            <span class="en">Up to $6,000/month (private lease) · or 50-year upfront (IPA)</span>
+            <span class="fr">Jusqu'à 6 000$/mois (location privée)</span>
+            <span class="en">Up to $6,000/month (private lease)</span>
           </div>
         </div>
       </div>
@@ -724,27 +757,43 @@
           <div class="option-section-label fr">Contacts</div>
           <div class="option-section-label en">Key contacts</div>
           <div class="option-contacts">
-            <div>CVR Central Vietnam Realty <span class="contact-done">✓</span></div>
-            <div>MizuLand <span class="contact-done">✓</span></div>
-            <div style="margin-top:4px;color:var(--yellow);">
-              <span class="fr">⏳ En attente de réponses</span>
-              <span class="en">⏳ Awaiting responses</span>
+            <div>CVR Central Vietnam Realty <span class="contact-done">✓</span>
+              <span style="color:var(--green);font-size:10px;margin-left:4px;">
+                <span class="fr">— réponse favorable, prêts à collaborer</span>
+                <span class="en">— positive response, ready to work with us</span>
+              </span>
+            </div>
+            <div style="margin-top:4px;">
+              <span class="fr" style="color:var(--green);">✓ Contacts réseau privé activés — plusieurs options de
+                terrains proposées</span>
+              <span class="en" style="color:var(--green);">✓ Private network contacts activated — several plots
+                proposed</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Option B: IPA -->
-      <div class="option-card green-hl">
+      <!-- Option B: IPA — ABANDONED -->
+      <div class="option-card" style="border-color:rgba(255,68,68,0.2);opacity:0.55;pointer-events:none;">
+        <div
+          style="background:rgba(255,68,68,0.1);border:1px solid rgba(255,68,68,0.3);border-radius:8px;padding:7px 12px;display:flex;align-items:center;gap:8px;margin-bottom:0.5rem;">
+          <i data-lucide="x-circle"></i>
+          <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--red);">
+            <span class="fr">Voie abandonnée — trop longue, trop lourde, trop risquée</span>
+            <span class="en">Path dropped — too long, too heavy, too risky</span>
+          </span>
+        </div>
         <div class="option-head">
           <div>
-            <div class="option-title fr">Bail FDI via l'IPA</div>
-            <div class="option-title en">FDI Lease via IPA</div>
+            <div class="option-title fr" style="text-decoration:line-through;color:var(--muted);">Bail FDI via l'IPA
+            </div>
+            <div class="option-title en" style="text-decoration:line-through;color:var(--muted);">FDI Lease via IPA
+            </div>
             <div style="font-size:12px;color:var(--muted);margin-top:3px;font-family:'DM Mono',monospace;">IPA Da Nang
             </div>
           </div>
-          <span class="opt-tag green fr">LONG TERME</span>
-          <span class="opt-tag green en">LONG-TERM</span>
+          <span class="opt-tag red fr">ABANDONNÉ</span>
+          <span class="opt-tag red en">DROPPED</span>
         </div>
 
         <div>
@@ -804,81 +853,14 @@
           <div class="option-contacts">
             <div>ipa@danang.gov.vn <span class="contact-done">✓</span></div>
             <div style="color:var(--muted);font-size:11px;margin-top:2px;">
-              <span class="fr">Contacté par Pascal</span>
-              <span class="en">Contacted by Pascal</span>
+              <span class="fr">Contacté</span>
+              <span class="en">Contacted</span>
             </div>
           </div>
         </div>
       </div>
 
     </div><!-- /.options-grid -->
-
-    <!-- ══ SECTION 3 — COST COMPARISON ══ -->
-    <div class="section-header section-sep">
-      <div class="section-icon" style="background:rgba(251,191,36,0.1);color:var(--yellow);">
-        <i data-lucide="bar-chart-horizontal"></i>
-      </div>
-      <div>
-        <div class="section-title fr">Comparaison coûts</div>
-        <div class="section-title en">Cost comparison</div>
-      </div>
-    </div>
-    <h2 class="section-h2 fr">Comparaison des coûts sur 10 ans</h2>
-    <h2 class="section-h2 en">10-year Cost Comparison</h2>
-
-    <div class="panel" style="padding:1.25rem 1.5rem;margin-bottom:1rem;">
-      <div
-        style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:1rem;">
-        <span class="fr">Total sur 10 ans — base 100% = 720 000$</span>
-        <span class="en">10-year total — base 100% = $720,000</span>
-      </div>
-      <div class="cost-bar-list">
-        <!-- Private 6k: 720 000 = 100% -->
-        <div class="cost-bar-row">
-          <div class="cost-bar-lbl fr">Location privée (6 000$/mois)</div>
-          <div class="cost-bar-lbl en">Private lease ($6,000/mo)</div>
-          <div class="cost-bar-track">
-            <div class="cost-bar-fill" style="width:100%;background:rgba(255,68,68,0.55);">720 000$</div>
-          </div>
-        </div>
-        <!-- Private 4k: 480 000 = 66.7% -->
-        <div class="cost-bar-row">
-          <div class="cost-bar-lbl fr">Location privée (4 000$/mois)</div>
-          <div class="cost-bar-lbl en">Private lease ($4,000/mo)</div>
-          <div class="cost-bar-track">
-            <div class="cost-bar-fill" style="width:66.7%;background:rgba(255,107,53,0.6);">480 000$</div>
-          </div>
-        </div>
-        <!-- IPA annual mid: 165k = 22.9% -->
-        <div class="cost-bar-row">
-          <div class="cost-bar-lbl fr">IPA annuel (estimation médiane)</div>
-          <div class="cost-bar-lbl en">IPA annual (mid estimate)</div>
-          <div class="cost-bar-track">
-            <div class="cost-bar-fill" style="width:22.9%;background:rgba(90,180,255,0.65);">165 000$</div>
-          </div>
-        </div>
-        <!-- IPA 50y upfront: 115k = 16% -->
-        <div class="cost-bar-row">
-          <div class="cost-bar-lbl fr">IPA 50 ans anticipé (one-shot)</div>
-          <div class="cost-bar-lbl en">IPA 50-year upfront (one-shot)</div>
-          <div class="cost-bar-track">
-            <div class="cost-bar-fill" style="width:16%;background:rgba(77,255,145,0.6);">115 000$</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="callout orange" style="margin-bottom:2rem;">
-      <div class="callout-icon"><i data-lucide="info"></i></div>
-      <div>
-        <p class="fr" style="font-size:13px;color:var(--muted);line-height:1.6;">Le lease IPA est moins cher sur le long
-          terme, mais souvent <strong>mal positionné pour un club lifestyle</strong>. Le lease privé coûte plus cher
-          mais offre un meilleur emplacement.</p>
-        <p class="en" style="font-size:13px;color:var(--muted);line-height:1.6;">IPA lease is cheaper long-term, but
-          often <strong>poorly located for a lifestyle club</strong>. Private lease costs more but offers better
-          positioning.</p>
-      </div>
-    </div>
 
     <!-- ══ SECTION 4 — TARGET ZONES ══ -->
     <div class="section-header section-sep">
@@ -893,19 +875,94 @@
     <h2 class="section-h2 fr">Zones cibles</h2>
     <h2 class="section-h2 en">Target Areas</h2>
 
+    <!-- FPT City — featured card full width -->
+    <div class="zone-card"
+      style="border-color:rgba(200,245,90,0.35);background:linear-gradient(135deg,rgba(200,245,90,0.06) 0%,var(--surface) 100%);margin-bottom:12px;">
+      <div
+        style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:1rem;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="zone-map acc-bg" style="height:48px;width:48px;border-radius:10px;font-size:20px;flex-shrink:0;">
+            🏙</div>
+          <div>
+            <div class="zone-name" style="margin-bottom:3px;">
+              <span style="font-size:17px;">FPT City · Ngu Hanh Son</span>
+            </div>
+            <div style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;">
+              <span class="fr">181 ha · urban tech township · Hoa Hai · au bord de la riviere Co Co</span>
+              <span class="en">181 ha · urban tech township · Hoa Hai · Co Co riverside</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="opt-tag accent" style="font-size:11px;">★ PRIORITÉ #1</span>
+          <span class="opt-tag green fr">EN FORT DÉVELOPPEMENT</span>
+          <span class="opt-tag green en">FAST-GROWING</span>
+        </div>
+      </div>
+
+      <div class="grid-2" style="gap:1rem;margin-bottom:1rem;">
+        <div>
+          <div class="zone-desc fr" style="font-size:13px;line-height:1.7;">
+            <strong style="color:var(--text);">FPT City</strong> est un vaste quartier multi-fonction développé à 100%
+            par le groupe FPT Corporation (IT, télécom, éducation, immobilier). Modèle <em>live-work-study</em> :
+            résidentiel haut de gamme (FPT Plaza 1–4), campus FPT Software, FPT University et écoles. Reconnu
+            officiellement comme <strong style="color:var(--accent);">parc IT centralisé par le gouvernement vietnamien
+              en 2023</strong> — avantages fiscaux, soutien de l'État. Le quartier est en plein essor et attire une
+            clientèle tech premium. Un café vient d'ouvrir au Plaza 1.
+          </div>
+          <div class="zone-desc en" style="font-size:13px;line-height:1.7;">
+            <strong style="color:var(--text);">FPT City</strong> is a large multi-function township developed 100% by
+            FPT Corporation (IT, telecom, education, real estate). <em>Live-work-study</em> model: premium residential
+            (FPT Plaza 1–4), FPT Software campus, FPT University and schools. Officially recognized as a <strong
+              style="color:var(--accent);">centralized IT park by the Vietnamese government in 2023</strong> — tax
+            advantages, state backing. The district is booming and attracting a premium tech clientele. A café just
+            opened at Plaza 1.
+          </div>
+        </div>
+        <div>
+          <div style="background:var(--surface2);border-radius:10px;padding:0.85rem 1rem;">
+            <div
+              style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.6rem;">
+              <span class="fr">Pourquoi c'est stratégique</span>
+              <span class="en">Why this is strategic</span>
+            </div>
+            <ul class="pro-con-list">
+              <li><span class="marker pos">+</span><span class="fr">Milliers d'employés IT + étudiants — cible padel
+                  idéale</span><span class="en">Thousands of IT workers + students — ideal padel audience</span></li>
+              <li><span class="marker pos">+</span><span class="fr">Quartier premium en construction — positionnement
+                  early mover</span><span class="en">Premium district under development — early mover positioning</span>
+              </li>
+              <li><span class="marker pos">+</span><span class="fr">Aucun club de padel dans la zone</span><span
+                  class="en">No padel club in the area</span></li>
+              <li><span class="marker pos">+</span><span class="fr">Espaces commerciaux disponibles, accès
+                  facile</span><span class="en">Commercial spaces available, easy access</span></li>
+              <li><span class="marker pos">+</span><span class="fr">Synergie "Chiquita Academy" dans un hub
+                  tech</span><span class="en">"Chiquita Academy" synergy in a tech hub</span></li>
+            </ul>
+          </div>
+          <div
+            style="margin-top:8px;padding:8px 12px;background:rgba(200,245,90,0.08);border:1px solid rgba(200,245,90,0.2);border-radius:8px;font-size:12px;font-family:'DM Mono',monospace;color:var(--accent);">
+            <span class="fr">Contact terrain FPT City : 0948 958 595</span>
+            <span class="en">FPT City land contact: 0948 958 595</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Other zones grid -->
     <div class="zones-grid">
 
       <div class="zone-card z-accent">
         <div class="zone-map acc-bg">🏖</div>
         <div class="zone-name">
-          <span>Ngũ Hành Sơn</span>
+          <span>Ngu Hanh Son</span>
           <span class="opt-tag accent fr">PRIORITÉ</span>
           <span class="opt-tag accent en">PRIORITY</span>
         </div>
-        <div class="zone-desc fr">District côtier, zone touristique premium, proximité plage et communauté expat. Zone
-          recherchée en priorité.</div>
-        <div class="zone-desc en">Coastal district, premium tourist area, close to beach and expat community. Primary
-          target zone.</div>
+        <div class="zone-desc fr">District côtier, zone touristique premium, proximité plage et communauté expat.
+          Comprend FPT City (voir ci-dessus). Zone recherchée en priorité.</div>
+        <div class="zone-desc en">Coastal district, premium tourist area, close to beach and expat community. Includes
+          FPT City (see above). Primary target zone.</div>
       </div>
 
       <div class="zone-card z-blue">
@@ -924,7 +981,7 @@
       <div class="zone-card z-muted">
         <div class="zone-map muted-bg">🌿</div>
         <div class="zone-name">
-          <span>Sơn Trà</span>
+          <span>Son Tra</span>
           <span class="opt-tag red fr">PEU PROBABLE</span>
           <span class="opt-tag red en">UNLIKELY</span>
         </div>
@@ -936,55 +993,152 @@
 
     </div>
 
-    <!-- ══ SECTION 5 — CONSTRUCTION OPTIONS ══ -->
+    <!-- ══ SECTION 5 — STRATÉGIE FONCIÈRE ══ -->
     <div class="section-header section-sep">
       <div class="section-icon" style="background:rgba(167,139,250,0.12);color:var(--purple);">
-        <i data-lucide="hammer"></i>
+        <i data-lucide="warehouse"></i>
       </div>
       <div>
-        <div class="section-title fr">Construction</div>
-        <div class="section-title en">Construction</div>
+        <div class="section-title fr">Stratégie foncière</div>
+        <div class="section-title en">Property Strategy</div>
       </div>
     </div>
-    <h2 class="section-h2 fr">Options de construction</h2>
-    <h2 class="section-h2 en">Construction Options</h2>
+    <h2 class="section-h2 fr">Comment louer légalement en tant que FDI ?</h2>
+    <h2 class="section-h2 en">How to Lease Legally as an FDI Company?</h2>
 
-    <div class="constr-grid">
+    <!-- Legal constraint callout -->
+    <div class="callout"
+      style="border-color:rgba(255,107,53,0.35);background:rgba(255,107,53,0.06);margin-bottom:1.25rem;">
+      <div class="callout-icon" style="color:var(--accent2);"><i data-lucide="shield-alert"></i></div>
+      <div>
+        <p class="fr" style="font-size:13px;line-height:1.65;color:var(--text);">
+          <strong>Contrainte légale FDI.</strong>
+          <span style="color:var(--muted);">En tant que société à investissement étranger, il est impossible de signer
+            un bail directement avec un particulier sur un terrain agricole ou résidentiel. Le bien doit impérativement
+            être classé <strong style="color:var(--text);">"usage commercial" ou "industriel"</strong> pour que la
+            location soit valide.</span>
+        </p>
+        <p class="en" style="font-size:13px;line-height:1.65;color:var(--text);">
+          <strong>FDI Legal Constraint.</strong>
+          <span style="color:var(--muted);">As a foreign-invested company, it is not possible to sign a lease directly
+            with a private individual on agricultural or residential land. The property must be officially classified as
+            <strong style="color:var(--text);">"commercial" or "industrial" use</strong> for the lease to be
+            valid.</span>
+        </p>
+      </div>
+    </div>
 
-      <div class="constr-card acc-hl">
+    <!-- Two strategy cards: priority vs dead end -->
+    <div class="constr-grid" style="margin-bottom:1.25rem;">
+
+      <!-- PRIORITY: Private family warehouse -->
+      <div class="constr-card"
+        style="border-color:rgba(200,245,90,0.3);background:linear-gradient(135deg,rgba(200,245,90,0.04) 0%,var(--surface) 100%);">
         <div class="constr-title">
-          <span class="fr">Entrepôt / local existant</span>
-          <span class="en">Existing warehouse / unit</span>
-          <span class="opt-tag accent fr">RECOMMANDÉ</span>
-          <span class="opt-tag accent en">RECOMMENDED</span>
+          <span style="font-size:18px;">🏭</span>
+          <div style="flex:1;">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <span class="fr" style="font-size:15px;font-weight:700;">Entrepôt familial privé</span>
+              <span class="en" style="font-size:15px;font-weight:700;">Private family warehouse</span>
+              <span class="opt-tag accent fr">PISTE PRIORITAIRE</span>
+              <span class="opt-tag accent en">PRIORITY PATH</span>
+            </div>
+            <div style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;margin-top:3px;" class="fr">
+              Location directe · classé commercial/industriel</div>
+            <div style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;margin-top:3px;" class="en">
+              Direct lease · classified commercial/industrial</div>
+          </div>
         </div>
-        <p class="constr-desc fr">Structure solide, résistante aux typhons, moins de travaux lourds. Potentiellement
-          plus cher en loyer mais délai d'ouverture plus court.</p>
-        <p class="constr-desc en">Solid structure, typhoon-resistant, less heavy construction work. Potentially higher
-          rent but shorter opening timeline.</p>
+        <p class="constr-desc fr">Entrepôt ou warehouse appartenant à une famille vietnamienne, déjà classé "commercial"
+          ou "industriel" au cadastre. Location directe sans agence — prix potentiellement plus bas, flexibilité sur la
+          durée, et <strong>compatibilité légale totale avec notre statut FDI.</strong></p>
+        <p class="constr-desc en">Warehouse owned by a Vietnamese family, already zoned as "commercial" or "industrial"
+          in the land registry. Direct lease without agent — potentially lower price, flexible terms, and <strong>fully
+            legal under our FDI status.</strong></p>
+        <ul class="pro-con-list" style="margin-top:0.5rem;">
+          <li><span class="marker pos">+</span><span class="fr">Légalement valide pour une société FDI
+              étrangère</span><span class="en">Legally valid for a foreign FDI company</span></li>
+          <li><span class="marker pos">+</span><span class="fr">Pas d'agence → coût direct, meilleure marge de
+              négociation</span><span class="en">No agency fees → direct cost, better negotiating margin</span></li>
+          <li><span class="marker pos">+</span><span class="fr">Structure existante, délai d'ouverture
+              raccourci</span><span class="en">Existing structure, shorter opening timeline</span></li>
+          <li><span class="marker pos">+</span><span class="fr">Flexibilité sur la durée et les conditions</span><span
+              class="en">Flexible lease duration and conditions</span></li>
+          <li><span class="marker neg">−</span><span class="fr">Prospection active nécessaire (pas en vitrine
+              d'agence)</span><span class="en">Requires active prospecting (not listed by agents)</span></li>
+          <li><span class="marker neg">−</span><span class="fr">Vérification du classement cadastral obligatoire avant
+              signature</span><span class="en">Mandatory land registry check before signing</span></li>
+        </ul>
       </div>
 
-      <div class="constr-card">
+      <!-- DEAD END: IPA -->
+      <div class="constr-card" style="border-color:rgba(255,68,68,0.2);opacity:0.85;">
         <div class="constr-title">
-          <span class="fr">Terrain nu + construction métal</span>
-          <span class="en">Raw land + metal construction</span>
+          <span style="font-size:18px;">🏗</span>
+          <div style="flex:1;">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <span class="fr" style="font-size:15px;font-weight:700;">Bail FDI via l'IPA</span>
+              <span class="en" style="font-size:15px;font-weight:700;">FDI Lease via IPA</span>
+              <span class="opt-tag red fr">IMPASSE</span>
+              <span class="opt-tag red en">DEAD END</span>
+            </div>
+            <div style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;margin-top:3px;">IPA Da Nang ·
+              zone industrielle</div>
+          </div>
         </div>
-        <p class="constr-desc fr">Moins cher en foncier, mais nécessite une construction complète. Risque typhons à
-          dimensionner. Option viable si terrain IPA.</p>
-        <p class="constr-desc en">Lower land cost, but requires full construction. Typhoon risk to account for. Viable
-          option with IPA land.</p>
+        <p class="constr-desc fr">La voie IPA concerne les zones industrielles dédiées — éloignées de Ngũ Hành Sơn et de
+          la communauté expat. <strong style="color:var(--red);">L'IPA Da Nang ne répond pas à nos prises de
+            contact.</strong> Et même si elle répondait, les terrains disponibles sont en zone industrielle,
+          incompatibles avec un club de padel lifestyle à destination des expats et touristes.</p>
+        <p class="constr-desc en">IPA covers dedicated industrial zones — far from Ngũ Hành Sơn and the expat community.
+          <strong style="color:var(--red);">IPA Da Nang is not responding to our outreach.</strong> Even if they did,
+          available plots are in industrial areas, incompatible with a lifestyle padel club targeting expats and
+          tourists.
+        </p>
+        <ul class="pro-con-list" style="margin-top:0.5rem;">
+          <li><span class="marker neg">−</span><span class="fr">Zones industrielles ≠ Ngũ Hành Sơn / zone
+              expat</span><span class="en">Industrial zones ≠ Ngũ Hành Sơn / expat area</span></li>
+          <li><span class="marker neg">−</span><span class="fr">IPA Da Nang : aucune réponse aux contacts</span><span
+              class="en">IPA Da Nang: no response to outreach</span></li>
+          <li><span class="marker neg">−</span><span class="fr">Processus bureaucratique long (6–18 mois)</span><span
+              class="en">Long bureaucratic process (6–18 months)</span></li>
+          <li><span class="marker neg">−</span><span class="fr">Construction neuve requise (délai + capital)</span><span
+              class="en">New construction required (timeline + capital)</span></li>
+        </ul>
       </div>
 
     </div>
 
+    <!-- Action callout -->
+    <div class="callout accent" style="margin-bottom:2rem;">
+      <div class="callout-icon"><i data-lucide="crosshair"></i></div>
+      <div>
+        <p class="fr" style="font-size:13px;line-height:1.65;">
+          <strong>Action prioritaire :</strong>
+          <span style="color:var(--muted);">identifier des entrepôts/warehouses de famille classés "commercial" ou
+            "industriel" dans les zones Ngũ Hành Sơn, My An, An Thuong — en prospection directe, hors agence. L'objectif
+            est de sécuriser un bien entre <strong style="color:var(--text);">3 500$ et 5 000$/mois</strong>, avec une
+            hauteur sous plafond ≥ 8 m.</span>
+        </p>
+        <p class="en" style="font-size:13px;line-height:1.65;">
+          <strong>Priority action:</strong>
+          <span style="color:var(--muted);">identify family-owned warehouses classified as "commercial" or "industrial"
+            in Ngũ Hành Sơn, My An, An Thuong — direct prospecting, no agency. Target: secure a property at <strong
+              style="color:var(--text);">$3,500–$5,000/month</strong>, minimum 8 m ceiling height.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Typhoon callout preserved -->
     <div class="callout warn" style="margin-bottom:2rem;">
       <div class="callout-icon"><i data-lucide="cloud-lightning"></i></div>
       <div>
         <p class="fr" style="font-size:13px;line-height:1.65;color:var(--text);">Da Nang est touché par des
-          <strong>typhons et inondations quasi-annuels (juillet – novembre)</strong>. La construction doit être
-          dimensionnée en conséquence. <strong>Pascal pilote ce sujet.</strong></p>
+          <strong>tempêtes et inondations quasi-annuels (juillet – septembre)</strong>. La construction doit être
+          dimensionnée en conséquence. <strong>Pascal pilote ce sujet.</strong>
+        </p>
         <p class="en" style="font-size:13px;line-height:1.65;color:var(--text);">Da Nang experiences <strong>near-annual
-            typhoons and flooding (July – November)</strong>. Construction must be designed accordingly. <strong>Pascal
+            storms and flooding (July – September)</strong>. Construction must be designed accordingly. <strong>Pascal
             is leading this.</strong></p>
       </div>
     </div>
@@ -1005,25 +1159,37 @@
     <div class="panel" style="padding:0;overflow:hidden;margin-bottom:1.25rem;">
       <div class="status-list">
         <div class="status-row">
-          <span class="status-action fr">CVR Central Vietnam Realty — contacté</span>
-          <span class="status-action en">CVR Central Vietnam Realty contacted</span>
-          <span class="status-badge done fr">✓ Fait</span>
-          <span class="status-badge done en">✓ Done</span>
+          <span class="status-action fr">CVR Central Vietnam Realty — contacté, <strong
+              style="color:var(--green);">réponse favorable, disponibles et prêts à bosser avec nous</strong></span>
+          <span class="status-action en">CVR Central Vietnam Realty — contacted, <strong
+              style="color:var(--green);">positive response, available and ready to work with us</strong></span>
+          <span class="status-badge done fr">✓ Répondu</span>
+          <span class="status-badge done en">✓ Responded</span>
         </div>
         <div class="status-row">
-          <span class="status-action fr">MizuLand — contacté</span>
-          <span class="status-action en">MizuLand contacted</span>
-          <span class="status-badge done fr">✓ Fait</span>
-          <span class="status-badge done en">✓ Done</span>
+          <span class="status-action fr">Contacts réseau privé/perso activés — <strong
+              style="color:var(--green);">plusieurs options de terrains proposées</strong></span>
+          <span class="status-action en">Private/personal network contacts activated — <strong
+              style="color:var(--green);">several land options proposed</strong></span>
+          <span class="status-badge done fr">✓ Actif</span>
+          <span class="status-badge done en">✓ Active</span>
         </div>
         <div class="status-row">
-          <span class="status-action fr">IPA Da Nang contacté (Pascal)</span>
-          <span class="status-action en">IPA Da Nang contacted (Pascal)</span>
-          <span class="status-badge done fr">✓ Fait</span>
-          <span class="status-badge done en">✓ Done</span>
+          <span class="status-action fr">Contact terrain FPT City — 0948 958 595 (propriétés à proximité FPT)</span>
+          <span class="status-action en">FPT City land contact — 0948 958 595 (properties near FPT)</span>
+          <span class="status-badge inprog fr">↺ À contacter</span>
+          <span class="status-badge inprog en">↺ To contact</span>
         </div>
         <div class="status-row">
-          <span class="status-action fr">Contact local Da Nang — amie de la femme de Julien (background paralégal, mari
+          <span class="status-action fr">IPA Da Nang — contacté, aucune réponse → voie abandonnée (trop longue, trop
+            risquée)</span>
+          <span class="status-action en">IPA Da Nang — contacted, no response → path dropped (too long, too
+            risky)</span>
+          <span class="status-badge fr" style="background:rgba(255,68,68,0.1);color:var(--red);">✗ Abandonné</span>
+          <span class="status-badge en" style="background:rgba(255,68,68,0.1);color:var(--red);">✗ Dropped</span>
+        </div>
+        <div class="status-row">
+          <span class="status-action fr">Contact local Da Nang — amie de la femme de Julien (background paralegal, mari
             architecte)</span>
           <span class="status-action en">Local Da Nang contact — Julien's wife's friend (paralegal background, architect
             husband)</span>
@@ -1031,16 +1197,12 @@
           <span class="status-badge inprog en">↺ In progress</span>
         </div>
         <div class="status-row">
-          <span class="status-action fr">Annonces reçues des agents</span>
-          <span class="status-action en">Listings received from agents</span>
-          <span class="status-badge pending fr">⏳ En attente</span>
-          <span class="status-badge pending en">⏳ Pending</span>
-        </div>
-        <div class="status-row">
-          <span class="status-action fr">Disponibilité IPA dans Ngũ Hành Sơn confirmée</span>
-          <span class="status-action en">IPA land availability in Ngũ Hành Sơn confirmed</span>
-          <span class="status-badge pending fr">⏳ En attente</span>
-          <span class="status-badge pending en">⏳ Pending</span>
+          <span class="status-action fr">Prospection directe warehouses familiaux (classé commercial/industriel, hors
+            agence)</span>
+          <span class="status-action en">Direct prospecting — family warehouses (commercial/industrial zoning, no
+            agent)</span>
+          <span class="status-badge pending fr">⏳ À lancer</span>
+          <span class="status-badge pending en">⏳ To launch</span>
         </div>
         <div class="status-row">
           <span class="status-action fr">Visites de sites</span>
@@ -1096,7 +1258,7 @@
       btn.querySelector('i').setAttribute('data-lucide', isOpen ? 'menu' : 'x');
       lucide.createIcons();
     }
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       var nav = document.getElementById('mobile-nav');
       var btn = document.getElementById('hamburger-btn');
       if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
