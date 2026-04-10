@@ -1214,16 +1214,17 @@
       var revFood = Math.round(usedSlots * 4 * 0.4 * 3);
       var revWellness = Math.round(WELLNESS_BASE * (occPct / 40));
       var revTotal = revCourts + revFood + revWellness;
-      var costsMonthly = rent + staff + 1000 + 800 + 200 + 500 + 300 + 200;
       var bookingCostAnnual = Math.round(revCourts * BOOKING[booking].commRate + BOOKING[booking].monthly * 12);
-      var costsAnnual = costsMonthly * 12 + bookingCostAnnual;
+      var bookingCostMonthly = Math.round(bookingCostAnnual / 12);
+      var costsMonthly = rent + staff + 1000 + 800 + 200 + 500 + 300 + 200 + bookingCostMonthly;
+      var costsAnnual = costsMonthly * 12;
       var result = revTotal - costsAnnual;
       var margin = revTotal > 0 ? Math.round(result / revTotal * 100) : 0;
       var roi = result > 0 ? Math.round(INVEST_TOTAL / result) : null;
       return {
         usedSlots: usedSlots, revCourts: revCourts, revFood: revFood,
         revWellness: revWellness, revTotal: revTotal,
-        costsMonthly: costsMonthly, bookingCostAnnual: bookingCostAnnual,
+        costsMonthly: costsMonthly, bookingCostMonthly: bookingCostMonthly, bookingCostAnnual: bookingCostAnnual,
         costsAnnual: costsAnnual, result: result, margin: margin, roi: roi
       };
     }
@@ -1257,8 +1258,8 @@
       document.getElementById('cost-monthly').textContent = $$(d.costsMonthly);
       document.getElementById('cost-annual').textContent = $$(d.costsAnnual);
 
-      // Booking cost row
-      document.getElementById('cost-booking').textContent = $$(d.bookingCostAnnual);
+      // Booking cost row (monthly equivalent)
+      document.getElementById('cost-booking').textContent = $$(d.bookingCostMonthly);
 
       // Result cards
       document.getElementById('res-revenue').textContent = $$(d.revTotal);
