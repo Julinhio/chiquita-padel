@@ -5,21 +5,21 @@
 
 /* ---- Custom Properties ---- */
 :root {
-  --bg:      #060826;
-  --surface: #0d1038;
-  --surface2:#141650;
-  --border:  rgba(245, 236, 215, 0.09);
-  --border2: rgba(245, 236, 215, 0.20);
-  --text:    #F5ECD7;
-  --muted:   rgba(245, 236, 215, 0.48);
-  --accent:  #F27D16;
-  --accent2: #BF6517;
-  --red:     #ff4444;
-  --green:   #4dff91;
-  --blue:    #5ab4ff;
-  --purple:  #a78bfa;
-  --yellow:  #fbbf24;
-  --pink:    #f472b6;
+  --bg:      #F0EDE6;
+  --surface: #E8E4DB;
+  --surface2:#DEDAD0;
+  --border:  rgba(6, 8, 38, 0.08);
+  --border2: rgba(6, 8, 38, 0.16);
+  --text:    #060826;
+  --muted:   rgba(6, 8, 38, 0.46);
+  --accent:  #C85E08;
+  --accent2: #9A4706;
+  --red:     #B91C1C;
+  --green:   #166534;
+  --blue:    #1E40AF;
+  --purple:  #5B21B6;
+  --yellow:  #92400E;
+  --pink:    #9D174D;
 }
 
 /* ---- Reset & Base ---- */
@@ -49,7 +49,7 @@ body {
   pointer-events: none;
   z-index: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  opacity: 0.4;
+  opacity: 0.18;
 }
 
 /* ---- Navbar ---- */
@@ -57,7 +57,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(6, 8, 38, 0.95);
+  background: rgba(245, 236, 215, 0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
@@ -130,7 +130,7 @@ body {
 
 .nav-link.active {
   color: var(--accent);
-  background: rgba(242, 125, 22, 0.08);
+  background: rgba(200, 94, 8, 0.07);
 }
 
 /* ---- Language Toggle ---- */
@@ -449,13 +449,13 @@ h2 span { color: var(--accent); }
   font-family: 'DM Mono', monospace;
 }
 
-.tag.acc    { background: rgba(242, 125, 22, 0.12);  color: var(--accent); }
-.tag.red    { background: rgba(255, 68, 68, 0.12);   color: var(--red); }
-.tag.orange { background: rgba(255, 107, 53, 0.12);  color: var(--accent2); }
-.tag.blue   { background: rgba(90, 180, 255, 0.12);  color: var(--blue); }
-.tag.green  { background: rgba(77, 255, 145, 0.12);  color: var(--green); }
-.tag.yellow { background: rgba(251, 191, 36, 0.12);  color: var(--yellow); }
-.tag.purple { background: rgba(167, 139, 250, 0.12); color: var(--purple); }
+.tag.acc    { background: rgba(200, 94, 8, 0.08);    color: var(--accent); }
+.tag.red    { background: rgba(185, 28, 28, 0.08);   color: var(--red); }
+.tag.orange { background: rgba(154, 71, 6, 0.08);    color: var(--accent2); }
+.tag.blue   { background: rgba(30, 64, 175, 0.08);   color: var(--blue); }
+.tag.green  { background: rgba(22, 101, 52, 0.08);   color: var(--green); }
+.tag.yellow { background: rgba(146, 64, 14, 0.08);   color: var(--yellow); }
+.tag.purple { background: rgba(91, 33, 182, 0.08);   color: var(--purple); }
 
 .badge {
   display: inline-block;
@@ -465,7 +465,7 @@ h2 span { color: var(--accent); }
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  background: rgba(242, 125, 22, 0.12);
+  background: rgba(200, 94, 8, 0.08);
   color: var(--accent);
   margin-left: 6px;
 }
@@ -489,39 +489,39 @@ h2 span { color: var(--accent); }
 }
 
 .callout.accent {
-  background: rgba(242, 125, 22, 0.05);
-  border: 1px solid rgba(242, 125, 22, 0.2);
+  background: rgba(200, 94, 8, 0.04);
+  border: 1px solid rgba(200, 94, 8, 0.14);
 }
 .callout.accent strong { color: var(--accent); }
 
 .callout.blue {
-  background: rgba(90, 180, 255, 0.05);
-  border: 1px solid rgba(90, 180, 255, 0.2);
+  background: rgba(30, 64, 175, 0.05);
+  border: 1px solid rgba(30, 64, 175, 0.14);
 }
 .callout.blue strong { color: var(--blue); }
 
 .callout.orange {
-  background: rgba(255, 107, 53, 0.05);
-  border: 1px solid rgba(255, 107, 53, 0.2);
+  background: rgba(154, 71, 6, 0.05);
+  border: 1px solid rgba(154, 71, 6, 0.14);
 }
 .callout.orange strong { color: var(--accent2); }
 
 .callout.warn {
-  background: rgba(251, 191, 36, 0.05);
-  border: 1px solid rgba(251, 191, 36, 0.2);
+  background: rgba(146, 64, 14, 0.05);
+  border: 1px solid rgba(146, 64, 14, 0.16);
 }
 .callout.warn strong { color: var(--yellow); }
 
 .callout.green {
-  background: rgba(77, 255, 145, 0.05);
-  border: 1px solid rgba(77, 255, 145, 0.2);
+  background: rgba(22, 101, 52, 0.05);
+  border: 1px solid rgba(22, 101, 52, 0.16);
 }
 .callout.green strong { color: var(--green); }
 
 /* ---- Signal Box ---- */
 .signal-box {
-  background: rgba(242, 125, 22, 0.05);
-  border: 1px solid rgba(242, 125, 22, 0.2);
+  background: rgba(200, 94, 8, 0.04);
+  border: 1px solid rgba(200, 94, 8, 0.14);
   border-radius: 12px;
   padding: 1.1rem 1.25rem;
   margin-bottom: 1rem;
@@ -607,7 +607,7 @@ h2 span { color: var(--accent); }
   align-items: flex-start;
 }
 
-.step-card.active { border-color: rgba(242, 125, 22, 0.3); }
+.step-card.active { border-color: rgba(200, 94, 8, 0.25); }
 
 .step-num {
   width: 36px;
@@ -626,8 +626,8 @@ h2 span { color: var(--accent); }
 }
 
 .step-num.acc {
-  background: rgba(242, 125, 22, 0.1);
-  border-color: rgba(242, 125, 22, 0.4);
+  background: rgba(200, 94, 8, 0.07);
+  border-color: rgba(200, 94, 8, 0.28);
   color: var(--accent);
 }
 
@@ -779,7 +779,7 @@ input[type=range]::-webkit-slider-thumb {
   border-radius: 50%;
   background: var(--accent);
   cursor: pointer;
-  box-shadow: 0 0 0 4px rgba(242, 125, 22, 0.15);
+  box-shadow: 0 0 0 4px rgba(200, 94, 8, 0.12);
 }
 
 .slider-val {

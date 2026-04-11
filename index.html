@@ -19,33 +19,34 @@
     </script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <style>
-        /* ── Hamburger — mobile only ── */
+        /* ── MENU button — mobile only ── */
         .hamburger {
             display: none;
             align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
+            gap: 6px;
+            padding: 0 13px;
+            height: 34px;
             background: transparent;
             border: 1px solid var(--border2);
             border-radius: 8px;
             cursor: pointer;
             color: var(--text);
+            font-family: 'Syne', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
             flex-shrink: 0;
-            transition: background 0.15s, border-color 0.15s;
+            transition: opacity 0.15s;
         }
 
         .hamburger:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.25);
+            opacity: 0.85;
         }
 
-        .hamburger svg {
-            width: 18px;
-            height: 18px;
-            stroke: currentColor;
-            stroke-width: 2;
-            display: block;
+        .hamburger .menu-bars {
+            font-size: 16px;
+            line-height: 1;
         }
 
         /* Mobile drawer */
@@ -55,7 +56,7 @@
             top: 56px;
             left: 0;
             right: 0;
-            background: rgba(6, 8, 38, 0.98);
+            background: rgba(245, 236, 215, 0.98);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
             z-index: 99;
@@ -83,7 +84,7 @@
 
         .mobile-nav a:hover {
             color: var(--text);
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(6, 8, 38, 0.04);
         }
 
         .mobile-nav a.active {
@@ -134,9 +135,14 @@
         }
 
         /* Logo icon: dark stroke on orange pill */
-        .nav-logo-icon svg { stroke: #060826; }
+        .nav-logo-icon svg {
+            stroke: #060826;
+        }
+
         /* Noise stays subtle on navy */
-        .noise { opacity: 0.025; }
+        .noise {
+            opacity: 0.025;
+        }
     </style>
 </head>
 
@@ -151,9 +157,7 @@
                 <span class="nav-logo-text">Chiquita</span>
             </a>
             <button class="hamburger" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu"
-                aria-expanded="false">
-                <i data-lucide="menu" id="hamburger-icon"></i>
-            </button>
+                aria-expanded="false"><span class="menu-bars">&#9776;</span> MENU</button>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">Project</a>
                 <a href="market.html" class="nav-link">Market</a>
@@ -219,16 +223,16 @@
             <div class="metric-card blue-hl">
                 <div class="m-label fr">Investissement total</div>
                 <div class="m-label en">Total Investment</div>
-                <div class="m-value blue">$400K–500K</div>
-                <div class="m-sub fr">Estimation initiale</div>
-                <div class="m-sub en">Initial estimate</div>
+                <div class="m-value blue">$400K–450K</div>
+                <div class="m-sub fr">En fonction du site</div>
+                <div class="m-sub en">Depending on the site</div>
             </div>
             <div class="metric-card green-hl">
                 <div class="m-label fr">CA à 40% d'occupation</div>
                 <div class="m-label en">Revenue at 40% occ.</div>
                 <div class="m-value pos">~292 K$</div>
                 <div class="m-sub fr">Scénario de base</div>
-                <div class="m-sub en">Base scenario</div>
+                <div class="m-sub en">5-court scenario</div>
             </div>
             <div class="metric-card">
                 <div class="m-label fr">Retour sur investissement</div>
@@ -252,19 +256,21 @@
 
         <div class="panel">
             <p class="fr" style="font-size:15px;line-height:1.75;">
-                Chiquita - Padel Academy est un club de padel premium à Da Nang, Vietnam.
-                4 courts couverts, restauration rapide, espace wellness (ice bath, sauna),
-                boutique et académie padel. Positionnement lifestyle, clientèle expat et digital nomad.
+                Chiquita - Padel Academy Chiquita Padel Academy est un club de padel premium
+                à Da Nang, Vietnam. Le projet s'articule autour de 4 courts couverts,
+                avec une option 5 courts selon la superficie du site retenu. Restauration rapide, espace wellness (ice
+                bath, sauna), boutique et académie padel. Positionnement lifestyle, clientèle expat et digital nomad.
             </p>
             <p class="en" style="font-size:15px;line-height:1.75;">
-                Chiquita Academy is a premium padel club in Da Nang, Vietnam.
-                4 indoor courts, quick-service restaurant, wellness area (ice bath, sauna),
-                pro shop and padel academy. Lifestyle positioning, targeting expats and digital nomads.
+                Chiquita - Padel Academy is a premium padel club in Da Nang, Vietnam. The project is built around 4
+                indoor courts, with a 5-court option depending on the site. Quick-service restaurant, wellness area (ice
+                bath,
+                sauna), pro shop and padel academy. Lifestyle positioning, targeting expats and digital nomads.
             </p>
             <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:8px;">
                 <span class="tag acc">
-                    <span class="fr">4 courts couverts</span>
-                    <span class="en">4 indoor courts</span>
+                    <span class="fr">4 ou 5 courts couverts</span>
+                    <span class="en">4 or 5 indoor courts</span>
                 </span>
                 <span class="tag blue">
                     <span class="fr">Restauration rapide</span>
@@ -362,8 +368,8 @@
                     <span class="fr">Construction · Opérations<br>Asie du Sud-Est<br></span>
                     <span class="en">Construction · Operations<br>South-East Asia<br></span>
                     <span style="color:var(--accent);">
-                        <span class="fr">Projet 600 K$ à Jakarta</span>
-                        <span class="en">$600K project in Jakarta</span>
+                        <span class="fr">Projet 1 Million $ à Jakarta</span>
+                        <span class="en">$1 Million project in Jakarta</span>
                     </span>
                 </div>
             </div>
@@ -427,8 +433,7 @@
             nav.classList.toggle('open', !isOpen);
             btn.setAttribute('aria-expanded', String(!isOpen));
             // swap icon
-            btn.querySelector('i').setAttribute('data-lucide', isOpen ? 'menu' : 'x');
-            lucide.createIcons();
+
         }
 
         // Close drawer on outside click
@@ -438,8 +443,7 @@
             if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
                 nav.classList.remove('open');
                 btn.setAttribute('aria-expanded', 'false');
-                btn.querySelector('i').setAttribute('data-lucide', 'menu');
-                lucide.createIcons();
+
             }
         });
 

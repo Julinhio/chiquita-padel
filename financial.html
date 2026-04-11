@@ -48,7 +48,7 @@
       position: sticky;
       top: 56px;
       z-index: 50;
-      background: rgba(6, 8, 38, 0.97);
+      background: rgba(245, 236, 215, 0.97);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
@@ -388,7 +388,7 @@
 
     .invest-track {
       flex: 1;
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(6, 8, 38, 0.04);
       border-radius: 4px;
       height: 22px;
       overflow: hidden;
@@ -447,33 +447,34 @@
       margin-top: 2.5rem;
     }
 
-    /* ── Hamburger — mobile only ── */
+    /* ── MENU button — mobile only ── */
     .hamburger {
       display: none;
       align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
+      gap: 6px;
+      padding: 0 13px;
+      height: 34px;
       background: transparent;
       border: 1px solid var(--border2);
       border-radius: 8px;
       cursor: pointer;
       color: var(--text);
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       flex-shrink: 0;
-      transition: background 0.15s, border-color 0.15s;
+      transition: opacity 0.15s;
     }
 
     .hamburger:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.25);
+      opacity: 0.85;
     }
 
-    .hamburger svg {
-      width: 18px;
-      height: 18px;
-      stroke: currentColor;
-      stroke-width: 2;
-      display: block;
+    .hamburger .menu-bars {
+      font-size: 16px;
+      line-height: 1;
     }
 
     .mobile-nav {
@@ -482,7 +483,7 @@
       top: 56px;
       left: 0;
       right: 0;
-      background: rgba(6, 8, 38, 0.98);
+      background: rgba(245, 236, 215, 0.98);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       z-index: 99;
@@ -510,7 +511,7 @@
 
     .mobile-nav a:hover {
       color: var(--text);
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(6, 8, 38, 0.04);
     }
 
     .mobile-nav a.active {
@@ -540,9 +541,8 @@
         <span class="nav-logo-icon"><i data-lucide="zap"></i></span>
         <span class="nav-logo-text">Chiquita</span>
       </a>
-      <button class="hamburger" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false">
-        <i data-lucide="menu" id="hamburger-icon"></i>
-      </button>
+      <button class="hamburger" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu"
+        aria-expanded="false"><span class="menu-bars">&#9776;</span> MENU</button>
       <div class="nav-links">
         <a href="index.html" class="nav-link">Project</a>
         <a href="market.html" class="nav-link">Market</a>
@@ -620,8 +620,8 @@
         <span class="fr">Modèle <span>financier</span></span>
         <span class="en">Financial <span>model</span></span>
       </h1>
-      <p class="page-tagline fr">Chiffres dynamiques — ajustez les curseurs pour simuler vos scénarios</p>
-      <p class="page-tagline en">Live figures — adjust the controls to simulate your scenarios</p>
+      <p class="page-tagline fr">Chiffres dynamiques (5 courts) — ajustez les curseurs pour simuler</p>
+      <p class="page-tagline en">Live figures (5 courts) — adjust the controls to simulate</p>
     </div>
   </div>
 
@@ -646,8 +646,8 @@
         <tbody>
           <tr>
             <td style="width:65%;">
-              <div class="lbl-main fr">Courts</div>
-              <div class="lbl-main en">Courts</div>
+              <div class="lbl-main fr">5 courts</div>
+              <div class="lbl-main en">5 courts</div>
               <div class="lbl-sub fr">16 425 créneaux/an × <span id="occ-pct-a">40</span>% × 36$/créneau → <span
                   id="rev-slots-fr">6 570</span> créneaux utilisés</div>
               <div class="lbl-sub en">16,425 slots/yr × <span id="occ-pct-b">40</span>% × $36/slot → <span
@@ -850,8 +850,8 @@
         <div class="section-title en">Initial investment</div>
       </div>
     </div>
-    <h2 class="section-h2 fr">Investissement initial</h2>
-    <h2 class="section-h2 en">Initial Investment</h2>
+    <h2 class="section-h2 fr">Investissement initial (5 courts)</h2>
+    <h2 class="section-h2 en">Initial Investment (5 courts)</h2>
 
     <div class="panel" style="padding:1.25rem 1.5rem;">
       <div class="invest-row">
@@ -1021,16 +1021,19 @@
 
     <!-- Target scenario callout -->
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:0.75rem;">
-      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-family:'DM Mono',monospace;">
+      <div
+        style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-family:'DM Mono',monospace;">
         <span class="fr">Scénario de référence fixe — indépendant des curseurs ci-dessus</span>
         <span class="en">Fixed reference scenario — independent of the sliders above</span>
       </div>
       <div style="flex:1;height:1px;background:var(--border);"></div>
     </div>
-    <div class="callout" style="background:rgba(77,255,145,0.06);border:1px solid rgba(77,255,145,0.2);margin-bottom:1.5rem;">
+    <div class="callout"
+      style="background:rgba(77,255,145,0.06);border:1px solid rgba(77,255,145,0.2);margin-bottom:1.5rem;">
       <div class="callout-icon" style="color:var(--green);"><i data-lucide="target"></i></div>
       <div style="flex:1;">
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--green);margin-bottom:0.5rem;">
+        <div
+          style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--green);margin-bottom:0.5rem;">
           <span class="fr">Scénario cible · atteignable en 4–6 mois</span>
           <span class="en">Target scenario · achievable within 4–6 months</span>
         </div>
@@ -1040,19 +1043,34 @@
         </div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
           <div>
-            <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;"><span class="fr">CA annuel</span><span class="en">Annual revenue</span></div>
-            <div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;color:var(--accent);">365 090$</div>
+            <div
+              style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;">
+              <span class="fr">CA annuel</span><span class="en">Annual revenue</span>
+            </div>
+            <div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;color:var(--accent);">365 090$
+            </div>
           </div>
           <div>
-            <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;"><span class="fr">Charges</span><span class="en">Costs</span></div>
-            <div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;color:var(--muted);">~142 500$</div>
+            <div
+              style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;">
+              <span class="fr">Charges</span><span class="en">Costs</span>
+            </div>
+            <div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;color:var(--muted);">~142 500$
+            </div>
           </div>
           <div>
-            <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;"><span class="fr">Résultat brut</span><span class="en">Gross result</span></div>
-            <div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;color:var(--green);">+222 500$</div>
+            <div
+              style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;">
+              <span class="fr">Résultat brut</span><span class="en">Gross result</span>
+            </div>
+            <div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;color:var(--green);">+222 500$
+            </div>
           </div>
           <div>
-            <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;"><span class="fr">Marge</span><span class="en">Margin</span></div>
+            <div
+              style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;">
+              <span class="fr">Marge</span><span class="en">Margin</span>
+            </div>
             <div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;color:var(--green);">61%</div>
           </div>
         </div>
@@ -1063,61 +1081,84 @@
     <div class="panel">
 
       <!-- Breakeven -->
-      <div class="fact-item" style="display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);">
-        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px;"></div>
+      <div class="fact-item"
+        style="display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px;">
+        </div>
         <div>
           <div style="font-size:14px;font-weight:700;margin-bottom:4px;">
             <span class="fr">Point d'équilibre à ~20–25% d'occupation</span>
             <span class="en">Break-even at ~20–25% occupancy</span>
           </div>
           <div style="font-size:13px;color:var(--muted);line-height:1.65;">
-            <span class="fr">À seulement 20–25% de remplissage des 5 courts, le club couvre l'intégralité de ses charges fixes. C'est un seuil très conservateur, atteint dès les premières semaines d'exploitation avec une clientèle expat de base.</span>
-            <span class="en">At just 20–25% fill rate across 5 courts, the club covers all its fixed costs. This is a very conservative threshold, reachable within the first weeks of operations with a core expat clientele.</span>
+            <span class="fr">À seulement 20–25% de remplissage des 5 courts, le club couvre l'intégralité de ses charges
+              fixes. C'est un seuil très conservateur, atteint dès les premières semaines d'exploitation avec une
+              clientèle expat de base.</span>
+            <span class="en">At just 20–25% fill rate across 5 courts, the club covers all its fixed costs. This is a
+              very conservative threshold, reachable within the first weeks of operations with a core expat
+              clientele.</span>
           </div>
         </div>
       </div>
 
       <!-- Padel Mates leverage -->
       <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);">
-        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px;"></div>
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px;">
+        </div>
         <div>
           <div style="font-size:14px;font-weight:700;margin-bottom:4px;">
             <span class="fr">Padel Mates — acquisition clients intégrée</span>
             <span class="en">Padel Mates — built-in customer acquisition</span>
           </div>
           <div style="font-size:13px;color:var(--muted);line-height:1.65;">
-            <span class="fr">Padel Mates est l'application dominante au Vietnam (Padel Xtra Da Nang l'utilise déjà). La commission de 7% est compensée par un accès immédiat à une base de joueurs existante, sans budget acquisition. Le concurrent direct tourne à +80% grâce à cette plateforme seule.</span>
-            <span class="en">Padel Mates is the dominant app in Vietnam (Padel Xtra Da Nang already uses it). The 7% commission is offset by immediate access to an existing player base with zero acquisition budget. The direct competitor runs at +80% thanks to this platform alone.</span>
+            <span class="fr">Padel Mates est l'application dominante au Vietnam (Padel Xtra Da Nang l'utilise déjà). La
+              commission de 7% est compensée par un accès immédiat à une base de joueurs existante, sans budget
+              acquisition. Le concurrent direct tourne à +80% grâce à cette plateforme seule.</span>
+            <span class="en">Padel Mates is the dominant app in Vietnam (Padel Xtra Da Nang already uses it). The 7%
+              commission is offset by immediate access to an existing player base with zero acquisition budget. The
+              direct competitor runs at +80% thanks to this platform alone.</span>
           </div>
         </div>
       </div>
 
       <!-- ROI -->
       <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);">
-        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px;"></div>
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px;">
+        </div>
         <div>
           <div style="font-size:14px;font-weight:700;margin-bottom:4px;">
             <span class="fr">Retour sur investissement en ~2 ans</span>
             <span class="en">Return on investment in ~2 years</span>
           </div>
           <div style="font-size:13px;color:var(--muted);line-height:1.65;">
-            <span class="fr">Sur la base du scénario cible (50% · 222 500$/an de résultat), l'investissement initial de ~455 000$ est remboursé en <strong style="color:var(--accent);">environ 2 ans</strong>. Dès la 3e année, le projet génère un cash-flow libre significatif.</span>
-            <span class="en">Based on the target scenario (50% · $222,500/yr result), the ~$455,000 initial investment is recouped in <strong style="color:var(--accent);">approximately 2 years</strong>. From year 3 onward, the project generates significant free cash flow.</span>
+            <span class="fr">Sur la base du scénario cible (50% · 222 500$/an de résultat), l'investissement initial de
+              ~455 000$ est remboursé en <strong style="color:var(--accent);">environ 2 ans</strong>. Dès la 3e année,
+              le projet génère un cash-flow libre significatif.</span>
+            <span class="en">Based on the target scenario (50% · $222,500/yr result), the ~$455,000 initial investment
+              is recouped in <strong style="color:var(--accent);">approximately 2 years</strong>. From year 3 onward,
+              the project generates significant free cash flow.</span>
           </div>
         </div>
       </div>
 
       <!-- Upside -->
       <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 0;">
-        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px;"></div>
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px;">
+        </div>
         <div>
           <div style="font-size:14px;font-weight:700;margin-bottom:4px;">
             <span class="fr">Un upside structurel — marché en croissance</span>
             <span class="en">Structural upside — growing market</span>
           </div>
           <div style="font-size:13px;color:var(--muted);line-height:1.65;">
-            <span class="fr">Ces projections reposent sur le marché actuel. Le padel en Asie du Sud-Est croît à +1 283% de recherches en 2024–25, et Da Nang voit son flux d'expats augmenter de +60%/an. Le scénario à 60–70% d'occupation — très plausible à 12–18 mois — porterait le résultat annuel à plus de <strong style="color:var(--accent);">300 000$</strong>.</span>
-            <span class="en">These projections are based on the current market. Padel in Southeast Asia is growing at +1,283% in search interest in 2024–25, and Da Nang sees its expat base grow by +60%/yr. The 60–70% occupancy scenario — very plausible at 12–18 months — would push the annual result above <strong style="color:var(--accent);">$300,000</strong>.</span>
+            <span class="fr">Ces projections reposent sur le marché actuel. Le padel en Asie du Sud-Est croît à +1 283%
+              de recherches en 2024–25, et Da Nang voit son flux d'expats augmenter de +60%/an. Le scénario à 60–70%
+              d'occupation — très plausible à 12–18 mois — porterait le résultat annuel à plus de <strong
+                style="color:var(--accent);">300 000$</strong>.</span>
+            <span class="en">These projections are based on the current market. Padel in Southeast Asia is growing at
+              +1,283% in search interest in 2024–25, and Da Nang sees its expat base grow by +60%/yr. The 60–70%
+              occupancy scenario — very plausible at 12–18 months — would push the annual result above <strong
+                style="color:var(--accent);">$300,000</strong>.</span>
           </div>
         </div>
       </div>
@@ -1130,11 +1171,15 @@
       <div>
         <p class="fr" style="font-size:14px;line-height:1.75;margin:0;">
           <strong>Le risque est asymétrique — en notre faveur.</strong><br>
-          <span style="color:var(--muted);">Le seuil de rentabilité est bas (20–25%), le marché est en hyper-croissance, et le seul concurrent tourne déjà à 80% de capacité. Même un scénario conservateur à 40% dégage plus de 150 000$ de résultat annuel.</span>
+          <span style="color:var(--muted);">Le seuil de rentabilité est bas (20–25%), le marché est en hyper-croissance,
+            et le seul concurrent tourne déjà à 80% de capacité. Même un scénario conservateur à 40% dégage plus de 150
+            000$ de résultat annuel.</span>
         </p>
         <p class="en" style="font-size:14px;line-height:1.75;margin:0;">
           <strong>Risk is asymmetric — in our favor.</strong><br>
-          <span style="color:var(--muted);">The break-even threshold is low (20–25%), the market is in hyper-growth, and the only competitor already runs at 80% capacity. Even a conservative 40% scenario delivers over $150,000 in annual profit.</span>
+          <span style="color:var(--muted);">The break-even threshold is low (20–25%), the market is in hyper-growth, and
+            the only competitor already runs at 80% capacity. Even a conservative 40% scenario delivers over $150,000 in
+            annual profit.</span>
         </p>
       </div>
     </div>
@@ -1163,8 +1208,7 @@
       var isOpen = nav.classList.contains('open');
       nav.classList.toggle('open', !isOpen);
       btn.setAttribute('aria-expanded', String(!isOpen));
-      btn.querySelector('i').setAttribute('data-lucide', isOpen ? 'menu' : 'x');
-      lucide.createIcons();
+
     }
     document.addEventListener('click', function (e) {
       var nav = document.getElementById('mobile-nav');
@@ -1172,8 +1216,7 @@
       if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
         nav.classList.remove('open');
         btn.setAttribute('aria-expanded', 'false');
-        btn.querySelector('i').setAttribute('data-lucide', 'menu');
-        lucide.createIcons();
+
       }
     });
 

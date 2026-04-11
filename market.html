@@ -373,36 +373,53 @@
       margin-bottom: 0.75rem;
     }
 
-    /* ── Hamburger — mobile only ── */
+    /* ── MENU button — mobile only ── */
     .hamburger {
       display: none;
       align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
+      gap: 6px;
+      padding: 0 13px;
+      height: 34px;
       background: transparent;
       border: 1px solid var(--border2);
       border-radius: 8px;
       cursor: pointer;
       color: var(--text);
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       flex-shrink: 0;
-      transition: background 0.15s, border-color 0.15s;
+      transition: opacity 0.15s;
     }
-    .hamburger:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25); }
-    .hamburger svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; display: block; }
+
+    .hamburger:hover {
+      opacity: 0.85;
+    }
+
+    .hamburger .menu-bars {
+      font-size: 16px;
+      line-height: 1;
+    }
+
     .mobile-nav {
       display: none;
       position: absolute;
       top: 56px;
       left: 0;
       right: 0;
-      background: rgba(14,14,14,0.98);
+      background: rgba(245, 236, 215, 0.98);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       z-index: 99;
       padding: 0.5rem 0;
     }
-    .mobile-nav.open { display: block; }
+
+    .mobile-nav.open {
+      display: block;
+    }
+
     .mobile-nav a {
       display: block;
       padding: 13px 1.5rem;
@@ -413,12 +430,29 @@
       border-bottom: 1px solid var(--border);
       transition: color 0.15s, background 0.15s;
     }
-    .mobile-nav a:last-child { border-bottom: none; }
-    .mobile-nav a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
-    .mobile-nav a.active { color: var(--accent); background: rgba(200,245,90,0.06); }
+
+    .mobile-nav a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-nav a:hover {
+      color: var(--text);
+      background: rgba(6, 8, 38, 0.04);
+    }
+
+    .mobile-nav a.active {
+      color: var(--accent);
+      background: rgba(200, 94, 8, 0.06);
+    }
+
     @media (max-width: 700px) {
-      .hamburger { display: flex; }
-      .nav-links  { display: none !important; }
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none !important;
+      }
     }
   </style>
 </head>
@@ -433,9 +467,8 @@
         <span class="nav-logo-icon"><i data-lucide="zap"></i></span>
         <span class="nav-logo-text">Chiquita</span>
       </a>
-      <button class="hamburger" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false">
-        <i data-lucide="menu" id="hamburger-icon"></i>
-      </button>
+      <button class="hamburger" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu"
+        aria-expanded="false"><span class="menu-bars">&#9776;</span> MENU</button>
       <div class="nav-links">
         <a href="index.html" class="nav-link">Project</a>
         <a href="market.html" class="nav-link">Market</a>
@@ -492,8 +525,8 @@
       <span class="section-title fr">Vue d'ensemble · Da Nang + Hội An</span>
       <span class="section-title en">Overview · Da Nang + Hội An</span>
     </div>
-    <h2 class="section-h2 fr">Un marché combiné unique — 30 minutes, zéro padel</h2>
-    <h2 class="section-h2 en">A unique combined market — 30 minutes apart, zero padel</h2>
+    <h2 class="section-h2 fr">Un marché combiné unique — 30 minutes</h2>
+    <h2 class="section-h2 en">A unique combined market — 30 minutes apart</h2>
 
     <!-- Combined headline stats -->
     <div class="stats-grid">
@@ -513,8 +546,8 @@
       </div>
       <div class="stat-card accent">
         <div class="stat-val acc">#1 SEA</div>
-        <div class="stat-label fr">Hub expat à la croissance la plus rapide — Da Nang</div>
-        <div class="stat-label en">Fastest-growing expat hub — Da Nang</div>
+        <div class="stat-label fr">Centre d'expat à la croissance la plus rapide</div>
+        <div class="stat-label en">Fastest-growing expat hub</div>
         <div class="stat-source">
           <a href="https://www.foreignersofasia.com/post/da-nang-southeast-asia-s-fastest-growing-expat-hub"
             target="_blank" rel="noopener">Foreigners of Asia ↗</a>
@@ -543,15 +576,18 @@
           <span class="val" style="font-family:'DM Mono',monospace;color:var(--text);">~1.3M</span>
         </div>
         <div class="row-item">
-          <span class="lbl"><span class="fr">Touristes étrangers 2024</span><span class="en">Foreign tourists 2024</span></span>
+          <span class="lbl"><span class="fr">Touristes étrangers 2024</span><span class="en">Foreign tourists
+              2024</span></span>
           <span class="val blue">4M <span style="font-size:11px;color:var(--muted);">+35%</span></span>
         </div>
         <div class="row-item">
-          <span class="lbl"><span class="fr">Digital nomads 2025</span><span class="en">Digital nomads 2025</span></span>
+          <span class="lbl"><span class="fr">Digital nomads 2025</span><span class="en">Digital nomads
+              2025</span></span>
           <span class="val acc">~7 000 <span style="font-size:11px;color:var(--muted);">+60%/an</span></span>
         </div>
         <div class="row-item" style="border-bottom:none;">
-          <span class="lbl"><span class="fr">Hôtels 5★ ouverts en 2024</span><span class="en">5-star hotels opened 2024</span></span>
+          <span class="lbl"><span class="fr">Hôtels 5★ ouverts en 2024</span><span class="en">5-star hotels opened
+              2024</span></span>
           <span class="val pos">6</span>
         </div>
       </div>
@@ -561,16 +597,19 @@
         <div class="panel-title" style="display:flex;align-items:center;gap:8px;">
           <span style="color:var(--accent);">●</span>
           Hội An
-          <span class="tag" style="background:rgba(200,245,90,0.12);color:var(--accent);border:1px solid rgba(200,245,90,0.25);font-size:10px;padding:2px 7px;border-radius:5px;margin-left:4px;">
+          <span class="tag"
+            style="background:rgba(200,245,90,0.12);color:var(--accent);border:1px solid rgba(200,245,90,0.25);font-size:10px;padding:2px 7px;border-radius:5px;margin-left:4px;">
             <span class="fr">Marché vierge</span><span class="en">Untapped market</span>
           </span>
         </div>
         <div class="row-item">
-          <span class="lbl"><span class="fr">Rang digital nomads</span><span class="en">Digital nomad ranking</span></span>
+          <span class="lbl"><span class="fr">Rang digital nomads</span><span class="en">Digital nomad
+              ranking</span></span>
           <span class="val acc">Top 5 <span style="font-size:11px;color:var(--muted);">mondial</span></span>
         </div>
         <div class="row-item">
-          <span class="lbl"><span class="fr">Coût de vie mensuel</span><span class="en">Monthly cost of living</span></span>
+          <span class="lbl"><span class="fr">Coût de vie mensuel</span><span class="en">Monthly cost of
+              living</span></span>
           <span class="val" style="font-family:'DM Mono',monospace;color:var(--text);">~909$/mois</span>
         </div>
         <div class="row-item">
@@ -578,18 +617,29 @@
           <span class="val" style="font-family:'DM Mono',monospace;color:var(--text);">30 min</span>
         </div>
         <div class="row-item" style="border-bottom:none;">
-          <span class="lbl"><span class="fr">Clubs padel existants</span><span class="en">Existing padel clubs</span></span>
-          <span class="val" style="color:var(--green);font-family:'DM Mono',monospace;font-size:16px;font-weight:700;">0</span>
+          <span class="lbl"><span class="fr">Clubs padel existants</span><span class="en">Existing padel
+              clubs</span></span>
+          <span class="val"
+            style="color:var(--green);font-family:'DM Mono',monospace;font-size:16px;font-weight:700;">0</span>
         </div>
       </div>
     </div>
 
     <div class="panel">
       <p class="fr" style="font-size:15px;line-height:1.75;">
-        Da Nang et Hội An forment une zone de chalandise combinée exceptionnelle : <strong style="color:var(--accent);">9 000+ résidents étrangers</strong>, 6,8M de visiteurs internationaux par an, et <strong style="color:var(--accent);">zéro offre padel à Hội An</strong>. Da Nang est le hub expat à la croissance la plus rapide d'Asie du Sud-Est, avec 6 nouveaux hôtels 5 étoiles ouverts en 2024. Hội An, classée top 5 mondial des destinations digital nomads, attire un profil premium à faible sensibilité prix — et n'a aucune infrastructure sportive haut de gamme.
+        Da Nang et Hội An forment une zone de chalandise combinée exceptionnelle : <strong
+          style="color:var(--accent);">9 000+ résidents étrangers</strong>, 6,8M de visiteurs internationaux par an, et
+        <strong style="color:var(--accent);">zéro offre padel à Hội An</strong>. Da Nang est la zone expat à la
+        croissance la plus rapide d'Asie du Sud-Est, avec 6 nouveaux hôtels 5 étoiles ouverts en 2024. Hội An, classée
+        top 5 mondial des destinations digital nomads, attire un profil premium à faible sensibilité prix — et n'a
+        aucune infrastructure sportive haut de gamme.
       </p>
       <p class="en" style="font-size:15px;line-height:1.75;">
-        Da Nang and Hội An form an exceptional combined catchment area: <strong style="color:var(--accent);">9,000+ foreign residents</strong>, 6.8M international visitors per year, and <strong style="color:var(--accent);">zero padel in Hội An</strong>. Da Nang is Southeast Asia's fastest-growing expat hub, with 6 new 5-star hotels opened in 2024. Hội An, ranked top 5 worldwide for digital nomads, draws premium profiles with low price sensitivity — and has zero high-end sports infrastructure.
+        Da Nang and Hội An form an exceptional combined catchment area: <strong style="color:var(--accent);">9,000+
+          foreign residents</strong>, 6.8M international visitors per year, and <strong
+          style="color:var(--accent);">zero padel in Hội An</strong>. Da Nang is Southeast Asia's fastest-growing expat
+        hub, with 6 new 5-star hotels opened in 2024. Hội An, ranked top 5 worldwide for digital nomads, draws premium
+        profiles with low price sensitivity — and has zero high-end sports infrastructure.
       </p>
 
       <!-- ── Collapsible source panel ── -->
@@ -614,7 +664,8 @@
           <div class="source-claim">
             <div class="source-claim-dot"></div>
             <div>
-              <span class="fr"><strong>Nomads &amp; expats premium</strong> — Da Nang s'est hissée en tête des hubs de
+              <span class="fr"><strong>Nomads &amp; expats premium</strong> — Da Nang s'est hissée en tête des
+                destinations pour
                 digital nomads à la
                 croissance la plus rapide en Asie du Sud-Est en 2025 selon Nomads.com. Le Vietnam Nomad Fest (mars 2025,
                 Da Nang / Hội An) a attiré des centaines de remote workers internationaux, confirmant l'attractivité de
@@ -712,13 +763,16 @@
         <div class="panel-title en">Global figures</div>
 
         <div class="row-item">
-          <span class="lbl"><span class="fr">Joueurs dans le monde (2025)</span><span class="en">Players worldwide (2025)</span></span>
+          <span class="lbl"><span class="fr">Joueurs dans le monde (2025)</span><span class="en">Players worldwide
+              (2025)</span></span>
           <span class="val acc">35M
             <span style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;"> ↑ 25M en 2022</span>
           </span>
         </div>
         <div class="row-item" style="padding-top:4px;padding-bottom:4px;">
-          <span class="lbl" style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;"><span class="fr">Source : FIP (Fédération Internationale de Padel)</span><span class="en">Source: FIP (International Padel Federation)</span></span>
+          <span class="lbl" style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;"><span
+              class="fr">Source : FIP (Fédération Internationale de Padel)</span><span class="en">Source: FIP
+              (International Padel Federation)</span></span>
           <span></span>
         </div>
         <div class="row-item">
@@ -878,7 +932,8 @@
 
     <!-- Hoi An: zero competition -->
     <div class="competitor-panel" style="border-color:rgba(200,245,90,0.2);margin-top:1rem;">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.25rem;flex-wrap:wrap;gap:8px;">
+      <div
+        style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.25rem;flex-wrap:wrap;gap:8px;">
         <div>
           <div class="competitor-name" style="color:var(--accent);">Hội An</div>
           <div style="font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;margin-top:3px;">
@@ -886,13 +941,15 @@
             <span class="en">Top 5 global digital nomads · cost of living ~$909/month</span>
           </div>
         </div>
-        <span class="tag" style="background:rgba(77,255,145,0.12);color:var(--green);border:1px solid rgba(77,255,145,0.25);">
+        <span class="tag"
+          style="background:rgba(77,255,145,0.12);color:var(--green);border:1px solid rgba(77,255,145,0.25);">
           <span class="fr">Marché vierge</span>
           <span class="en">Untapped market</span>
         </span>
       </div>
       <div class="row-item">
-        <span class="lbl"><span class="fr">Clubs padel existants</span><span class="en">Existing padel clubs</span></span>
+        <span class="lbl"><span class="fr">Clubs padel existants</span><span class="en">Existing padel
+            clubs</span></span>
         <span class="val pos" style="font-size:18px;font-weight:700;">0</span>
       </div>
       <div class="row-item">
@@ -903,7 +960,8 @@
         </span>
       </div>
       <div class="row-item" style="border-bottom:none;">
-        <span class="lbl"><span class="fr">Infrastructure sportive haut de gamme</span><span class="en">Premium sports infrastructure</span></span>
+        <span class="lbl"><span class="fr">Infrastructure sportive haut de gamme</span><span class="en">Premium sports
+            infrastructure</span></span>
         <span class="val" style="color:var(--muted);font-family:'DM Mono',monospace;font-size:13px;">
           <span class="fr">Inexistante</span>
           <span class="en">None</span>
@@ -914,8 +972,13 @@
     <div class="signal-box">
       <div class="signal-icon" style="color:var(--accent);"><i data-lucide="alert-circle"></i></div>
       <div class="signal-text">
-        <span class="fr"><strong>Double signal fort :</strong> Padel Xtra tourne à +80% avec 2 courts basiques à Da Nang — et Hội An, top 5 mondial digital nomads, n'a <strong>aucun concurrent padel</strong>. La demande dépasse l'offre sur tout le corridor.</span>
-        <span class="en"><strong>Double strong signal:</strong> Padel Xtra runs at +80% with 2 basic courts in Da Nang — and Hội An, a top-5 global digital nomad hub, has <strong>zero padel competition</strong>. Demand outstrips supply across the entire corridor.</span>
+        <span class="fr"><strong>Double signal fort :</strong> Padel Xtra tourne à +80% avec 2 courts basiques à Da Nang
+          — et Hội An, top 5 mondial pour digital nomads, n'a <strong>aucun concurrent padel</strong>. La demande
+          dépasse
+          l'offre sur tout le corridor.</span>
+        <span class="en"><strong>Double strong signal:</strong> Padel Xtra runs at +80% with 2 basic courts in Da Nang —
+          and Hội An, a top-5 global digital nomad hub, has <strong>zero padel competition</strong>. Demand outstrips
+          supply across the entire corridor.</span>
       </div>
     </div>
 
@@ -1031,11 +1094,15 @@
       <div>
         <p class="fr" style="font-size:15px;line-height:1.7;">
           <strong>Da Nang + Hội An = exactement là où était la Costa del Sol il y a 15 ans.</strong><br>
-          <span style="color:var(--muted);">9 000+ expats, 6,8M visiteurs, un seul concurrent qui tourne à 80% avec 2 courts basiques à Da Nang — et <strong style="color:var(--accent);">zéro padel à Hội An</strong>. La fenêtre ne restera pas ouverte longtemps.</span>
+          <span style="color:var(--muted);">9 000+ expats, 6,8M visiteurs, un seul concurrent qui tourne à 80% avec 2
+            courts basiques à Da Nang — et <strong style="color:var(--accent);">zéro padel à Hội An</strong>. La fenêtre
+            ne restera pas ouverte longtemps.</span>
         </p>
         <p class="en" style="font-size:15px;line-height:1.7;">
           <strong>Da Nang + Hội An = exactly where the Costa del Sol was 15 years ago.</strong><br>
-          <span style="color:var(--muted);">9,000+ expats, 6.8M visitors, one competitor running at 80% with 2 basic courts in Da Nang — and <strong style="color:var(--accent);">zero padel in Hội An</strong>. This window won't stay open long.</span>
+          <span style="color:var(--muted);">9,000+ expats, 6.8M visitors, one competitor running at 80% with 2 basic
+            courts in Da Nang — and <strong style="color:var(--accent);">zero padel in Hội An</strong>. This window
+            won't stay open long.</span>
         </p>
       </div>
     </div>
@@ -1064,17 +1131,15 @@
       var isOpen = nav.classList.contains('open');
       nav.classList.toggle('open', !isOpen);
       btn.setAttribute('aria-expanded', String(!isOpen));
-      btn.querySelector('i').setAttribute('data-lucide', isOpen ? 'menu' : 'x');
-      lucide.createIcons();
+
     }
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       var nav = document.getElementById('mobile-nav');
       var btn = document.getElementById('hamburger-btn');
       if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
         nav.classList.remove('open');
         btn.setAttribute('aria-expanded', 'false');
-        btn.querySelector('i').setAttribute('data-lucide', 'menu');
-        lucide.createIcons();
+
       }
     });
 

@@ -288,7 +288,7 @@
 
     .cost-bar-track {
       flex: 1;
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(6, 8, 38, 0.04);
       border-radius: 4px;
       height: 24px;
       overflow: hidden;
@@ -486,34 +486,35 @@
       color: var(--muted);
     }
 
-    /* ── Hamburger — mobile only ── */
-    .hamburger {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      background: transparent;
-      border: 1px solid var(--border2);
-      border-radius: 8px;
-      cursor: pointer;
-      color: var(--text);
-      flex-shrink: 0;
-      transition: background 0.15s, border-color 0.15s;
-    }
+    /* ── MENU button — mobile only ── */
+        .hamburger {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            padding: 0 13px;
+            height: 34px;
+            background: transparent;
+            border: 1px solid var(--border2);
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--text);
+            font-family: 'Syne', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            flex-shrink: 0;
+            transition: opacity 0.15s;
+        }
 
-    .hamburger:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.25);
-    }
+            .hamburger:hover {
+            opacity: 0.85;
+        }
 
-    .hamburger svg {
-      width: 18px;
-      height: 18px;
-      stroke: currentColor;
-      stroke-width: 2;
-      display: block;
-    }
+            .hamburger .menu-bars {
+            font-size: 16px;
+            line-height: 1;
+        }
 
     .mobile-nav {
       display: none;
@@ -521,7 +522,7 @@
       top: 56px;
       left: 0;
       right: 0;
-      background: rgba(6, 8, 38, 0.98);
+      background: rgba(245, 236, 215, 0.98);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       z-index: 99;
@@ -549,7 +550,7 @@
 
     .mobile-nav a:hover {
       color: var(--text);
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(6, 8, 38, 0.04);
     }
 
     .mobile-nav a.active {
@@ -579,9 +580,7 @@
         <span class="nav-logo-icon"><i data-lucide="zap"></i></span>
         <span class="nav-logo-text">Chiquita</span>
       </a>
-      <button class="hamburger" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false">
-        <i data-lucide="menu" id="hamburger-icon"></i>
-      </button>
+      <button class="hamburger" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false"><span class="menu-bars">&#9776;</span> MENU</button>
       <div class="nav-links">
         <a href="index.html" class="nav-link">Project</a>
         <a href="market.html" class="nav-link">Market</a>
@@ -1255,8 +1254,7 @@
       var isOpen = nav.classList.contains('open');
       nav.classList.toggle('open', !isOpen);
       btn.setAttribute('aria-expanded', String(!isOpen));
-      btn.querySelector('i').setAttribute('data-lucide', isOpen ? 'menu' : 'x');
-      lucide.createIcons();
+      
     }
     document.addEventListener('click', function (e) {
       var nav = document.getElementById('mobile-nav');
@@ -1264,8 +1262,7 @@
       if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
         nav.classList.remove('open');
         btn.setAttribute('aria-expanded', 'false');
-        btn.querySelector('i').setAttribute('data-lucide', 'menu');
-        lucide.createIcons();
+        
       }
     });
 
