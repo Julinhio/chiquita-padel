@@ -301,69 +301,6 @@
       color: var(--red);
     }
 
-    /* ── Scenario table ── */
-    .scenario-wrap {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: auto;
-      margin-bottom: 2rem;
-    }
-
-    .scenario-table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 380px;
-    }
-
-    .scenario-table th,
-    .scenario-table td {
-      padding: 10px 14px;
-      text-align: center;
-      font-size: 13px;
-      border-bottom: 1px solid var(--border);
-      font-family: 'DM Mono', monospace;
-    }
-
-    .scenario-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .scenario-table thead th {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 12px 14px;
-      background: var(--surface2);
-    }
-
-    .scenario-table .col-occ {
-      text-align: left;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .scenario-table .cell-pos {
-      color: var(--green);
-    }
-
-    .scenario-table .cell-neg {
-      color: var(--red);
-    }
-
-    .scenario-table td.cell-active {
-      background: rgba(242, 125, 22, 0.07);
-      outline: 1px solid rgba(242, 125, 22, 0.35);
-      outline-offset: -1px;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    .scenario-table tr.row-active .col-occ {
-      color: var(--accent);
-    }
 
     /* ── Investment bar chart ── */
     .invest-row {
@@ -586,13 +523,14 @@
       </div>
 
       <!-- Rent -->
-      <div class="ctrl-group" style="flex:none;">
+      <div class="ctrl-group">
         <div class="ctrl-label fr">Loyer mensuel</div>
         <div class="ctrl-label en">Monthly rent</div>
-        <div class="toggle-group">
-          <button class="toggle-btn active" id="rent-4000" onclick="onRentChange(4000)">4 000$</button>
-          <button class="toggle-btn" id="rent-6000" onclick="onRentChange(6000)">6 000$</button>
+        <div class="slider-row">
+          <input type="range" id="rent-slider" min="3500" max="6500" step="100" value="4000" oninput="onRentChange(this.value)">
+          <span class="slider-val" id="rent-val">4,000$</span>
         </div>
+        <div class="ctrl-hint">3 500$ → 6 500$, step 100$</div>
       </div>
 
       <!-- Staff -->
@@ -604,8 +542,8 @@
             oninput="onStaffChange(this.value)">
           <span class="slider-val" id="staff-val">3 200$</span>
         </div>
-        <div class="ctrl-hint fr">Pascal: 2–3 pers. · Julien: 5–7 pers.</div>
-        <div class="ctrl-hint en">Pascal: 2–3 people · Julien: 5–7 people</div>
+        <div class="ctrl-hint fr">Scénario lean → équipe complète</div>
+        <div class="ctrl-hint en">Lean staffing → full team</div>
       </div>
 
 
@@ -729,21 +667,22 @@
             <td class="amt">300$</td>
           </tr>
           <tr>
-            <td><span class="fr">Holding Singapour (maintenance + compta)</span><span class="en">Singapore Holding
-                (maintenance + accounting)</span></td>
-            <td class="amt muted">145$–470$</td>
+            <td>
+              <span class="fr">Holding Singapour (maintenance + compta)</span><span class="en">Singapore Holding (maintenance + accounting)</span>
+              <div class="lbl-sub fr">Fourchette réelle 145$–470$ · valeur retenue dans le calcul</div>
+              <div class="lbl-sub en">Actual range $145–$470 · value used in calculation</div>
+            </td>
+            <td class="amt">~200$</td>
           </tr>
           <tr>
             <td>
               <div class="lbl-main fr">Plateforme de réservation</div>
               <div class="lbl-main en">Booking platform</div>
               <div style="display:flex; gap:5px; margin-top:6px; flex-wrap:wrap;">
-                <button class="toggle-btn active" id="book-direct" onclick="onBookingChange('direct')">Direct</button>
-                <button class="toggle-btn" id="book-padelmates" onclick="onBookingChange('padelmates')">Padel
-                  Mates</button>
+                <button class="toggle-btn active" id="book-bookandgo" onclick="onBookingChange('bookandgo')">Book &amp; Go</button>
                 <button class="toggle-btn" id="book-playtomic" onclick="onBookingChange('playtomic')">Playtomic</button>
               </div>
-              <div class="ctrl-hint" id="booking-hint">Stripe fees only — ~1.5% per transaction</div>
+              <div class="ctrl-hint" id="booking-hint"><span class="fr">Abonnement €400/mo + ~1.2% traitement · calcul en ~440$/mo</span><span class="en">€400/mo subscription + ~1.2% processing · calculated as ~$440/mo</span></div>
             </td>
             <td class="amt dynamic" id="cost-booking">—</td>
           </tr>
@@ -803,42 +742,6 @@
       </span>
     </div>
 
-    <!-- ══ SECTION 4 — SCENARIO COMPARISON ══ -->
-    <div class="section-header section-sep">
-      <div class="section-icon" style="background:rgba(90,180,255,0.12);color:var(--blue);">
-        <i data-lucide="table-2"></i>
-      </div>
-      <div>
-        <div class="section-title fr">Scénarios</div>
-        <div class="section-title en">Scenarios</div>
-      </div>
-    </div>
-    <h2 class="section-h2 fr">Comparaison des scénarios</h2>
-    <h2 class="section-h2 en">Scenario Comparison</h2>
-
-    <div class="scenario-wrap">
-      <table class="scenario-table">
-        <thead>
-          <tr>
-            <th style="text-align:left;">
-              <span class="fr">Occupation</span>
-              <span class="en">Occupancy</span>
-            </th>
-            <th>
-              <span class="fr">Loyer 4 000$</span>
-              <span class="en">Rent $4,000</span>
-            </th>
-            <th>
-              <span class="fr">Loyer 6 000$</span>
-              <span class="en">Rent $6,000</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody id="scenario-tbody">
-          <!-- generated by JS -->
-        </tbody>
-      </table>
-    </div>
 
     <!-- ══ SECTION 5 — INITIAL INVESTMENT ══ -->
     <div class="section-header section-sep">
@@ -1038,8 +941,8 @@
           <span class="en">Target scenario · achievable within 4–6 months</span>
         </div>
         <div style="font-size:13px;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:0.75rem;">
-          <span class="fr">50% occupation · Loyer 4 000$ · Staff 3 000$ · Padel Mates</span>
-          <span class="en">50% occupancy · Rent $4,000 · Staff $3,000 · Padel Mates</span>
+          <span class="fr">50% occupation · Loyer 4 000$ · Staff 3 000$ · Book &amp; Go</span>
+          <span class="en">50% occupancy · Rent $4,000 · Staff $3,000 · Book &amp; Go</span>
         </div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
           <div>
@@ -1055,7 +958,7 @@
               style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;">
               <span class="fr">Charges</span><span class="en">Costs</span>
             </div>
-            <div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;color:var(--muted);">~142 500$
+            <div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;color:var(--muted);">~128 800$
             </div>
           </div>
           <div>
@@ -1063,7 +966,7 @@
               style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;">
               <span class="fr">Résultat brut</span><span class="en">Gross result</span>
             </div>
-            <div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;color:var(--green);">+222 500$
+            <div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;color:var(--green);">+236 000$
             </div>
           </div>
           <div>
@@ -1071,7 +974,7 @@
               style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;">
               <span class="fr">Marge</span><span class="en">Margin</span>
             </div>
-            <div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;color:var(--green);">61%</div>
+            <div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;color:var(--green);">65%</div>
           </div>
         </div>
       </div>
@@ -1101,22 +1004,23 @@
         </div>
       </div>
 
-      <!-- Padel Mates leverage -->
+      <!-- Booking platform -->
       <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);">
         <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px;">
         </div>
         <div>
           <div style="font-size:14px;font-weight:700;margin-bottom:4px;">
-            <span class="fr">Padel Mates — acquisition clients intégrée</span>
-            <span class="en">Padel Mates — built-in customer acquisition</span>
+            <span class="fr">Book &amp; Go — marque blanche, coûts maîtrisés</span>
+            <span class="en">Book &amp; Go — white-label platform, controlled costs</span>
           </div>
           <div style="font-size:13px;color:var(--muted);line-height:1.65;">
-            <span class="fr">Padel Mates est l'application dominante au Vietnam (Padel Xtra Da Nang l'utilise déjà). La
-              commission de 7% est compensée par un accès immédiat à une base de joueurs existante, sans budget
-              acquisition. Le concurrent direct tourne à +80% grâce à cette plateforme seule.</span>
-            <span class="en">Padel Mates is the dominant app in Vietnam (Padel Xtra Da Nang already uses it). The 7%
-              commission is offset by immediate access to an existing player base with zero acquisition budget. The
-              direct competitor runs at +80% thanks to this platform alone.</span>
+            <span class="fr">Book &amp; Go est une solution SaaS marque blanche : l'expérience de réservation est
+              entièrement aux couleurs de Chiquita Academy. La commission de 1,2% (traitement paiement uniquement)
+              est significativement inférieure aux plateformes tierces à commission variable, ce qui préserve la marge
+              à mesure que le chiffre d'affaires croît.</span>
+            <span class="en">Book &amp; Go is a white-label SaaS solution: the booking experience is fully branded as
+              Chiquita Academy. The 1.2% fee (payment processing only) is significantly lower than variable-commission
+              third-party platforms, preserving margin as revenue scales.</span>
           </div>
         </div>
       </div>
@@ -1131,10 +1035,10 @@
             <span class="en">Return on investment in ~2 years</span>
           </div>
           <div style="font-size:13px;color:var(--muted);line-height:1.65;">
-            <span class="fr">Sur la base du scénario cible (50% · 222 500$/an de résultat), l'investissement initial de
+            <span class="fr">Sur la base du scénario cible (50% · 236 000$/an de résultat), l'investissement initial de
               ~455 000$ est remboursé en <strong style="color:var(--accent);">environ 2 ans</strong>. Dès la 3e année,
               le projet génère un cash-flow libre significatif.</span>
-            <span class="en">Based on the target scenario (50% · $222,500/yr result), the ~$455,000 initial investment
+            <span class="en">Based on the target scenario (50% · $236,000/yr result), the ~$455,000 initial investment
               is recouped in <strong style="color:var(--accent);">approximately 2 years</strong>. From year 3 onward,
               the project generates significant free cash flow.</span>
           </div>
@@ -1236,7 +1140,7 @@
     })();
 
     // ── State ────────────────────────────────────────────────
-    var state = { occ: 40, rent: 4000, staff: 3200, booking: 'direct' };
+    var state = { occ: 40, rent: 4000, staff: 3200, booking: 'bookandgo' };
 
     // ── Calculation logic (exact spec) ───────────────────────
     var TOTAL_SLOTS = 5 * 9 * 365; // 16,425
@@ -1245,13 +1149,12 @@
     var INVEST_TOTAL = 455000;
 
     var BOOKING = {
-      direct: { commRate: 0.015, monthly: 0 },
-      padelmates: { commRate: 0.07, monthly: 150 },
-      playtomic: { commRate: 0.12, monthly: 200 }
+      bookandgo: { commRate: 0.012, monthly: 440 },
+      playtomic: { commRate: 0.04, monthly: 275 }
     };
 
     function calc(occPct, rent, staff, booking) {
-      booking = booking || 'direct';
+      booking = booking || 'bookandgo';
       var usedSlots = Math.round(TOTAL_SLOTS * occPct / 100);
       var revCourts = usedSlots * PRICE_SLOT;
       var revFood = Math.round(usedSlots * 4 * 0.4 * 3);
@@ -1335,46 +1238,15 @@
       }
 
       // ROI
-      var roiFr = document.getElementById('roi-val-fr');
-      var roiEn = document.getElementById('roi-val-en');
+      var rp = document.getElementById('roi-text');
       if (d.roi !== null) {
-        roiFr.textContent = '~' + d.roi + ' an' + (d.roi > 1 ? 's' : '');
-        roiEn.textContent = '~' + d.roi + ' year' + (d.roi > 1 ? 's' : '');
+        rp.querySelector('.fr').innerHTML = 'Au taux d\'occupation actuel, le retour sur investissement est estimé à <strong style="color:var(--accent);" id="roi-val-fr">~' + d.roi + ' an' + (d.roi > 1 ? 's' : '') + '</strong>.';
+        rp.querySelector('.en').innerHTML = 'At the current occupancy rate, the estimated return on investment is <strong style="color:var(--accent);" id="roi-val-en">~' + d.roi + ' year' + (d.roi > 1 ? 's' : '') + '</strong>.';
       } else {
-        roiFr.textContent = '—';
-        roiEn.textContent = '—';
-        var rp = document.getElementById('roi-text');
         rp.querySelector('.fr').innerHTML = 'Le projet n\'est pas rentable à ce taux d\'occupation.';
         rp.querySelector('.en').innerHTML = 'The project is not profitable at this occupancy rate.';
       }
 
-      // Scenario table
-      renderScenarioTable();
-    }
-
-    // ── Scenario table ───────────────────────────────────────
-    var SCEN_OCCS = [20, 30, 40, 50, 60, 70];
-    var SCEN_RENTS = [4000, 6000];
-
-    function renderScenarioTable() {
-      var tbody = document.getElementById('scenario-tbody');
-      var rows = '';
-      SCEN_OCCS.forEach(function (occ) {
-        var isRowActive = (occ === state.occ);
-        rows += '<tr' + (isRowActive ? ' class="row-active"' : '') + '>';
-        rows += '<td class="col-occ">' + occ + '%</td>';
-        SCEN_RENTS.forEach(function (rent) {
-          var d = calc(occ, rent, state.staff, state.booking);
-          var isCell = isRowActive && (rent === state.rent);
-          var color = d.result >= 0 ? 'cell-pos' : 'cell-neg';
-          var active = isCell ? ' cell-active' : '';
-          rows += '<td class="' + color + active + '">';
-          rows += (d.result >= 0 ? '+' : '') + $$(d.result);
-          rows += '</td>';
-        });
-        rows += '</tr>';
-      });
-      tbody.innerHTML = rows;
     }
 
     // ── Control handlers ─────────────────────────────────────
@@ -1385,10 +1257,8 @@
     }
 
     function onRentChange(val) {
-      state.rent = val;
-      [4000, 6000].forEach(function (r) {
-        document.getElementById('rent-' + r).classList.toggle('active', r === val);
-      });
+      state.rent = parseInt(val, 10);
+      document.getElementById('rent-val').textContent = fmt(state.rent) + '$';
       update();
     }
 
@@ -1399,17 +1269,16 @@
     }
 
     var BOOKING_HINTS = {
-      direct: 'Stripe fees only — ~1.5% per transaction',
-      padelmates: '~7% commission + $150/mo subscription',
-      playtomic: '~12% commission + $200/mo subscription'
+      bookandgo: '<span class="fr">Abonnement €400/mo + ~1.2% traitement · calcul en ~440$/mo</span><span class="en">€400/mo subscription + ~1.2% processing · calculated as ~$440/mo</span>',
+      playtomic: '<span class="fr">Abonnement €250/mo + 4% commission · calcul en ~275$/mo</span><span class="en">€250/mo subscription + 4% commission · calculated as ~$275/mo</span>'
     };
 
     function onBookingChange(val) {
       state.booking = val;
-      ['direct', 'padelmates', 'playtomic'].forEach(function (k) {
+      ['bookandgo', 'playtomic'].forEach(function (k) {
         document.getElementById('book-' + k).classList.toggle('active', k === val);
       });
-      document.getElementById('booking-hint').textContent = BOOKING_HINTS[val];
+      document.getElementById('booking-hint').innerHTML = BOOKING_HINTS[val];
       update();
     }
 
